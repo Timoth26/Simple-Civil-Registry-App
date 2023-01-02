@@ -1,3 +1,5 @@
+import os
+
 from flask import *
 import psycopg2
 import psycopg2.extras
@@ -6,6 +8,7 @@ import logging
 from datetime import timedelta
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(24)
 
 DB_HOST = "usc-bd.postgres.database.azure.com"
 DB_NAME = "usc"
@@ -58,7 +61,7 @@ def logout():
 @app.before_request
 def make_session_permanent():
     session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=3)
+    app.permanent_session_lifetime = timedelta(minutes=1)
 
 
 def get_occupation(user_id):
