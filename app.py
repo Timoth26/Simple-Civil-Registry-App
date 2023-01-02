@@ -31,14 +31,37 @@ def login():
 
         # If account exist (with correct password) run session
         if account:
-        # Create session data
+            # Create session data
             session['loggedin'] = True
             session['id'] = account['UserID']
+            session['occupation'] = get_occupation(account['UserID'])
             return redirect('index.html')
         else:
             flash('Incorrect username or password')
 
     return render_template('login.html')
+def get_occupation(user_id):
+
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute('SELECT * FROM employees WHERE (SELECT "PESEL" FROM login_credentials WHERE "UserID" = %s) = employees."PESEL"',
+                   (user_id,))
+    occupation = cursor.fetchone()
+    if occupation:
+        return occupation['Occupation']
+    else:
+        return None
+
+@app.route('/usermenu')
+def user_menu():
+    return render_template('usermenu.html')
+
+@app.route('/officialmenu')
+def official_menu():
+    return render_template('officialmenu.html')
+
+@app.route('/mayormenu')
+def mayor_menu():
+    return render_template('mayormenu.html')
 
 
 if __name__ == '__main__':
