@@ -37,7 +37,7 @@ def login():
             session['occupation'] = get_occupation(account['UserID'])
             return redirect('index.html')
         else:
-            flash('Incorrect username or password')
+            flash('Podane błędny login lub hasło')
 
     return render_template('login.html')
 def get_occupation(user_id):
