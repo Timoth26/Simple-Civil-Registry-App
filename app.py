@@ -52,7 +52,7 @@ def logout_user():
     session['occupation'] = None
 
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
     logout_user()
     return redirect('/login')
@@ -64,14 +64,31 @@ def make_session_permanent():
     app.permanent_session_lifetime = timedelta(minutes=1)
 
 
+@app.route('/userpersonaldata')
+def show_user_personal_data():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel(session.get('id')),))
+    data = cursor.fetchone()
+    return render_template('userpersonaldata.html', data=data)
+
 def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute(
-        'SELECT * FROM employees WHERE (SELECT "PESEL" FROM login_credentials WHERE "UserID" = %s) = employees."PESEL"',
-        (user_id,))
+        'SELECT * FROM employees WHERE %s = employees."PESEL"',
+        (get_pesel(user_id),))
     occupation = cursor.fetchone()
     if occupation:
         return occupation['Occupation']
+    else:
+        return None
+
+
+def get_pesel(user_id):
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute('SELECT "PESEL" FROM login_credentials WHERE "UserID" = %s', (user_id,))
+    pesel = cursor.fetchone()
+    if pesel:
+        return pesel['PESEL']
     else:
         return None
 
