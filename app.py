@@ -3,6 +3,7 @@ import psycopg2
 import psycopg2.extras
 import sys
 import logging
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -40,24 +41,47 @@ def login():
             flash('Podane błędny login lub hasło')
 
     return render_template('login.html')
-def get_occupation(user_id):
 
+
+def logout_user():
+    session['loggedin'] = False
+    session['id'] = None
+    session['occupation'] = None
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect('/login')
+
+
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=3)
+
+
+def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute('SELECT * FROM employees WHERE (SELECT "PESEL" FROM login_credentials WHERE "UserID" = %s) = employees."PESEL"',
-                   (user_id,))
+    cursor.execute(
+        'SELECT * FROM employees WHERE (SELECT "PESEL" FROM login_credentials WHERE "UserID" = %s) = employees."PESEL"',
+        (user_id,))
     occupation = cursor.fetchone()
     if occupation:
         return occupation['Occupation']
     else:
         return None
 
+
 @app.route('/usermenu')
 def user_menu():
     return render_template('usermenu.html')
 
+
 @app.route('/officialmenu')
 def official_menu():
     return render_template('officialmenu.html')
+
 
 @app.route('/mayormenu')
 def mayor_menu():
