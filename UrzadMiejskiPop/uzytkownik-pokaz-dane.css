@@ -1,0 +1,478 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+.uzytkownik-pokazdane-child {
+  position: absolute;
+  top: 100px;
+  left: 690px;
+  background-color: var(--color-gray-600);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 4px solid var(--color-black);
+  box-sizing: border-box;
+  width: 631px;
+  height: 797px;
+}
+.obraz-1-icon32 {
+  position: absolute;
+  top: 77px;
+  left: 66px;
+  width: 329px;
+  height: 160px;
+  object-fit: cover;
+}
+.data-urodzenia15 {
+  position: absolute;
+  top: 289px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 6px;
+}
+.birthdate20,
+.cityofregistration22 {
+  position: absolute;
+  top: 299px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.cityofregistration22 {
+  top: 457px;
+}
+.miejsce-zameldowania16 {
+  position: absolute;
+  top: 447px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 99px;
+  height: 7px;
+}
+.b54,
+.flatno22 {
+  position: absolute;
+}
+.flatno22 {
+  top: 629px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.b54 {
+  top: 633px;
+  left: 723px;
+  display: inline-block;
+}
+.numer-mieszkania16 {
+  position: absolute;
+  top: 619px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 81px;
+  height: 7px;
+}
+.b55,
+.houseno25 {
+  position: absolute;
+}
+.houseno25 {
+  top: 586px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.b55 {
+  top: 591px;
+  left: 723px;
+  display: inline-block;
+}
+.numer-domu16 {
+  position: absolute;
+  top: 576px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 7px;
+}
+.street22 {
+  top: 543px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.postcode22,
+.street22,
+.ulica16 {
+  position: absolute;
+  left: 714px;
+}
+.ulica16 {
+  top: 534px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 7px;
+}
+.postcode22 {
+  top: 503px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.kod-pocztowy16 {
+  position: absolute;
+  top: 495px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 69px;
+  height: 7px;
+}
+.gender20 {
+  top: 381px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.birthplace22,
+.gender20,
+.pe15 {
+  position: absolute;
+  left: 714px;
+}
+.pe15 {
+  top: 371px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 7px;
+}
+.birthplace22 {
+  top: 340px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.miejsce-urodzenia16 {
+  position: absolute;
+  top: 330px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 81px;
+  height: 7px;
+}
+.imie16,
+.name22 {
+  position: absolute;
+}
+.name22 {
+  top: 183px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.imie16 {
+  top: 173px;
+  left: 695px;
+  font-size: var(--font-size-3xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 7px;
+}
+.pesel29 {
+  position: absolute;
+  top: 139px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.pesel30 {
+  top: 129px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 7px;
+}
+.nazwisko16,
+.pesel30,
+.surname22 {
+  position: absolute;
+  left: 714px;
+}
+.surname22 {
+  top: 227px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.nazwisko16 {
+  top: 217px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 7px;
+}
+.callprefix22,
+.phoneno22 {
+  position: absolute;
+  top: 711px;
+  left: 789px;
+  background-color: var(--color-gray-200);
+  width: 509px;
+  height: 30px;
+}
+.phoneno22 {
+  left: 714px;
+  width: 63px;
+}
+.numer-telefonu16 {
+  position: absolute;
+  top: 698px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 6.14px;
+}
+.civilstate22 {
+  position: absolute;
+  top: 786px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 27px;
+}
+.stan-cywilny16 {
+  position: absolute;
+  top: 777px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 6px;
+}
+.citizenship30 {
+  position: absolute;
+  top: 829px;
+  left: 714px;
+  background-color: var(--color-gray-200);
+  width: 584px;
+  height: 30px;
+}
+.obywatelstwo16 {
+  position: absolute;
+  top: 819px;
+  left: 714px;
+  font-size: var(--font-size-3xs);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 6px;
+}
+.anna10,
+.b56 {
+  position: absolute;
+  top: 143px;
+  left: 720px;
+  display: inline-block;
+}
+.anna10 {
+  top: 187px;
+}
+.b57,
+.b58,
+.katowice10,
+.kobieta10,
+.majkalska10,
+.rzeszw10 {
+  position: absolute;
+  top: 230px;
+  left: 720px;
+  display: inline-block;
+}
+.b57,
+.b58,
+.katowice10,
+.kobieta10,
+.rzeszw10 {
+  top: 303px;
+}
+.b58,
+.katowice10,
+.kobieta10,
+.rzeszw10 {
+  top: 343px;
+  left: 723px;
+}
+.b58,
+.katowice10,
+.kobieta10 {
+  top: 385px;
+}
+.b58,
+.katowice10 {
+  top: 461px;
+}
+.b58 {
+  top: 507px;
+}
+.b59,
+.b60,
+.jana-matejki10,
+.onatyzamna10,
+.polskie10 {
+  position: absolute;
+  top: 546px;
+  left: 720px;
+  display: inline-block;
+}
+.b59,
+.b60,
+.onatyzamna10,
+.polskie10 {
+  top: 718px;
+  left: 795px;
+}
+.b60,
+.onatyzamna10,
+.polskie10 {
+  top: 716px;
+  left: 723px;
+}
+.onatyzamna10,
+.polskie10 {
+  top: 790px;
+  left: 720px;
+}
+.polskie10 {
+  top: 834px;
+}
+.zlozwniosekbutton-child29 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 367px;
+  height: 64px;
+}
+.z-wniosek31 {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 120.5px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 242px;
+}
+.pokazwnioskibutton31,
+.zlozwniosekbutton31 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 558px;
+  left: 109px;
+  width: 367px;
+  height: 64px;
+}
+.pokazwnioskibutton31 {
+  top: 647px;
+}
+.pokazzgloszenia-child11,
+.pokazzgloszenia13 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 367px;
+  height: 77px;
+}
+.pokazzgloszenia13 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 863px;
+  left: 109px;
+}
+.poka-dane31 {
+  position: absolute;
+  height: 90.63%;
+  top: 9.38%;
+  left: calc(50% - 120.5px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 242px;
+}
+.pokazdanebutton31,
+.zglosbladwniosek4 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 404px;
+  left: 109px;
+  width: 367px;
+  height: 64px;
+}
+.zglosbladwniosek4 {
+  top: 785px;
+}
+.uzytkownik-pokazdane {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

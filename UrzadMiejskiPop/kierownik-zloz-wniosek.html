@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./kierownik-zloz-wniosek.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="kierownik-zlozwniosek">
+      <div class="kierownik-zlozwniosek-child"></div>
+      <img class="obraz-1-icon12" alt="" src="public/obraz-1@2x.png" /><input
+        class="typ-dokumentu5"
+        type="text"
+      />
+      <div class="typ-dokumentu6">Podaj typ dokumentu</div>
+      <button class="vector-group">
+        <img class="group-inner" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek1">Wyślij Wniosek</div></button
+      ><button class="edytujklientowbutton11" id="edytujKlientowButton">
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="public/rectangle-772.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Edytuj Dane Kllienta</div></button
+      ><button class="pokazwnioskibutton11" id="pokazWnioskiButton">
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="public/rectangle-71.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszeniabutton2" id="pokazZgloszeniaButton">
+        <img
+          class="pokazzgloszeniabutton-inner"
+          alt=""
+          src="public/rectangle-72.svg"
+        />
+        <div class="poka-zgoszenia-bdw11">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="zglosbladbutton11" id="zglosBladButton">
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="public/rectangle-73.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Zgłoś Błąd</div></button
+      ><button
+        class="pokazwnioskiklientowbutton12"
+        id="pokazWnioskiKlientowButton"
+      >
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="public/rectangle-776.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Przeglądaj Wnioski</div></button
+      ><button
+        class="przegladajzgloszeniabutton11"
+        id="przegladajZgloszeniaButton"
+      >
+        <img
+          class="pokazzgloszeniabutton-inner"
+          alt=""
+          src="public/rectangle-777.svg"
+        />
+        <div class="poka-zgoszenia-bdw11">
+          Przeglądaj Zgłoszenia Błędów
+        </div></button
+      ><button class="dodajklientabutton11" id="dodajKlientaButton">
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="public/rectangle-771.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Dodaj Klienta</div></button
+      ><button class="zlozwniosekbutton11" id="zlozWniosekButton">
+        <img
+          class="zlozwniosekbutton-child9"
+          alt=""
+          src="public/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Złóż Wniosek</div></button
+      ><button class="pokazdanebutton11" id="pokazDaneButton">
+        <img
+          class="zlozwniosekbutton-child9"
+          alt=""
+          src="public/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Pokaż Dane</div>
+      </button>
+    </div>
+
+    <script>
+      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
+      if (edytujKlientowButton) {
+        edytujKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./edytuj-pop-u-p-kierownik.html";
+        });
+      }
+      
+      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
+      if (pokazWnioskiButton) {
+        pokazWnioskiButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-pokaz-wnioski.html";
+        });
+      }
+      
+      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");
+      if (pokazZgloszeniaButton) {
+        pokazZgloszeniaButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-pokaz-bledy.html";
+        });
+      }
+      
+      var zglosBladButton = document.getElementById("zglosBladButton");
+      if (zglosBladButton) {
+        zglosBladButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-zglos-blad.html";
+        });
+      }
+      
+      var pokazWnioskiKlientowButton = document.getElementById(
+        "pokazWnioskiKlientowButton"
+      );
+      if (pokazWnioskiKlientowButton) {
+        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-przegladaj-wnioski-klientow.html";
+        });
+      }
+      
+      var przegladajZgloszeniaButton = document.getElementById(
+        "przegladajZgloszeniaButton"
+      );
+      if (przegladajZgloszeniaButton) {
+        przegladajZgloszeniaButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-przegladaj-zgloszenia-klientow.html";
+        });
+      }
+      
+      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
+      if (dodajKlientaButton) {
+        dodajKlientaButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-dodaj-klienta.html";
+        });
+      }
+      
+      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
+      if (zlozWniosekButton) {
+        zlozWniosekButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-zloz-wniosek.html";
+        });
+      }
+      
+      var pokazDaneButton = document.getElementById("pokazDaneButton");
+      if (pokazDaneButton) {
+        pokazDaneButton.addEventListener("click", function (e) {
+          window.location.href = "./kierownik-pokaz-dane.html";
+        });
+      }
+      </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./uzytkownik-zloz-wniosek.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="uzytkownik-zlozwniosek">
+      <div class="uzytkownik-zlozwniosek-child"></div>
+      <img class="obraz-1-icon31" alt="" src="public/obraz-1@2x.png" /><input
+        class="typ-dokumentu13"
+        type="text"
+      />
+      <div class="typ-dokumentu14">Podaj typ dokumentu</div>
+      <button class="group-button">
+        <img class="group-child2" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek3">Wyślij Wniosek</div></button
+      ><button class="zlozwniosekbutton30" id="zlozWniosekButton">
+        <img class="group-child2" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek3">Złóż Wniosek</div></button
+      ><button class="pokazwnioskibutton30" id="pokazWnioskiButton">
+        <img class="group-child2" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek3">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszenia12" id="pokazZgloszenia">
+        <img
+          class="pokazzgloszenia-child10"
+          alt=""
+          src="public/rectangle-7215.svg"
+        />
+        <div class="wylij-wniosek3">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="pokazdanebutton30" id="pokazDaneButton">
+        <img class="group-child2" alt="" src="public/rectangle-5.svg" />
+        <div class="poka-dane30">Pokaż Dane</div></button
+      ><button class="zglosbladwniosek3" id="zglosBladWniosek">
+        <img class="group-child2" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek3">Zgłoś Błąd</div>
+      </button>
+    </div>
+
+    <script>
+      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
+      if (zlozWniosekButton) {
+        zlozWniosekButton.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-zloz-wniosek.html";
+        });
+      }
+      
+      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
+      if (pokazWnioskiButton) {
+        pokazWnioskiButton.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-pokaz-wnioski.html";
+        });
+      }
+      
+      var pokazZgloszenia = document.getElementById("pokazZgloszenia");
+      if (pokazZgloszenia) {
+        pokazZgloszenia.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-pokaz-bledy.html";
+        });
+      }
+      
+      var pokazDaneButton = document.getElementById("pokazDaneButton");
+      if (pokazDaneButton) {
+        pokazDaneButton.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-pokaz-dane.html";
+        });
+      }
+      
+      var zglosBladWniosek = document.getElementById("zglosBladWniosek");
+      if (zglosBladWniosek) {
+        zglosBladWniosek.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-zglos-blad.html";
+        });
+      }
+      </script>
+  </body>
+</html>
