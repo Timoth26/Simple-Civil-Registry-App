@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./UzytkownikPokazDane.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="uzytkownik-pokazdane">
+      <div class="uzytkownik-pokazdane-child"></div>
+      <img class="obraz-1-icon32" alt="" src="static/obraz-1@2x.png" />
+      <div class="data-urodzenia15">Data Urodzenia</div>
+      <div class="birthdate20"></div>
+      <div class="cityofregistration22"></div>
+      <div class="miejsce-zameldowania16">Miejsce Zameldowania</div>
+      <div class="flatno22"></div>
+      <b class="b54">-</b>
+      <div class="numer-mieszkania16">Numer Mieszkania</div>
+      <div class="houseno25"></div>
+      <b class="b55">4</b>
+      <div class="numer-domu16">Numer Domu</div>
+      <div class="street22"></div>
+      <div class="ulica16">Ulica</div>
+      <div class="postcode22"></div>
+      <div class="kod-pocztowy16">Kod Pocztowy</div>
+      <div class="gender20"></div>
+      <div class="pe15">Płeć</div>
+      <div class="birthplace22"></div>
+      <div class="miejsce-urodzenia16">Miejsce Urodzenia</div>
+      <div class="name22"></div>
+      <div class="imie16">Imie</div>
+      <div class="pesel29"></div>
+      <div class="pesel30">PESEL</div>
+      <div class="surname22"></div>
+      <div class="nazwisko16">Nazwisko</div>
+      <div class="callprefix22"></div>
+      <div class="phoneno22"></div>
+      <div class="numer-telefonu16">Numer Telefonu</div>
+      <div class="civilstate22"></div>
+      <div class="stan-cywilny16">Stan Cywilny</div>
+      <div class="citizenship30"></div>
+      <div class="obywatelstwo16">Obywatelstwo</div>
+      <b class="b56">98122926289</b><b class="anna10">Anna</b
+      ><b class="majkalska10">Majkalska</b><b class="b57">1998-12-29</b
+      ><b class="rzeszw10">Rzeszów</b><b class="kobieta10">Kobieta</b
+      ><b class="katowice10">Katowice</b><b class="b58">40-750</b
+      ><b class="jana-matejki10">Jana Matejki</b><b class="b59">458548758</b
+      ><b class="b60">+48</b><b class="onatyzamna10">Żonaty/Zamężna</b
+      ><b class="polskie10">POLSKIE</b
+      ><button class="zlozwniosekbutton31" id="zlozWniosekButton">
+        <img
+          class="zlozwniosekbutton-child29"
+          alt=""
+          src="static/rectangle-5.svg"
+        />
+        <div class="z-wniosek31">Złóż Wniosek</div></button
+      ><button class="pokazwnioskibutton31" id="pokazWnioskiButton">
+        <img
+          class="zlozwniosekbutton-child29"
+          alt=""
+          src="static/rectangle-5.svg"
+        />
+        <div class="z-wniosek31">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszenia13" id="pokazZgloszenia">
+        <img
+          class="pokazzgloszenia-child11"
+          alt=""
+          src="static/rectangle-7215.svg"
+        />
+        <div class="z-wniosek31">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="pokazdanebutton31" id="pokazDaneButton">
+        <img
+          class="zlozwniosekbutton-child29"
+          alt=""
+          src="static/rectangle-5.svg"
+        />
+        <div class="poka-dane31">Pokaż Dane</div></button
+      ><button class="zglosbladwniosek4" id="zglosBladWniosek">
+        <img
+          class="zlozwniosekbutton-child29"
+          alt=""
+          src="static/rectangle-5.svg"
+        />
+        <div class="z-wniosek31">Zgłoś Błąd</div>
+      </button>
+    </div>
+
+    <script>
+      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
+      if (zlozWniosekButton) {
+        zlozWniosekButton.addEventListener("click", function (e) {
+          window.location.href = "./UzytkownikZlozWniosek.html";
+        });
+      }
+      
+      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
+      if (pokazWnioskiButton) {
+        pokazWnioskiButton.addEventListener("click", function (e) {
+          window.location.href = "./UzytkownikPokazWnioski.html";
+        });
+      }
+      
+      var pokazZgloszenia = document.getElementById("pokazZgloszenia");
+      if (pokazZgloszenia) {
+        pokazZgloszenia.addEventListener("click", function (e) {
+          window.location.href = "./UzytkownikPokazBledy.html";
+        });
+      }
+      
+      var pokazDaneButton = document.getElementById("pokazDaneButton");
+      if (pokazDaneButton) {
+        pokazDaneButton.addEventListener("click", function (e) {
+          window.location.href = "./UzytkownikPokazDane.html";
+        });
+      }
+      
+      var zglosBladWniosek = document.getElementById("zglosBladWniosek");
+      if (zglosBladWniosek) {
+        zglosBladWniosek.addEventListener("click", function (e) {
+          window.location.href = "./UzytkownikZglosBlad.html";
+        });
+      }
+      </script>
+  </body>
+</html>

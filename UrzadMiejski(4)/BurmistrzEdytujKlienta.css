@@ -1,0 +1,987 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+.burmistrz-edytuj-klienta-child {
+  position: absolute;
+  top: 122px;
+  left: 636px;
+  background-color: var(--color-gray-600);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 4px solid var(--color-black);
+  box-sizing: border-box;
+  width: 752px;
+  height: 782px;
+}
+.obraz-1-icon5 {
+  position: absolute;
+  top: 77px;
+  left: 66px;
+  width: 329px;
+  height: 160px;
+  object-fit: cover;
+}
+.aktualne-dane-klienta,
+.dane-klienta-do-edycji {
+  position: absolute;
+  top: 128px;
+  left: 1042px;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  width: 225px;
+  height: 31px;
+}
+.aktualne-dane-klienta {
+  top: 133px;
+  left: 743px;
+  width: 220px;
+  height: 22px;
+}
+.wyslijblad-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 325px;
+  height: 47px;
+}
+.edytuj-dane-klienta {
+  position: absolute;
+  height: 95.74%;
+  top: 4.26%;
+  left: calc(50% - 162.5px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 325px;
+}
+.wyslijblad1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 917px;
+  left: 861px;
+  width: 325px;
+  height: 47px;
+}
+.data-urodzenia1 {
+  position: absolute;
+  top: 320px;
+  left: 659px;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 10px;
+}
+.birthdate1,
+.cityofregistration1 {
+  position: absolute;
+  top: 330px;
+  left: 659px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.cityofregistration1 {
+  top: 486px;
+  height: 27px;
+}
+.miejsce-zameldowania1 {
+  position: absolute;
+  top: 476px;
+  left: 659px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 6px;
+}
+.flatno1 {
+  position: absolute;
+  top: 657px;
+  left: 659px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.b,
+.numer-mieszkania1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.b {
+  top: 661px;
+  left: 664px;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  justify-content: center;
+  width: 5px;
+  height: 19px;
+}
+.numer-mieszkania1 {
+  top: 647px;
+  left: 659px;
+  width: 84px;
+  height: 10px;
+}
+.b1,
+.houseno1 {
+  position: absolute;
+}
+.houseno1 {
+  top: 614px;
+  left: 659px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.b1 {
+  top: 619px;
+  left: 664px;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7px;
+  height: 19px;
+}
+.numer-domu1,
+.street1 {
+  position: absolute;
+  left: 659px;
+}
+.numer-domu1 {
+  top: 604px;
+  display: flex;
+  align-items: center;
+  width: 84px;
+  height: 10px;
+}
+.street1 {
+  top: 572px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.ulica1 {
+  top: 563px;
+  display: flex;
+  align-items: center;
+  width: 33px;
+  height: 7px;
+}
+.kod-pocztowy1,
+.postcode1,
+.ulica1 {
+  position: absolute;
+  left: 659px;
+}
+.postcode1 {
+  top: 532px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.kod-pocztowy1 {
+  top: 524px;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 7px;
+}
+.gender1 {
+  top: 411px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.birthplace1,
+.gender1,
+.pe1 {
+  position: absolute;
+  left: 659px;
+}
+.pe1 {
+  top: 401px;
+  display: flex;
+  align-items: center;
+  width: 33px;
+  height: 7px;
+}
+.birthplace1 {
+  top: 370px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.miejsce-urodzenia1 {
+  position: absolute;
+  top: 360px;
+  left: 659px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 8px;
+}
+.name1 {
+  top: 215px;
+  left: 659px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.imie1,
+.name1,
+.pesel2 {
+  position: absolute;
+}
+.imie1 {
+  top: 205px;
+  left: 656px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 7px;
+}
+.pesel2 {
+  top: 171px;
+  left: 659px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.pesel3 {
+  top: 161px;
+  display: flex;
+  align-items: center;
+  width: 33px;
+  height: 7px;
+}
+.nazwisko1,
+.pesel3,
+.surname1 {
+  position: absolute;
+  left: 659px;
+}
+.surname1 {
+  top: 258px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.nazwisko1 {
+  top: 248px;
+  display: flex;
+  align-items: center;
+  width: 65px;
+  height: 10px;
+}
+.callprefix1,
+.citizenship3,
+.civilstate1,
+.phoneno1 {
+  position: absolute;
+  top: 738px;
+  left: 703px;
+  background-color: var(--color-gray-200);
+  width: 295px;
+  height: 30px;
+}
+.citizenship3,
+.civilstate1,
+.phoneno1 {
+  left: 659px;
+  width: 37px;
+}
+.citizenship3,
+.civilstate1 {
+  top: 813px;
+  width: 339px;
+  height: 26px;
+}
+.citizenship3 {
+  top: 855px;
+  height: 30px;
+}
+.b2,
+.b3,
+.obywatelstwo1 {
+  position: absolute;
+  top: 845px;
+  left: 659px;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 10px;
+}
+.b2,
+.b3 {
+  top: 661px;
+  left: 664px;
+  font-size: var(--font-size-xs);
+  width: 334px;
+  height: 23px;
+}
+.b3 {
+  top: 619px;
+  height: 22px;
+}
+.numer-telefonu1 {
+  top: 728px;
+  left: 659px;
+  width: 98px;
+  height: 6px;
+}
+.b4,
+.numer-telefonu1,
+.stan-cywilny1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.stan-cywilny1 {
+  top: 804px;
+  left: 661px;
+  width: 84px;
+  height: 6px;
+}
+.b4 {
+  top: 175px;
+  height: 23px;
+}
+.anna1,
+.b4,
+.majkalska1 {
+  left: 663px;
+  font-size: var(--font-size-xs);
+  width: 335px;
+}
+.anna1 {
+  position: absolute;
+  top: 219px;
+  display: flex;
+  align-items: center;
+  height: 22px;
+}
+.majkalska1 {
+  top: 261px;
+  height: 24px;
+}
+.b5,
+.majkalska1,
+.rzeszw1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.b5 {
+  top: 334px;
+  left: 663px;
+  font-size: var(--font-size-xs);
+  width: 335px;
+  height: 22px;
+}
+.rzeszw1 {
+  top: 373px;
+  height: 24px;
+}
+.katowice1,
+.kobieta1,
+.rzeszw1 {
+  left: 664px;
+  font-size: var(--font-size-xs);
+  width: 334px;
+}
+.kobieta1 {
+  position: absolute;
+  top: 415px;
+  display: flex;
+  align-items: center;
+  height: 23px;
+}
+.katowice1 {
+  top: 490px;
+}
+.b6,
+.jana-matejki1,
+.katowice1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 23px;
+}
+.b6 {
+  top: 536px;
+  left: 664px;
+  font-size: var(--font-size-xs);
+  width: 334px;
+}
+.jana-matejki1 {
+  top: 575px;
+  left: 663px;
+  width: 335px;
+}
+.b7,
+.b8,
+.jana-matejki1,
+.onatyzamna1 {
+  font-size: var(--font-size-xs);
+}
+.b7 {
+  position: absolute;
+  top: 745px;
+  left: 706px;
+  display: flex;
+  align-items: center;
+  width: 292px;
+  height: 19px;
+}
+.b8,
+.onatyzamna1 {
+  height: 22px;
+}
+.b8 {
+  position: absolute;
+  top: 743px;
+  left: 664px;
+  display: flex;
+  align-items: center;
+  width: 35px;
+}
+.onatyzamna1 {
+  top: 817px;
+  left: 663px;
+  width: 335px;
+}
+.data-urodzenia2,
+.onatyzamna1,
+.polskie1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.polskie1 {
+  top: 860px;
+  left: 663px;
+  font-size: var(--font-size-xs);
+  width: 335px;
+  height: 25px;
+}
+.data-urodzenia2 {
+  top: 323px;
+  left: 1024px;
+  width: 74px;
+  height: 10px;
+}
+.birthdate3,
+.cityofregistration3 {
+  position: absolute;
+  top: 333px;
+  left: 1024px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.cityofregistration3 {
+  top: 489px;
+  height: 27px;
+}
+.miejsce-zameldowania2 {
+  position: absolute;
+  top: 479px;
+  left: 1024px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 6px;
+}
+.flatno3 {
+  position: absolute;
+  top: 660px;
+  left: 1024px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.b9,
+.numer-mieszkania2 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.b9 {
+  top: 664px;
+  left: 1029px;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  justify-content: center;
+  width: 5px;
+  height: 19px;
+}
+.numer-mieszkania2 {
+  top: 650px;
+  left: 1024px;
+  width: 84px;
+  height: 10px;
+}
+.b10,
+.houseno3 {
+  position: absolute;
+}
+.houseno3 {
+  top: 617px;
+  left: 1024px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.b10 {
+  top: 622px;
+  left: 1029px;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7px;
+  height: 19px;
+}
+.numer-domu2,
+.street3 {
+  position: absolute;
+  left: 1024px;
+}
+.numer-domu2 {
+  top: 607px;
+  display: flex;
+  align-items: center;
+  width: 84px;
+  height: 10px;
+}
+.street3 {
+  top: 575px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.ulica2 {
+  top: 566px;
+  display: flex;
+  align-items: center;
+  width: 33px;
+  height: 7px;
+}
+.kod-pocztowy2,
+.postcode3,
+.ulica2 {
+  position: absolute;
+  left: 1024px;
+}
+.postcode3 {
+  top: 535px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.kod-pocztowy2 {
+  top: 527px;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 7px;
+}
+.gender3 {
+  top: 414px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.birthplace3,
+.gender3,
+.pe2 {
+  position: absolute;
+  left: 1024px;
+}
+.pe2 {
+  top: 404px;
+  display: flex;
+  align-items: center;
+  width: 33px;
+  height: 7px;
+}
+.birthplace3 {
+  top: 373px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.miejsce-urodzenia2 {
+  position: absolute;
+  top: 363px;
+  left: 1024px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 8px;
+}
+.imie2,
+.name3 {
+  position: absolute;
+}
+.name3 {
+  top: 218px;
+  left: 1024px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 26px;
+}
+.imie2 {
+  top: 208px;
+  left: 1021px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 7px;
+}
+.nazwisko2,
+.surname3 {
+  position: absolute;
+  left: 1024px;
+}
+.surname3 {
+  top: 261px;
+  background-color: var(--color-gray-200);
+  width: 339px;
+  height: 27px;
+}
+.nazwisko2 {
+  top: 251px;
+  display: flex;
+  align-items: center;
+  width: 65px;
+  height: 10px;
+}
+.callprefix3 {
+  position: absolute;
+  top: 741px;
+  left: 1068px;
+  width: 295px;
+  height: 30px;
+}
+.callprefix3,
+.citizenship5,
+.civilstate3,
+.phoneno3 {
+  background-color: var(--color-gray-200);
+}
+.phoneno3 {
+  position: absolute;
+  top: 741px;
+  left: 1024px;
+  width: 37px;
+  height: 30px;
+}
+.citizenship5,
+.civilstate3 {
+  width: 339px;
+}
+.civilstate3 {
+  position: absolute;
+  top: 816px;
+  left: 1024px;
+  height: 26px;
+}
+.citizenship5 {
+  top: 858px;
+  height: 30px;
+}
+.birthdate4,
+.citizenship5,
+.obywatelstwo2 {
+  position: absolute;
+  left: 1024px;
+}
+.obywatelstwo2 {
+  top: 848px;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 10px;
+}
+.birthdate4 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  top: 333px;
+  width: 339px;
+  height: 26px;
+}
+.birthplace4,
+.callprefix4,
+.cityofregistration4,
+.flatno4,
+.gender4,
+.houseno4,
+.name4,
+.postcode4,
+.street4,
+.surname4 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  position: absolute;
+  top: 489px;
+  left: 1024px;
+  width: 339px;
+  height: 27px;
+}
+.birthplace4,
+.callprefix4,
+.flatno4,
+.gender4,
+.houseno4,
+.name4,
+.postcode4,
+.street4,
+.surname4 {
+  top: 660px;
+}
+.birthplace4,
+.callprefix4,
+.gender4,
+.houseno4,
+.name4,
+.postcode4,
+.street4,
+.surname4 {
+  top: 617px;
+}
+.birthplace4,
+.callprefix4,
+.gender4,
+.name4,
+.postcode4,
+.street4,
+.surname4 {
+  top: 575px;
+  height: 26px;
+}
+.birthplace4,
+.callprefix4,
+.gender4,
+.name4,
+.postcode4,
+.surname4 {
+  top: 535px;
+  height: 27px;
+}
+.birthplace4,
+.callprefix4,
+.gender4,
+.name4,
+.surname4 {
+  top: 414px;
+}
+.birthplace4,
+.callprefix4,
+.name4,
+.surname4 {
+  top: 373px;
+}
+.callprefix4,
+.name4,
+.surname4 {
+  top: 218px;
+  height: 26px;
+}
+.callprefix4,
+.surname4 {
+  top: 261px;
+  height: 27px;
+}
+.callprefix4 {
+  top: 741px;
+  left: 1068px;
+  width: 295px;
+  height: 30px;
+}
+.numer-telefonu2,
+.phoneno4 {
+  position: absolute;
+  left: 1024px;
+}
+.phoneno4 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  top: 741px;
+  width: 37px;
+  height: 30px;
+}
+.numer-telefonu2 {
+  top: 731px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 6px;
+}
+.civilstate4 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  position: absolute;
+  top: 816px;
+  left: 1024px;
+  width: 339px;
+  height: 26px;
+}
+.stan-cywilny2 {
+  position: absolute;
+  top: 807px;
+  left: 1026px;
+  display: flex;
+  align-items: center;
+  width: 84px;
+  height: 6px;
+}
+.citizenship6 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  position: absolute;
+  top: 858px;
+  left: 1024px;
+  width: 339px;
+  height: 30px;
+}
+.edytujklientowbutton-child1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 55.12px;
+}
+.edytuj-dane-kllienta4 {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.edytujklientowbutton4,
+.pokazwnioskibutton4 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 772.63px;
+  left: 120px;
+  width: 387px;
+  height: 55.12px;
+}
+.pokazwnioskibutton4 {
+  top: 446.59px;
+}
+.pokazzgloszenia-child2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 66.31px;
+}
+.poka-zgoszenia-bdw4 {
+  position: absolute;
+  height: 90.62%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.dodajklientabutton4,
+.pokazwnioskiklientowbutton4,
+.pokazzgloszenia4,
+.przegladajzgloszeniabutton4,
+.zglosbladbutton4 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 593.86px;
+  left: 120px;
+  width: 387px;
+  height: 66.31px;
+}
+.dodajklientabutton4,
+.pokazwnioskiklientowbutton4,
+.przegladajzgloszeniabutton4,
+.zglosbladbutton4 {
+  top: 524.96px;
+  height: 55.12px;
+}
+.dodajklientabutton4,
+.pokazwnioskiklientowbutton4,
+.przegladajzgloszeniabutton4 {
+  top: 922.72px;
+}
+.dodajklientabutton4,
+.przegladajzgloszeniabutton4 {
+  top: 842.63px;
+  height: 66.31px;
+}
+.dodajklientabutton4 {
+  top: 701.52px;
+  height: 55.12px;
+}
+.pokazdanebutton4,
+.zlozwniosekbutton-child2,
+.zlozwniosekbutton4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 53.4px;
+}
+.pokazdanebutton4,
+.zlozwniosekbutton4 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 382px;
+  left: 120px;
+}
+.pokazdanebutton4 {
+  top: 306px;
+}
+.burmistrz-edytuj-klienta {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-3xs);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

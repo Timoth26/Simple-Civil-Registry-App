@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./UrzednikPrzegladajZgloszeniaKlientow.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="urzednik-przegladajzgloszeniak">
+      <div class="urzednik-przegladajzgloszeniak-child"></div>
+      <img class="obraz-1-icon20" alt="" src="static/obraz-1@2x.png" /><button
+        class="akceptujbutton2"
+      >
+        <img
+          class="akceptujbutton-inner"
+          alt=""
+          src="static/rectangle-745.svg"
+        />
+        <div class="akceptuj2">Akceptuj</div></button
+      ><button class="odrzucbutton4">
+        <img
+          class="odrzucbutton-child2"
+          alt=""
+          src="static/rectangle-746.svg"
+        />
+        <div class="odrzu3">Odrzuć</div>
+      </button>
+      <div class="wniosekpokaz4">
+        <div class="wniosekpokaz-child1"></div>
+        <b class="correctionid4">CorrectionID</b>
+        <div class="data-rozpatrzenia8">Data Rozpatrzenia</div>
+        <div class="data-aplikacji8">Data Aplikacji</div>
+        <b class="dateofconsideration8">DateOfConsideration</b
+        ><b class="dateofapplication8">DateOfApplication</b>
+        <div class="nazwa-pola4">Nazwa pola</div>
+        <b class="pole18">DataField</b>
+        <div class="bdna-warto4">Błędna wartość</div>
+        <b class="pole19">OldVal</b>
+        <div class="poprawna-warto4">Poprawna wartość</div>
+        <b class="pole20">NewVal</b>
+        <div class="informacja-o-bdzie4">Informacja o błędzie</div>
+        <b class="pole21"
+          >554566fxnkdfjn bjvnkjbvakjs xdbshd fchds csD CHSDC DHCCDDC KDC SDCJH
+          DSLL dchkDSCJ kjd dfniofgnqeoirnfiernceirfcmrjf caskdncadu ncidnc</b
+        >
+        <div class="status8">Status</div>
+        <b class="statusakt8">Statusakt</b
+        ><b class="polepesel2">PeselKlienta</b>
+        <div class="pesel21">PESEL</div>
+      </div>
+      <button class="edytujklientowbutton19" id="edytujKlientowButton">
+        <img
+          class="edytujklientowbutton-child16"
+          alt=""
+          src="static/rectangle-772.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Edytuj Dane Kllienta</div></button
+      ><button class="pokazwnioskibutton19" id="pokazWnioskiButton">
+        <img
+          class="edytujklientowbutton-child16"
+          alt=""
+          src="static/rectangle-71.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszeniabutton10" id="pokazZgloszeniaButton">
+        <img
+          class="pokazzgloszeniabutton-child8"
+          alt=""
+          src="static/rectangle-7147.svg"
+        />
+        <div class="poka-zgoszenia-bdw19">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="zglosbladbutton19" id="zglosBladButton">
+        <img
+          class="edytujklientowbutton-child16"
+          alt=""
+          src="static/rectangle-7148.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Zgłoś Błąd</div></button
+      ><button
+        class="pokazwnioskiklientowbutton22"
+        id="pokazWnioskiKlientowButton"
+      >
+        <img
+          class="edytujklientowbutton-child16"
+          alt=""
+          src="static/rectangle-7149.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Przeglądaj Wnioski</div></button
+      ><button
+        class="przegladajzgloszeniabutton19"
+        id="przegladajZgloszeniaButton"
+      >
+        <img
+          class="pokazzgloszeniabutton-child8"
+          alt=""
+          src="static/rectangle-777.svg"
+        />
+        <div class="poka-zgoszenia-bdw19">
+          Przeglądaj Zgłoszenia Błędów
+        </div></button
+      ><button class="dodajklientabutton19" id="dodajKlientaButton">
+        <img
+          class="edytujklientowbutton-child16"
+          alt=""
+          src="static/rectangle-771.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Dodaj Klienta</div></button
+      ><button class="zlozwniosekbutton19" id="zlozWniosekButton">
+        <img
+          class="zlozwniosekbutton-child17"
+          alt=""
+          src="static/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Złóż Wniosek</div></button
+      ><button class="pokazdanebutton19" id="pokazDaneButton">
+        <img
+          class="zlozwniosekbutton-child17"
+          alt=""
+          src="static/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta22">Pokaż Dane</div>
+      </button>
+    </div>
+
+    <script>
+      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
+      if (edytujKlientowButton) {
+        edytujKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./EdytujPopUPUrzednik.html";
+        });
+      }
+      
+      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
+      if (pokazWnioskiButton) {
+        pokazWnioskiButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikPokazWnioski.html";
+        });
+      }
+      
+      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");
+      if (pokazZgloszeniaButton) {
+        pokazZgloszeniaButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikPokazBledy.html";
+        });
+      }
+      
+      var zglosBladButton = document.getElementById("zglosBladButton");
+      if (zglosBladButton) {
+        zglosBladButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikZglosBlad.html";
+        });
+      }
+      
+      var pokazWnioskiKlientowButton = document.getElementById(
+        "pokazWnioskiKlientowButton"
+      );
+      if (pokazWnioskiKlientowButton) {
+        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikPrzegladajWnioskiKlientow.html";
+        });
+      }
+      
+      var przegladajZgloszeniaButton = document.getElementById(
+        "przegladajZgloszeniaButton"
+      );
+      if (przegladajZgloszeniaButton) {
+        przegladajZgloszeniaButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikPrzegladajZgloszeniaKlientow.html";
+        });
+      }
+      
+      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
+      if (dodajKlientaButton) {
+        dodajKlientaButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikDodajKlienta.html";
+        });
+      }
+      
+      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
+      if (zlozWniosekButton) {
+        zlozWniosekButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikZlozWniosek.html";
+        });
+      }
+      
+      var pokazDaneButton = document.getElementById("pokazDaneButton");
+      if (pokazDaneButton) {
+        pokazDaneButton.addEventListener("click", function (e) {
+          window.location.href = "./UrzednikPokazDane.html";
+        });
+      }
+      </script>
+  </body>
+</html>
