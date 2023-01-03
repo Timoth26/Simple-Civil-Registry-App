@@ -18,11 +18,16 @@ DB_PORT = "5432"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
 
-
 @app.route('/')
+def home():
+    if 'loggedin' in session:
+        pass
+    return redirect((url_for('login')))
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
+    error = None
     # Check if user submitted form
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
@@ -39,11 +44,12 @@ def login():
             session['loggedin'] = True
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
-            return redirect('index.html')
-        else:
-            flash('Podane błędny login lub hasło')
+            #return redirect('index.html')
 
-    return render_template('index.html')
+        else:
+            error = 'Podano błędny login lub hasło'
+
+    return render_template('index.html', error=error)
 
 
 def logout_user():
