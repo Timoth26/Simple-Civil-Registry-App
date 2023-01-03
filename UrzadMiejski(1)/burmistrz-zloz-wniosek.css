@@ -1,0 +1,192 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+.burmistrz-zlozwniosek-child {
+  position: absolute;
+  top: 371px;
+  left: 672px;
+  background-color: var(--color-gray-500);
+  border: 4px solid var(--color-black);
+  box-sizing: border-box;
+  width: 689px;
+  height: 253px;
+}
+.obraz-1-icon3 {
+  position: absolute;
+  top: 77px;
+  left: 66px;
+  width: 329px;
+  height: 160px;
+  object-fit: cover;
+}
+.typ-dokumentu1 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  position: absolute;
+  top: 426.32px;
+  left: 724px;
+  width: 586px;
+  height: 65.68px;
+}
+.typ-dokumentu2 {
+  position: absolute;
+  top: 402px;
+  left: 724px;
+  display: flex;
+  align-items: center;
+  width: 255px;
+  height: 16px;
+}
+.group-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 367px;
+  height: 64px;
+}
+.wylij-wniosek {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 120.5px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 242px;
+}
+.vector-parent {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 534px;
+  left: 830px;
+  width: 367px;
+  height: 64px;
+}
+.edytujklientowbutton-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 55.12px;
+}
+.edytuj-dane-kllienta2 {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.edytujklientowbutton2,
+.pokazwnioskibutton2 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 730.63px;
+  left: 116px;
+  width: 387px;
+  height: 55.12px;
+}
+.pokazwnioskibutton2 {
+  top: 404.59px;
+}
+.pokazzgloszenia-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 66.31px;
+}
+.poka-zgoszenia-bdw2 {
+  position: absolute;
+  height: 90.62%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.dodajklientabutton2,
+.pokazwnioskiklientowbutton2,
+.pokazzgloszenia2,
+.przegladajzgloszeniabutton2,
+.zglosbladbutton2 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 551.86px;
+  left: 116px;
+  width: 387px;
+  height: 66.31px;
+}
+.dodajklientabutton2,
+.pokazwnioskiklientowbutton2,
+.przegladajzgloszeniabutton2,
+.zglosbladbutton2 {
+  top: 482.96px;
+  height: 55.12px;
+}
+.dodajklientabutton2,
+.pokazwnioskiklientowbutton2,
+.przegladajzgloszeniabutton2 {
+  top: 880.72px;
+}
+.dodajklientabutton2,
+.przegladajzgloszeniabutton2 {
+  top: 800.63px;
+  height: 66.31px;
+}
+.dodajklientabutton2 {
+  top: 659.52px;
+  height: 55.12px;
+}
+.zlozwniosekbutton-inner,
+.zlozwniosekbutton2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 53.4px;
+}
+.zlozwniosekbutton2 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 340px;
+  left: 116px;
+}
+.burmistrz-zlozwniosek {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

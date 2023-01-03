@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./urzednik-zloz-wniosek.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="urzednik-zlozwniosek">
+      <div class="urzednik-zlozwniosek-child"></div>
+      <img class="obraz-1-icon25" alt="" src="public/obraz-1@2x.png" /><input
+        class="typ-dokumentu10"
+        type="text"
+      />
+      <div class="typ-dokumentu11">Podaj typ dokumentu</div>
+      <button class="vector-container">
+        <img class="group-child1" alt="" src="public/rectangle-5.svg" />
+        <div class="wylij-wniosek2">Wyślij Wniosek</div></button
+      ><button class="edytujklientowbutton24" id="edytujKlientowButton">
+        <img
+          class="edytujklientowbutton-child21"
+          alt=""
+          src="public/rectangle-7145.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Edytuj Dane Kllienta</div></button
+      ><button class="pokazwnioskibutton24" id="pokazWnioskiButton">
+        <img
+          class="edytujklientowbutton-child21"
+          alt=""
+          src="public/rectangle-71.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszenia24" id="pokazZgloszenia">
+        <img
+          class="pokazzgloszenia-child22"
+          alt=""
+          src="public/rectangle-7147.svg"
+        />
+        <div class="poka-zgoszenia-bdw24">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="zglosbladbutton24" id="zglosBladButton">
+        <img
+          class="edytujklientowbutton-child21"
+          alt=""
+          src="public/rectangle-7148.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Zgłoś Błąd</div></button
+      ><button
+        class="pokazwnioskiklientowbutton27"
+        id="pokazWnioskiKlientowButton"
+      >
+        <img
+          class="edytujklientowbutton-child21"
+          alt=""
+          src="public/rectangle-776.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Przeglądaj Wnioski</div></button
+      ><button
+        class="przegladajzgloszeniabutton24"
+        id="przegladajZgloszeniaButton"
+      >
+        <img
+          class="pokazzgloszenia-child22"
+          alt=""
+          src="public/rectangle-7150.svg"
+        />
+        <div class="poka-zgoszenia-bdw24">
+          Przeglądaj Zgłoszenia Błędów
+        </div></button
+      ><button class="dodajklientabutton24" id="dodajKlientaButton">
+        <img
+          class="edytujklientowbutton-child21"
+          alt=""
+          src="public/rectangle-7151.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Dodaj Klienta</div></button
+      ><button class="zlozwniosekbutton24" id="zlozWniosekButton">
+        <img
+          class="zlozwniosekbutton-child22"
+          alt=""
+          src="public/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta27">Złóż Wniosek</div>
+      </button>
+    </div>
+
+    <script>
+      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
+      if (edytujKlientowButton) {
+        edytujKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./edytuj-pop-u-p-urzednik.html";
+        });
+      }
+      
+      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
+      if (pokazWnioskiButton) {
+        pokazWnioskiButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-pokaz-wnioski.html";
+        });
+      }
+      
+      var pokazZgloszenia = document.getElementById("pokazZgloszenia");
+      if (pokazZgloszenia) {
+        pokazZgloszenia.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-pokaz-bledy.html";
+        });
+      }
+      
+      var zglosBladButton = document.getElementById("zglosBladButton");
+      if (zglosBladButton) {
+        zglosBladButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-zglos-blad.html";
+        });
+      }
+      
+      var pokazWnioskiKlientowButton = document.getElementById(
+        "pokazWnioskiKlientowButton"
+      );
+      if (pokazWnioskiKlientowButton) {
+        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-przegladaj-wnioski-klientow.html";
+        });
+      }
+      
+      var przegladajZgloszeniaButton = document.getElementById(
+        "przegladajZgloszeniaButton"
+      );
+      if (przegladajZgloszeniaButton) {
+        przegladajZgloszeniaButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-przegladaj-zgloszenia-klientow.html";
+        });
+      }
+      
+      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
+      if (dodajKlientaButton) {
+        dodajKlientaButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-dodaj-klienta.html";
+        });
+      }
+      
+      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
+      if (zlozWniosekButton) {
+        zlozWniosekButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-zloz-wniosek.html";
+        });
+      }
+      </script>
+  </body>
+</html>

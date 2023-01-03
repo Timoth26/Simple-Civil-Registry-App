@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./edytuj-pop-u-p-urzednik.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="edytuj-pop-up-urzednik">
+      <input class="houseno16" type="text" />
+      <div class="podaj-pesel-klienta2">Podaj PESEL Klienta</div>
+      <button
+        class="pokazwnioskiklientowbutton20"
+        id="pokazWnioskiKlientowButton"
+      >
+        <img
+          class="pokazwnioskiklientowbutton-child18"
+          alt=""
+          src="public/rectangle-771.svg"
+        />
+        <div class="edytuj-dane-kllienta20">Edytuj Dane Kllienta</div>
+      </button>
+    </div>
+
+    <script>
+      var pokazWnioskiKlientowButton = document.getElementById(
+        "pokazWnioskiKlientowButton"
+      );
+      if (pokazWnioskiKlientowButton) {
+        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
+          window.location.href = "./urzednik-edytuj-klienta.html";
+        });
+      }
+      </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./uzytkownik-pokaz-bledy.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="uzytkownik-pokazbledy">
+      <img class="obraz-1-icon28" alt="" src="public/obraz-1@2x.png" />
+      <div class="show-wniosek3">
+        <div class="wniosekpokaz6">
+          <div class="wniosekpokaz-child3"></div>
+          <b class="correctionid6">CorrectionID</b>
+          <div class="data-rozpatrzenia12">Data Rozpatrzenia</div>
+          <div class="data-aplikacji12">Data Aplikacji</div>
+          <b class="dateofconsideration12">DateOfConsideration</b
+          ><b class="dateofapplication12">DateOfApplication</b>
+          <div class="nazwa-pola6">Nazwa pola</div>
+          <b class="pole26">DataField</b>
+          <div class="bdna-warto6">Błędna wartość</div>
+          <b class="pole27">OldVal</b>
+          <div class="poprawna-warto6">Poprawna wartość</div>
+          <b class="pole28">NewVal</b>
+          <div class="informacja-o-bdzie6">Informacja o błędzie</div>
+          <b class="pole29"
+            >554566fxnkdfjn bjvnkjbvakjs xdbshd fchds csD CHSDC DHCCDDC KDC
+            SDCJH DSLL dchkDSCJ kjd dfniofgnqeoirnfiernceirfcmrjf caskdncadu
+            ncidnc</b
+          >
+          <div class="status12">Status</div>
+          <b class="statusakt12">Statusakt</b>
+        </div>
+      </div>
+      <button class="zlozwniosekbutton27">
+        <img
+          class="pokazdanebutton-child"
+          alt=""
+          src="public/rectangle-5.svg"
+        />
+        <div class="z-wniosek27">Złóż Wniosek</div></button
+      ><button class="pokazwnioskibutton27">
+        <img
+          class="pokazdanebutton-child"
+          alt=""
+          src="public/rectangle-5.svg"
+        />
+        <div class="z-wniosek27">Pokaż Wnioski</div></button
+      ><button class="pokazzgloszenia27">
+        <img
+          class="pokazzgloszenia-child25"
+          alt=""
+          src="public/rectangle-7215.svg"
+        />
+        <div class="z-wniosek27">Pokaż Zgłoszenia Błędów</div></button
+      ><button class="pokazdanebutton">
+        <img
+          class="pokazdanebutton-child"
+          alt=""
+          src="public/rectangle-5.svg"
+        />
+        <div class="poka-dane">Pokaż Dane</div></button
+      ><button class="zglosbladwniosek" id="zglosBladWniosek">
+        <img
+          class="pokazdanebutton-child"
+          alt=""
+          src="public/rectangle-5.svg"
+        />
+        <div class="z-wniosek27">Zgłoś Błąd</div>
+      </button>
+    </div>
+
+    <script>
+      var zglosBladWniosek = document.getElementById("zglosBladWniosek");
+      if (zglosBladWniosek) {
+        zglosBladWniosek.addEventListener("click", function (e) {
+          window.location.href = "./uzytkownik-zglos-blad.html";
+        });
+      }
+      </script>
+  </body>
+</html>
