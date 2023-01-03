@@ -43,7 +43,7 @@ def login():
         else:
             flash('Podane błędny login lub hasło')
 
-    return render_template('login.html')
+    return render_template('index.html')
 
 
 def logout_user():
