@@ -16,24 +16,19 @@
       <img class="obraz-1-icon" alt="" src="/static/obraz-1@2x.png" />
       <div class="logowanie-child"></div>
         <form class="form-group" action="{{ url_for('login') }}" method="post">
+    <button type="submit" class="rectangle-parent" id="groupButton" formmethod="post">
+        <div class="group-child"></div>
+        <div class="zaloguj-si">Zaloguj Się</div></button>
     <input class="logowanie-item" type="text" name="username" id="username" required/><label
         class="nazwa-uytkownika"
         >Nazwa użytkownika</label
       ><input class="logowanie-inner" type="password" name="password" id="password" required/>
       <div class="haso">Hasło</div>
-        </form>
-
-      <b class="nieprawidowa-nazwa-uytkownik">
+        <b class="nieprawidowa-nazwa-uytkownik">
               {{ error }}
       </b>
+        </form>
 
-        <form class="form-group" action="{{ url_for('login') }}" method="post">
-
-            <button type="submit" class="rectangle-parent" id="groupButton" formmethod="post">
-        <div class="group-child"></div>
-        <div class="zaloguj-si">Zaloguj Się</div></button>
-
-</form>
 
     </div>
   </body>
