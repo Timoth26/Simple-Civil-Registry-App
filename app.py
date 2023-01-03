@@ -71,6 +71,15 @@ def show_user_personal_data():
     data = cursor.fetchone()
     return render_template('userpersonaldata.html', data=data)
 
+@app.route('/userapplication')
+def user_application():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    application = request.form['application']
+
+    cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)', (application, session.get('id')))
+    return render_template('userapplication.html')
+
+
 def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute(
