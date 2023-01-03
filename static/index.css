@@ -1,0 +1,128 @@
+@keyframes shadow-inset-center {
+  0% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  to {
+    box-shadow: inset 0 0 14px 0 rgb(0 0 0/50%);
+  }
+}
+body {
+  margin: 0;
+  line-height: normal;
+}
+.obraz-1-icon {
+  position: absolute;
+  top: 36px;
+  left: 32px;
+  width: 329px;
+  height: 160px;
+  object-fit: cover;
+}
+.logowanie-child {
+  position: absolute;
+  top: 308px;
+  left: 394px;
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  width: 653px;
+  height: 586px;
+}
+.group-child,
+.zaloguj-si {
+  position: absolute;
+  top: 0;
+  width: 242px;
+}
+.group-child {
+  left: 0;
+  background-color: #4453e1;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  height: 58px;
+}
+.zaloguj-si {
+  height: 100%;
+  left: calc(50% - 121px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rectangle-parent {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 809px;
+  left: 428px;
+  width: 242px;
+  height: 58px;
+}
+.rectangle-parent:active {
+  animation: 1s ease 0s infinite normal none shadow-inset-center;
+  opacity: 1;
+}
+.logowanie-item {
+  border: 0;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 555px;
+  left: 436px;
+  width: 556px;
+  height: 56px;
+}
+.nazwa-uytkownika {
+  position: absolute;
+  top: 535px;
+  left: 403px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 207px;
+  height: 20px;
+}
+.logowanie-inner {
+  border: 0;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 663px;
+  left: 436px;
+  width: 556px;
+  height: 56px;
+}
+.haso,
+.nieprawidowa-nazwa-uytkownik {
+  position: absolute;
+  top: 643px;
+  left: 436px;
+  display: flex;
+  align-items: center;
+  width: 207px;
+  height: 20px;
+}
+.nieprawidowa-nazwa-uytkownik {
+  top: 767px;
+  left: 428px;
+  font-size: 14px;
+  color: #f30808;
+  width: 346px;
+  height: 32px;
+}
+.logowanie {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-2xs);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

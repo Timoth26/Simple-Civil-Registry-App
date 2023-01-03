@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+.houseno16 {
+  border: 0;
+  background-color: var(--color-gray-200);
+  position: absolute;
+  top: 129px;
+  left: 91px;
+  width: 678px;
+  height: 68px;
+}
+.podaj-pesel-klienta2 {
+  position: absolute;
+  top: 65px;
+  left: 91px;
+  display: flex;
+  align-items: center;
+  width: 321px;
+  height: 43px;
+}
+.pokazwnioskiklientowbutton-child18 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 55.12px;
+}
+.edytuj-dane-kllienta20 {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.pokazwnioskiklientowbutton20 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 218px;
+  left: 236px;
+  width: 387px;
+  height: 55.12px;
+}
+.edytuj-pop-up-urzednik {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 326px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
