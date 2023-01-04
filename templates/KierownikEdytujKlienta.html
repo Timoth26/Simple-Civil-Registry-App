@@ -17,19 +17,15 @@
       <img class="obraz-1-icon14" alt="" src="/static/obraz-1@2x.png" />
       <div class="dane-klienta-do-edycji1">Dane Klienta Do Edycji</div>
       <div class="aktualne-dane-klienta1">Aktualne Dane Klienta</div>
-      <button class="wyslijblad4">
-        <img class="wyslijblad-child2" alt="" src="/static/rectangle-729.svg" />
-        <div class="edytuj-dane-klienta1">Edytuj Dane Klienta</div>
-      </button>
       <div class="data-urodzenia6">Data Urodzenia</div>
       <div class="birthdate8"></div>
       <div class="cityofregistration8"></div>
       <div class="miejsce-zameldowania6">Miejsce Zameldowania</div>
       <div class="flatno8"></div>
-      <b class="b18">-</b>
+      <b class="b18">{{data.flatNo }}</b>
       <div class="numer-mieszkania6">Numer Mieszkania</div>
       <div class="houseno9"></div>
-      <b class="b19">4</b>
+      <b class="b19">{{ data.No }}</b>
       <div class="numer-domu6">Numer Domu</div>
       <div class="street8"></div>
       <div class="ulica6">Ulica</div>
@@ -69,29 +65,27 @@
       <div class="civilstate8"></div>
       <div class="stan-cywilny6">Stan Cywilny</div>
       <div class="citizenship12"></div>
-      <b class="b22">98122926289</b><b class="anna4">Anna</b
-      ><b class="majkalska4">Majkalska</b><b class="b23">1998-12-29</b
-      ><b class="rzeszw4">Rzeszów</b><b class="kobieta4">Kobieta</b
-      ><b class="katowice4">Katowice</b><b class="b24">40-750</b
-      ><b class="jana-matejki4">Jana Matejki</b><b class="b25">458548758</b
-      ><b class="b26">+48</b><b class="onatyzamna4">Żonaty/Zamężna</b
-      ><b class="polskie4">POLSKIE</b>
-      <div class="data-urodzenia7">Data Urodzenia</div>
-      <div class="birthdate10"></div>
+      <b class="b22">{{ data.pesel }}</b><b class="anna4">{{ data.name }}</b
+      ><b class="majkalska4">{{ data.surname }}</b><b class="b23">{{ data.birthday }}</b
+      ><b class="rzeszw4">{{ data.birthcity}}</b><b class="kobieta4">{{ data.gender }}</b
+      ><b class="katowice4">{{ data.registrationcity }}</b><b class="b24">{{ data.postalcode }}</b
+      ><b class="jana-matejki4">{{ data.street}}</b><b class="b25">{{ data.phoneNo }}</b
+      ><b class="b26">{{ data.phoneprefix }}</b><b class="onatyzamna4">{{ data.civilstatus }}</b
+      ><b class="polskie4">{{ data.citizenship }}</b>
+      <div class="data-urodzenia7" style="visibility:{{ visibility }}">Data Urodzenia</div>
+      <div class="birthdate10" style="visibility:{{ visibility }}"></div>
       <div class="cityofregistration10"></div>
       <div class="miejsce-zameldowania7">Miejsce Zameldowania</div>
       <div class="flatno10"></div>
-      <b class="b27">-</b>
       <div class="numer-mieszkania7">Numer Mieszkania</div>
       <div class="houseno11"></div>
-      <b class="b28">4</b>
       <div class="numer-domu7">Numer Domu</div>
       <div class="street10"></div>
       <div class="ulica7">Ulica</div>
       <div class="postcode10"></div>
       <div class="kod-pocztowy7">Kod Pocztowy</div>
-      <div class="gender10"></div>
-      <div class="pe7">Płeć</div>
+      <div class="gender10" style="visibility:{{ visibility }}" ></div>
+      <div class="pe7" style="visibility:{{ visibility }}">Płeć</div>
       <div class="birthplace10"></div>
       <div class="miejsce-urodzenia7">Miejsce Urodzenia</div>
       <div class="name10"></div>
@@ -103,29 +97,46 @@
       <div class="civilstate10"></div>
       <div class="citizenship14"></div>
       <div class="obywatelstwo7">Obywatelstwo</div>
-      <input class="birthdate11" type="text" /><input
+
+        <form class="form-group1" action="{{ url_for('edit_user_data') }}" method="post">
+
+      <input class="birthdate11" type="text" style="visibility:{{ visibility }}" name="birthdate"/><input
         class="cityofregistration11"
         type="text"
-      /><input class="flatno11" type="text" /><input
+        name="registrationcity"
+      /><input class="flatno11" type="text" name="flatNo"/><input
         class="houseno12"
         type="text"
-      /><input class="street11" type="text" /><input
+        name="houseNo"
+      /><input class="street11" type="text" name="street"/><input
         class="postcode11"
         type="text"
-      /><input class="gender11" type="text" /><input
+        name="postalcode"
+      /><input class="gender11" type="text" style="visibility:{{ visibility }}" name="gender"/><input
         class="birthplace11"
         type="text"
-      /><input class="name11" type="text" /><input
+        name="birthcity"
+      /><input class="name11" type="text" name="name"/><input
         class="surname11"
         type="text"
-      /><input class="callprefix11" type="text" /><input
+        name="surname"
+      /><input class="callprefix11" type="text" name="phoneprefix"/><input
         class="phoneno11"
         type="text"
+        name="phoneNo"
       />
       <div class="numer-telefonu7">Numer Telefonu</div>
-      <input class="civilstate11" type="text" />
+      <input class="civilstate11" type="text" name="civilstatus"/>
       <div class="stan-cywilny7">Stan Cywilny</div>
-      <input class="citizenship15" type="text" /><button
+      <input class="citizenship15" type="text" name="citizenship"/>
+
+
+      <button class="wyslijblad4" formmethod="post">
+        <img class="wyslijblad-child2" alt="" src="/static/rectangle-729.svg" />
+        <div class="edytuj-dane-klienta1">Zatwierdź</div>
+      </button>
+
+        <button
         class="edytujklientowbutton13"
         id="edytujKlientowButton"
       >
@@ -134,6 +145,7 @@
           alt=""
           src="/static/rectangle-772.svg"
         />
+
         <div class="edytuj-dane-kllienta14">Edytuj Dane Kllienta</div></button
       ><button class="pokazwnioskibutton13" id="pokazWnioskiButton">
         <img
@@ -200,6 +212,8 @@
         />
         <div class="edytuj-dane-kllienta14">Pokaż Dane</div>
       </button>
+
+        </form>
     </div>
 
     <script>
