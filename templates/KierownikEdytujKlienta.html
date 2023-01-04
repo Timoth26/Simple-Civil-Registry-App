@@ -12,7 +12,12 @@
     />
   </head>
   <body>
+
     <div class="kierownik-edytuj-klienta">
+
+                <form class="form-group2" action="{{ url_for('edit_user_data') }}" method="post">
+
+
       <div class="kierownik-edytuj-klienta-child"></div>
       <img class="obraz-1-icon14" alt="" src="/static/obraz-1@2x.png" />
       <div class="dane-klienta-do-edycji1">Dane Klienta Do Edycji</div>
@@ -66,7 +71,7 @@
       <div class="stan-cywilny6">Stan Cywilny</div>
       <div class="citizenship12"></div>
       <b class="b22">{{ data.pesel }}</b><b class="anna4">{{ data.name }}</b
-      ><b class="majkalska4">{{ data.surname }}</b><b class="b23">{{ data.birthday }}</b
+      ><b class="majkalska4">{{ data.surname }}</b><b class="b23">{{ data.birthdate }}</b
       ><b class="rzeszw4">{{ data.birthcity}}</b><b class="kobieta4">{{ data.gender }}</b
       ><b class="katowice4">{{ data.registrationcity }}</b><b class="b24">{{ data.postalcode }}</b
       ><b class="jana-matejki4">{{ data.street}}</b><b class="b25">{{ data.phoneNo }}</b
@@ -98,42 +103,48 @@
       <div class="citizenship14"></div>
       <div class="obywatelstwo7">Obywatelstwo</div>
 
-        <form class="form-group1" action="{{ url_for('edit_user_data') }}" method="post">
 
-      <input class="birthdate11" type="text" style="visibility:{{ visibility }}" name="birthdate"/><input
+
+      <input class="birthdate11" type="text" style="visibility:{{ visibility }}" name="birthdate" id="birthdate"/><input
         class="cityofregistration11"
         type="text"
         name="registrationcity"
-      /><input class="flatno11" type="text" name="flatNo"/><input
+        id="registrationcity"
+      /><input class="flatno11" type="text" name="flatNo" id="flatNo"/><input
         class="houseno12"
         type="text"
         name="houseNo"
-      /><input class="street11" type="text" name="street"/><input
+        id="houseNo"
+      /><input class="street11" type="text" name="street" id="street"/><input
         class="postcode11"
         type="text"
         name="postalcode"
-      /><input class="gender11" type="text" style="visibility:{{ visibility }}" name="gender"/><input
+        id="postalcode"
+      /><input class="gender11" type="text" style="visibility:{{ visibility }}" name="gender" id="gender"/><input
         class="birthplace11"
         type="text"
         name="birthcity"
-      /><input class="name11" type="text" name="name"/><input
+        id="gender"
+      /><input class="name11" type="text" name="name" id="gender"/><input
         class="surname11"
         type="text"
         name="surname"
-      /><input class="callprefix11" type="text" name="phoneprefix"/><input
+        id="surname"
+      /><input class="callprefix11" type="text" name="phoneprefix" id="phoneprefix"/><input
         class="phoneno11"
         type="text"
         name="phoneNo"
+        id="phoneNo"
       />
       <div class="numer-telefonu7">Numer Telefonu</div>
-      <input class="civilstate11" type="text" name="civilstatus"/>
+      <input class="civilstate11" type="text" name="civilstatus" id="civilstatus"/>
       <div class="stan-cywilny7">Stan Cywilny</div>
-      <input class="citizenship15" type="text" name="citizenship"/>
+      <input class="citizenship15" type="text" name="citizenship" id="citizenship"/>
 
 
-      <button class="wyslijblad4" formmethod="post">
+      <button class="wyslijblad4" id="zatwierdz" name="zatwierdz" >
         <img class="wyslijblad-child2" alt="" src="/static/rectangle-729.svg" />
-        <div class="edytuj-dane-klienta1">Zatwierdź</div>
+        <div class="edytuj-dane-klienta1">Zatwierdz</div>
       </button>
 
         <button
@@ -216,73 +227,5 @@
         </form>
     </div>
 
-    <script>
-      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
-      if (edytujKlientowButton) {
-        edytujKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./EdytujPopUPKierownik.html";
-        });
-      }
-      
-      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
-      if (pokazWnioskiButton) {
-        pokazWnioskiButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazWnioski.html";
-        });
-      }
-      
-      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");
-      if (pokazZgloszeniaButton) {
-        pokazZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazBledy.html";
-        });
-      }
-      
-      var zglosBladButton = document.getElementById("zglosBladButton");
-      if (zglosBladButton) {
-        zglosBladButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikZglosBlad.html";
-        });
-      }
-      
-      var pokazWnioskiKlientowButton = document.getElementById(
-        "pokazWnioskiKlientowButton"
-      );
-      if (pokazWnioskiKlientowButton) {
-        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPrzegladajWnioskiKlientow.html";
-        });
-      }
-      
-      var przegladajZgloszeniaButton = document.getElementById(
-        "przegladajZgloszeniaButton"
-      );
-      if (przegladajZgloszeniaButton) {
-        przegladajZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPrzegladajZgloszeniaKlientow.html";
-        });
-      }
-      
-      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
-      if (dodajKlientaButton) {
-        dodajKlientaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikDodajKlienta.html";
-        });
-      }
-      
-      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
-      if (zlozWniosekButton) {
-        zlozWniosekButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikZlozWniosek.html";
-        });
-      }
-      
-      var pokazDaneButton = document.getElementById("pokazDaneButton");
-      if (pokazDaneButton) {
-        pokazDaneButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazDane.html";
-        });
-      }
-      </script>
   </body>
 </html>

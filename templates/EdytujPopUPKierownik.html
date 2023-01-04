@@ -12,12 +12,17 @@
     />
   </head>
   <body>
+  <form class="form-group1" action="{{ url_for('get_pesel') }}" method="post">
+
     <div class="edytuj-pop-up-kierownik">
-      <input class="houseno15" type="text" />
+      <input class="houseno15" type="text" name="pesel"/>
       <div class="podaj-pesel-klienta1">Podaj PESEL Klienta</div>
+
+
       <button
         class="pokazwnioskiklientowbutton19"
         id="pokazWnioskiKlientowButton"
+        formmethod="post"
       >
         <img
           class="pokazwnioskiklientowbutton-child17"
@@ -27,16 +32,6 @@
         <div class="edytuj-dane-kllienta19">Edytuj Dane Kllienta</div>
       </button>
     </div>
-
-    <script>
-      var pokazWnioskiKlientowButton = document.getElementById(
-        "pokazWnioskiKlientowButton"
-      );
-      if (pokazWnioskiKlientowButton) {
-        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikEdytujKlienta.html";
-        });
-      }
-      </script>
+          </form>
   </body>
 </html>
