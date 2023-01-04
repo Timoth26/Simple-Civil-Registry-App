@@ -15,15 +15,13 @@
     <div class="urzednik-pokazdane">
       <div class="urzednik-pokazdane-child"></div>
       <img class="obraz-1-icon27" alt="" src="/static/obraz-1@2x.png" />
-      <div class="data-urodzenia13">Data Urodzenia</div>
+      <div class="data-urodzenia13">Data Urodzenia (YYYY-MM-DD)</div>
       <div class="birthdate18"></div>
       <div class="cityofregistration20"></div>
       <div class="miejsce-zameldowania14">Miejsce Zameldowania</div>
       <div class="flatno20"></div>
-      <b class="b47">-</b>
       <div class="numer-mieszkania14">Numer Mieszkania</div>
       <div class="houseno23"></div>
-      <b class="b48">4</b>
       <div class="numer-domu14">Numer Domu</div>
       <div class="street20"></div>
       <div class="ulica14">Ulica</div>
@@ -46,35 +44,41 @@
       <div class="stan-cywilny14">Stan Cywilny</div>
       <div class="citizenship26"></div>
       <div class="obywatelstwo14">Obywatelstwo</div>
-      <b class="b49">98122926289</b><b class="anna8">Anna</b
-      ><b class="majkalska8">Majkalska</b><b class="b50">1998-12-29</b
-      ><b class="rzeszw8">Rzeszów</b><b class="kobieta8">Kobieta</b
-      ><b class="katowice8">Katowice</b><b class="b51">40-750</b
-      ><b class="jana-matejki8">Jana Matejki</b><b class="b52">458548758</b
-      ><b class="b53">+48</b><b class="onatyzamna8">Żonaty/Zamężna</b
-      ><b class="polskie8">POLSKIE</b
-      ><button class="edytujklientowbutton26" id="edytujKlientowButton">
+      <b class="b49">{{ data.pesel }}</b><b class="anna8">{{ data.name }}</b
+      ><b class="majkalska8">{{ data.surname }}</b><b class="b50">{{ data.birthday }}</b
+      ><b class="rzeszw8">{{ data.birthcity}}</b><b class="kobieta8">{{ data.gender }}</b
+      ><b class="katowice8">{{ data.registrationcity }}</b><b class="b51">{{ data.postalcode }}</b
+      ><b class="jana-matejki8">{{ data.street}}</b><b class="b52">{{ data.phoneNo }}</b
+      ><b class="b53">{{ data.phoneprefix }}</b><b class="onatyzamna8">{{data.civilstatus}}</b
+      ><b class="polskie8">{{ data.citizenship }}</b>
+      <b class="b48">{{ data.No }}</b>
+        <b class="b47">{{ data.flatNo }}</b>
+        <form class="form-group1" action="{{ url_for('show_emp_personal_data') }}" method="post">
+
+        <button class="edytujklientowbutton26" id="edytujKlientowButton" name="edytujdaneklienta">
         <img
           class="edytujklientowbutton-child23"
           alt=""
           src="/static/rectangle-772.svg"
         />
-        <div class="edytuj-dane-kllienta29">Edytuj Dane Kllienta</div></button
-      ><button class="pokazwnioskibutton26" id="pokazWnioskiButton">
+        <div class="edytuj-dane-kllienta29">Edytuj Dane Klienta</div>
+        </button>
+
+            <button class="pokazwnioskibutton26" id="pokazWnioskiButton" name="pokazwnioski" formmethod="post">
         <img
           class="edytujklientowbutton-child23"
           alt=""
           src="/static/rectangle-71.svg"
         />
         <div class="edytuj-dane-kllienta29">Pokaż Wnioski</div></button
-      ><button class="pokazzgloszeniabutton17" id="pokazZgloszeniaButton">
+      ><button class="pokazzgloszeniabutton17" id="pokazZgloszeniaButton" name="pokazzgloszeniabledow">
         <img
           class="pokazzgloszeniabutton-child15"
           alt=""
           src="/static/rectangle-7147.svg"
         />
         <div class="poka-zgoszenia-bdw26">Pokaż Zgłoszenia Błędów</div></button
-      ><button class="zglosbladbutton26" id="zglosBladButton">
+      ><button class="zglosbladbutton26" id="zglosBladButton" name="zglosblad">
         <img
           class="edytujklientowbutton-child23"
           alt=""
@@ -84,6 +88,7 @@
       ><button
         class="pokazwnioskiklientowbutton29"
         id="pokazWnioskiKlientowButton"
+        name="przegladajwnioski"
       >
         <img
           class="edytujklientowbutton-child23"
@@ -94,6 +99,7 @@
       ><button
         class="przegladajzgloszeniabutton26"
         id="przegladajZgloszeniaButton"
+        name="przegladajzgloszeniabledow"
       >
         <img
           class="pokazzgloszeniabutton-child15"
@@ -103,21 +109,21 @@
         <div class="poka-zgoszenia-bdw26">
           Przeglądaj Zgłoszenia Błędów
         </div></button
-      ><button class="dodajklientabutton26" id="dodajKlientaButton">
+      ><button class="dodajklientabutton26" id="dodajKlientaButton" name="dodajklienta">
         <img
           class="edytujklientowbutton-child23"
           alt=""
           src="/static/rectangle-771.svg"
         />
         <div class="edytuj-dane-kllienta29">Dodaj Klienta</div></button
-      ><button class="zlozwniosekbutton26" id="zlozWniosekButton">
+      ><button class="zlozwniosekbutton26" id="zlozWniosekButton" name="zlozwniosek">
         <img
           class="zlozwniosekbutton-child24"
           alt=""
           src="/static/rectangle-6.svg"
         />
         <div class="edytuj-dane-kllienta29">Złóż Wniosek</div></button
-      ><button class="pokazdanebutton26" id="pokazDaneButton">
+      ><button class="pokazdanebutton26" id="pokazDaneButton" name="pokazdane">
         <img
           class="zlozwniosekbutton-child24"
           alt=""
@@ -125,75 +131,76 @@
         />
         <div class="edytuj-dane-kllienta29">Pokaż Dane</div>
       </button>
+    </form>
     </div>
 
-    <script>
-      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
-      if (edytujKlientowButton) {
-        edytujKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./EdytujPopUPUrzednik.html";
-        });
-      }
-      
-      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
-      if (pokazWnioskiButton) {
-        pokazWnioskiButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikPokazWnioski.html";
-        });
-      }
-      
-      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");
-      if (pokazZgloszeniaButton) {
-        pokazZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikPokazBledy.html";
-        });
-      }
-      
-      var zglosBladButton = document.getElementById("zglosBladButton");
-      if (zglosBladButton) {
-        zglosBladButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikZglosBlad.html";
-        });
-      }
-      
-      var pokazWnioskiKlientowButton = document.getElementById(
-        "pokazWnioskiKlientowButton"
-      );
-      if (pokazWnioskiKlientowButton) {
-        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikPrzegladajWnioskiKlientow.html";
-        });
-      }
-      
-      var przegladajZgloszeniaButton = document.getElementById(
-        "przegladajZgloszeniaButton"
-      );
-      if (przegladajZgloszeniaButton) {
-        przegladajZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikPrzegladajZgloszeniaKlientow.html";
-        });
-      }
-      
-      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
-      if (dodajKlientaButton) {
-        dodajKlientaButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikDodajKlienta.html";
-        });
-      }
-      
-      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
-      if (zlozWniosekButton) {
-        zlozWniosekButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikZlozWniosek.html";
-        });
-      }
-      
-      var pokazDaneButton = document.getElementById("pokazDaneButton");
-      if (pokazDaneButton) {
-        pokazDaneButton.addEventListener("click", function (e) {
-          window.location.href = "./UrzednikPokazDane.html";
-        });
-      }
-      </script>
+{#    <script>#}
+{#      var edytujKlientowButton = document.getElementById("edytujKlientowButton");#}
+{#      if (edytujKlientowButton) {#}
+{#        edytujKlientowButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./EdytujPopUPUrzednik.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");#}
+{#      if (pokazWnioskiButton) {#}
+{#        pokazWnioskiButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikPokazWnioski.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");#}
+{#      if (pokazZgloszeniaButton) {#}
+{#        pokazZgloszeniaButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikPokazBledy.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var zglosBladButton = document.getElementById("zglosBladButton");#}
+{#      if (zglosBladButton) {#}
+{#        zglosBladButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikZglosBlad.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var pokazWnioskiKlientowButton = document.getElementById(#}
+{#        "pokazWnioskiKlientowButton"#}
+{#      );#}
+{#      if (pokazWnioskiKlientowButton) {#}
+{#        pokazWnioskiKlientowButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikPrzegladajWnioskiKlientow.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var przegladajZgloszeniaButton = document.getElementById(#}
+{#        "przegladajZgloszeniaButton"#}
+{#      );#}
+{#      if (przegladajZgloszeniaButton) {#}
+{#        przegladajZgloszeniaButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikPrzegladajZgloszeniaKlientow.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var dodajKlientaButton = document.getElementById("dodajKlientaButton");#}
+{#      if (dodajKlientaButton) {#}
+{#        dodajKlientaButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikDodajKlienta.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var zlozWniosekButton = document.getElementById("zlozWniosekButton");#}
+{#      if (zlozWniosekButton) {#}
+{#        zlozWniosekButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikZlozWniosek.html";#}
+{#        });#}
+{#      }#}
+{#      #}
+{#      var pokazDaneButton = document.getElementById("pokazDaneButton");#}
+{#      if (pokazDaneButton) {#}
+{#        pokazDaneButton.addEventListener("click", function (e) {#}
+{#          window.location.href = "./UrzednikPokazDane.html";#}
+{#        });#}
+{#      }#}
+{#      </script>#}
   </body>
 </html>

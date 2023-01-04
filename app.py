@@ -18,18 +18,24 @@ DB_PORT = "5432"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
 
+def create_connection():
+    conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    return cursor
+
 @app.route('/')
 def home():
+    conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
     if 'loggedin' in session:
         pass
     return redirect((url_for('login')))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    error = None
+    cursor = create_connection()
+    error = ""
     # Check if user submitted form
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
@@ -44,7 +50,11 @@ def login():
             session['loggedin'] = True
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
-            #return redirect('index.html')
+
+            if session['occupation'] is None:
+                return redirect(url_for('show_user_personal_data'))
+
+            return redirect(url_for('show_emp_personal_data'))
 
         else:
             error = 'Podano błędny login lub hasło'
@@ -77,6 +87,59 @@ def show_user_personal_data():
     data = cursor.fetchone()
     return render_template('userpersonaldata.html', data=data)
 
+@app.route('/emppersonaldata', methods=['GET', 'POST'])
+def show_emp_personal_data():
+    cursor = create_connection()
+    cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel(session.get('id')),))
+    data = cursor.fetchone()
+    data = {
+        'pesel': data[0],
+        'name': data[1],
+        'surname': data[2],
+        'birthday': data[3],
+        'birthcity': data[4],
+        'gender': data[5],
+        'registrationcity': data[6],
+        'postalcode': data[7],
+        'street': data[8],
+        'No': data[9],
+        'flatNo': data[10],
+        'phoneNo': data[11],
+        'phoneprefix': data[12],
+        'civilstatus': data[13],
+        'citizenship': data[14]
+    }
+
+    for i, j in data.items():
+        if j is None:
+            data[i] = '-'
+
+    if request.method == 'POST':
+        if 'pokazdane' in request.form:
+            pass
+        elif 'edytujdaneklienta' in request.form:
+            return redirect(url_for('login'))
+            #return render_template('index.html', error="")
+        elif 'pokazwnioski' in request.form:
+            pass
+        elif 'pokazzgloszeniabledow' in request.form:
+            pass
+        elif 'zglosblad' in request.form:
+            pass
+        elif 'przegladajwnioski' in request.form:
+            pass
+        elif 'przegladajzgloszeniabledow' in request.form:
+            pass
+        elif 'dodajklienta' in request.form:
+            pass
+        elif 'zlozwniosek' in request.form:
+            pass
+
+    return render_template('UrzednikPokazDane.html', data=data)
+
+@app.route('/edycjadanych', methods=['GET', 'POST'])
+def edit_user_data():
+    return render_template('index.html', error="")
 @app.route('/userapplication')
 def user_application():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
