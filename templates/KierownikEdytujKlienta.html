@@ -15,9 +15,6 @@
 
     <div class="kierownik-edytuj-klienta">
 
-                <form class="form-group2" action="{{ url_for('edit_user_data') }}" method="post">
-
-
       <div class="kierownik-edytuj-klienta-child"></div>
       <img class="obraz-1-icon14" alt="" src="/static/obraz-1@2x.png" />
       <div class="dane-klienta-do-edycji1">Dane Klienta Do Edycji</div>
@@ -103,6 +100,7 @@
       <div class="citizenship14"></div>
       <div class="obywatelstwo7">Obywatelstwo</div>
 
+        <form class="form-group2" action="{{ url_for('edit_user_data') }}" method="post">
 
 
       <input class="birthdate11" type="text" style="visibility:{{ visibility }}" name="birthdate" id="birthdate"/><input
@@ -141,88 +139,18 @@
       <div class="stan-cywilny7">Stan Cywilny</div>
       <input class="citizenship15" type="text" name="citizenship" id="citizenship"/>
 
-
-      <button class="wyslijblad4" id="zatwierdz" name="zatwierdz" >
+      <button class="wyslijblad4" id="zatwierdz" name="submit" value="Zatwierdz" >
         <img class="wyslijblad-child2" alt="" src="/static/rectangle-729.svg" />
         <div class="edytuj-dane-klienta1">Zatwierdz</div>
       </button>
 
-        <button
-        class="edytujklientowbutton13"
-        id="edytujKlientowButton"
-      >
-        <img
-          class="edytujklientowbutton-child10"
-          alt=""
-          src="/static/rectangle-772.svg"
-        />
-
-        <div class="edytuj-dane-kllienta14">Edytuj Dane Kllienta</div></button
-      ><button class="pokazwnioskibutton13" id="pokazWnioskiButton">
+    <button class="pokazwnioskibutton13" id="powrot" name="submit" value="Powrot" >
         <img
           class="edytujklientowbutton-child10"
           alt=""
           src="/static/rectangle-71.svg"
         />
-        <div class="edytuj-dane-kllienta14">Pokaż Wnioski</div></button
-      ><button class="pokazzgloszeniabutton4" id="pokazZgloszeniaButton">
-        <img
-          class="pokazzgloszeniabutton-child2"
-          alt=""
-          src="/static/rectangle-72.svg"
-        />
-        <div class="poka-zgoszenia-bdw13">Pokaż Zgłoszenia Błędów</div></button
-      ><button class="zglosbladbutton13" id="zglosBladButton">
-        <img
-          class="edytujklientowbutton-child10"
-          alt=""
-          src="/static/rectangle-73.svg"
-        />
-        <div class="edytuj-dane-kllienta14">Zgłoś Błąd</div></button
-      ><button
-        class="pokazwnioskiklientowbutton14"
-        id="pokazWnioskiKlientowButton"
-      >
-        <img
-          class="edytujklientowbutton-child10"
-          alt=""
-          src="/static/rectangle-776.svg"
-        />
-        <div class="edytuj-dane-kllienta14">Przeglądaj Wnioski</div></button
-      ><button
-        class="przegladajzgloszeniabutton13"
-        id="przegladajZgloszeniaButton"
-      >
-        <img
-          class="pokazzgloszeniabutton-child2"
-          alt=""
-          src="/static/rectangle-777.svg"
-        />
-        <div class="poka-zgoszenia-bdw13">
-          Przeglądaj Zgłoszenia Błędów
-        </div></button
-      ><button class="dodajklientabutton13" id="dodajKlientaButton">
-        <img
-          class="edytujklientowbutton-child10"
-          alt=""
-          src="/static/rectangle-771.svg"
-        />
-        <div class="edytuj-dane-kllienta14">Dodaj Klienta</div></button
-      ><button class="zlozwniosekbutton13" id="zlozWniosekButton">
-        <img
-          class="zlozwniosekbutton-child11"
-          alt=""
-          src="/static/rectangle-6.svg"
-        />
-        <div class="edytuj-dane-kllienta14">Złóż Wniosek</div></button
-      ><button class="pokazdanebutton13" id="pokazDaneButton">
-        <img
-          class="zlozwniosekbutton-child11"
-          alt=""
-          src="/static/rectangle-6.svg"
-        />
-        <div class="edytuj-dane-kllienta14">Pokaż Dane</div>
-      </button>
+        <div class="edytuj-dane-kllienta14">Powrot</div></button>
 
         </form>
     </div>

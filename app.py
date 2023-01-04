@@ -139,46 +139,50 @@ def edit_user_data():
     data = get_data_from_db(get_id_from_pesel(session['pesel']))
 
     if request.method == "POST":
-        if data['name'] != request.form['name'] and request.form['name'] != "":
-            data['name'] = request.form['name']
-        if data['surname'] != request.form['surname'] and request.form['surname'] != "":
-            data['surname'] = request.form['surname']
-        if session['occupation'] != 'Urzędnik' or session['occupation'] is not None:
-            if data['birthdate'] != request.form['birthdate'] and request.form['birthdate'] != "":
-                data['birthdate'] = request.form['birthdate']
-        if data['birthcity'] != request.form['birthcity'] and request.form['birthcity'] != "":
-            data['birthcity'] = request.form['birthcity']
-        if session['occupation'] != 'Urzędnik' or session['occupation'] is not None:
-            if data['gender'] != request.form['gender'] and request.form['gender'] != "":
-                data['gender'] = request.form['gender']
-        if data['registrationcity'] != request.form['registrationcity'] and request.form['registrationcity'] != "":
-            data['registrationcity'] = request.form['registrationcity']
-        if data['postalcode'] != request.form['postalcode'] and request.form['postalcode'] != "":
-            data['postalcode'] = request.form['postalcode']
-        if data['street'] != request.form['street'] and request.form['street'] != "":
-            data['street'] = request.form['street']
-        if data['No'] != request.form['houseNo'] and request.form['houseNo'] != "":
-            data['No'] = request.form['houseNo']
-        if data['flatNo'] != request.form['flatNo'] and request.form['flatNo'] != "":
-            data['flatNo'] = request.form['flatNo']
-        if data['phoneNo'] != request.form['phoneNo'] and request.form['phoneNo'] != "":
-            data['phoneNo'] = request.form['phoneNo']
-        if data['phoneprefix'] != request.form['phoneprefix'] and request.form['phoneprefix'] != "":
-            data['phoneprefix'] = request.form['phoneprefix']
-        if data['civilstatus'] != request.form['civilstatus'] and request.form['civilstatus'] != "":
-            data['civilstatus'] = request.form['civilstatus']
-        if data['citizenship'] != request.form['citizenship'] and request.form['citizenship'] != "":
-            data['citizenship'] = request.form['citizenship']
+        if request.form['submit'] == "Zatwierdz":
+            if data['name'] != request.form['name'] and request.form['name'] != "":
+                data['name'] = request.form['name']
+            if data['surname'] != request.form['surname'] and request.form['surname'] != "":
+                data['surname'] = request.form['surname']
+            if session['occupation'] != 'Urzędnik' or session['occupation'] is not None:
+                if data['birthdate'] != request.form['birthdate'] and request.form['birthdate'] != "":
+                    data['birthdate'] = request.form['birthdate']
+            if data['birthcity'] != request.form['birthcity'] and request.form['birthcity'] != "":
+                data['birthcity'] = request.form['birthcity']
+            if session['occupation'] != 'Urzędnik' or session['occupation'] is not None:
+                if data['gender'] != request.form['gender'] and request.form['gender'] != "":
+                    data['gender'] = request.form['gender']
+            if data['registrationcity'] != request.form['registrationcity'] and request.form['registrationcity'] != "":
+                data['registrationcity'] = request.form['registrationcity']
+            if data['postalcode'] != request.form['postalcode'] and request.form['postalcode'] != "":
+                data['postalcode'] = request.form['postalcode']
+            if data['street'] != request.form['street'] and request.form['street'] != "":
+                data['street'] = request.form['street']
+            if data['No'] != request.form['houseNo'] and request.form['houseNo'] != "":
+                data['No'] = request.form['houseNo']
+            if data['flatNo'] != request.form['flatNo'] and request.form['flatNo'] != "":
+                data['flatNo'] = request.form['flatNo']
+            if data['phoneNo'] != request.form['phoneNo'] and request.form['phoneNo'] != "":
+                data['phoneNo'] = request.form['phoneNo']
+            if data['phoneprefix'] != request.form['phoneprefix'] and request.form['phoneprefix'] != "":
+                data['phoneprefix'] = request.form['phoneprefix']
+            if data['civilstatus'] != request.form['civilstatus'] and request.form['civilstatus'] != "":
+                data['civilstatus'] = request.form['civilstatus']
+            if data['citizenship'] != request.form['citizenship'] and request.form['citizenship'] != "":
+                data['citizenship'] = request.form['citizenship']
 
-        cursor.execute(
-            'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, "Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, "FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s WHERE "PESEL" = %s',
-            (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
-             data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
-             data['phoneNo'],
-             data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
+            cursor.execute(
+                'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, "Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, "FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s WHERE "PESEL" = %s',
+                (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
+                 data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
+                 data['phoneNo'],
+                 data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
 
-        conn.commit()
-        return redirect(url_for('show_emp_personal_data'))
+            conn.commit()
+            return redirect(url_for('show_emp_personal_data'))
+
+        elif request.form['submit'] == "Powrot":
+            return redirect(url_for('home'))
 
     if session['occupation'] == 'Urzędnik' or session['occupation'] is None:
         visibility = 'hidden'
