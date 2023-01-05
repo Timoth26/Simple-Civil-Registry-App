@@ -14,160 +14,48 @@
   <body>
     <div class="kierownik-pokazwnioski">
       <img class="obraz-1-icon11" alt="" src="/static/obraz-1@2x.png" />
-      <div class="kierownik-pokazwnioski-child"></div>
-      <b class="applicationid2">ApplicationID</b>
-      <div class="data-rozpatrzenia5">Data Rozpatrzenia</div>
-      <div class="data-aplikacji5">Data Aplikacji</div>
-      <div class="data-weryfikacji2">Data Weryfikacji</div>
-      <b class="dateofconsideration5">DateOfConsideration</b
-      ><b class="dateofapplication5">DateOfApplication</b
-      ><b class="dateofveryfication2">DateOfVeryfication</b>
-      <div class="typ-dokumentu4">Typ Dokumentu</div>
-      <b class="type2">Type</b>
-      <div class="status5">Status</div>
-      <b class="statusakt5">Statusakt</b>
-      <div class="kierownik-pokazwnioski-item"></div>
-      <button class="edytujklientowbutton10" id="edytujKlientowButton">
+{#      <div class="kierownik-pokazwnioski-child"></div>#}
+{#      <b class="applicationid2">ApplicationID</b>#}
+{#      <div class="data-rozpatrzenia5">Data Rozpatrzenia</div>#}
+{#      <div class="data-aplikacji5">Data Aplikacji</div>#}
+{#      <div class="data-weryfikacji2">Data Weryfikacji</div>#}
+{#      <b class="dateofconsideration5">DateOfConsideration</b#}
+{#      ><b class="dateofapplication5">DateOfApplication</b#}
+{#      ><b class="dateofveryfication2">DateOfVeryfication</b>#}
+{#      <div class="typ-dokumentu4">Typ Dokumentu</div>#}
+{#      <b class="type2">Type</b>#}
+{#      <div class="status5">Status</div>#}
+{#      <b class="statusakt5">Statusakt</b>#}
+      <div class="kierownik-pokazwnioski-item" style="overflow-x:auto;" >
+          <table class="table">
+            <tr class="table__header">
+                {%  for header in headings %}
+                <th class="table__cell"> {{ header }}</th>
+                {% endfor %}
+            </tr>
+                {% for row in data %}
+            <tbody>
+            <tr class="table__row">
+                {% for cell in row %}
+                <td class="table__cell"> {{ cell }}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+                {% endfor %}
+          </table>
+      </div>
+
+        <form class="form-group1" action="{{ url_for('show_documents') }}" method="post">
+
+      <button class="edytujklientowbutton10" id="powrot" name="powrot">
         <img
           class="edytujklientowbutton-child7"
           alt=""
           src="/static/rectangle-772.svg"
         />
-        <div class="edytuj-dane-kllienta11">Edytuj Dane Kllienta</div></button
-      ><button class="pokazwnioskibutton10" id="pokazWnioskiButton">
-        <img
-          class="edytujklientowbutton-child7"
-          alt=""
-          src="/static/rectangle-71.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Pokaż Wnioski</div></button
-      ><button class="pokazzgloszeniabutton1" id="pokazZgloszeniaButton">
-        <img
-          class="pokazzgloszeniabutton-item"
-          alt=""
-          src="/static/rectangle-72.svg"
-        />
-        <div class="poka-zgoszenia-bdw10">Pokaż Zgłoszenia Błędów</div></button
-      ><button class="zglosbladbutton10" id="zglosBladButton">
-        <img
-          class="edytujklientowbutton-child7"
-          alt=""
-          src="/static/rectangle-73.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Zgłoś Błąd</div></button
-      ><button
-        class="pokazwnioskiklientowbutton11"
-        id="pokazWnioskiKlientowButton"
+        <div class="edytuj-dane-kllienta11">Powrót</div></button
       >
-        <img
-          class="edytujklientowbutton-child7"
-          alt=""
-          src="/static/rectangle-776.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Przeglądaj Wnioski</div></button
-      ><button
-        class="przegladajzgloszeniabutton10"
-        id="przegladajZgloszeniaButton"
-      >
-        <img
-          class="pokazzgloszeniabutton-item"
-          alt=""
-          src="/static/rectangle-777.svg"
-        />
-        <div class="poka-zgoszenia-bdw10">
-          Przeglądaj Zgłoszenia Błędów
-        </div></button
-      ><button class="dodajklientabutton10" id="dodajKlientaButton">
-        <img
-          class="edytujklientowbutton-child7"
-          alt=""
-          src="/static/rectangle-771.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Dodaj Klienta</div></button
-      ><button class="zlozwniosekbutton10" id="zlozWniosekButton">
-        <img
-          class="zlozwniosekbutton-child8"
-          alt=""
-          src="/static/rectangle-6.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Złóż Wniosek</div></button
-      ><button class="pokazdanebutton10" id="pokazDaneButton">
-        <img
-          class="zlozwniosekbutton-child8"
-          alt=""
-          src="/static/rectangle-6.svg"
-        />
-        <div class="edytuj-dane-kllienta11">Pokaż Dane</div>
-      </button>
+        </form>
     </div>
-
-    <script>
-      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
-      if (edytujKlientowButton) {
-        edytujKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./EdytujPopUPKierownik.html";
-        });
-      }
-      
-      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
-      if (pokazWnioskiButton) {
-        pokazWnioskiButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazWnioski.html";
-        });
-      }
-      
-      var pokazZgloszeniaButton = document.getElementById("pokazZgloszeniaButton");
-      if (pokazZgloszeniaButton) {
-        pokazZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazBledy.html";
-        });
-      }
-      
-      var zglosBladButton = document.getElementById("zglosBladButton");
-      if (zglosBladButton) {
-        zglosBladButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikZglosBlad.html";
-        });
-      }
-      
-      var pokazWnioskiKlientowButton = document.getElementById(
-        "pokazWnioskiKlientowButton"
-      );
-      if (pokazWnioskiKlientowButton) {
-        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPrzegladajWnioskiKlientow.html";
-        });
-      }
-      
-      var przegladajZgloszeniaButton = document.getElementById(
-        "przegladajZgloszeniaButton"
-      );
-      if (przegladajZgloszeniaButton) {
-        przegladajZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPrzegladajZgloszeniaKlientow.html";
-        });
-      }
-      
-      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
-      if (dodajKlientaButton) {
-        dodajKlientaButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikDodajKlienta.html";
-        });
-      }
-      
-      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
-      if (zlozWniosekButton) {
-        zlozWniosekButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikZlozWniosek.html";
-        });
-      }
-      
-      var pokazDaneButton = document.getElementById("pokazDaneButton");
-      if (pokazDaneButton) {
-        pokazDaneButton.addEventListener("click", function (e) {
-          window.location.href = "./KierownikPokazDane.html";
-        });
-      }
-      </script>
   </body>
 </html>

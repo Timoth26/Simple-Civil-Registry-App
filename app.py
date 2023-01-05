@@ -94,7 +94,7 @@ def show_emp_personal_data():
         elif 'edytujdaneklienta' in request.form:
             return redirect(url_for('get_pesel'))
         elif 'pokazwnioski' in request.form:
-            pass
+            return redirect(url_for('show_documents'))
         elif 'pokazzgloszeniabledow' in request.form:
             pass
         elif 'zglosblad' in request.form:
@@ -108,10 +108,10 @@ def show_emp_personal_data():
         elif 'zlozwniosek' in request.form:
             return redirect(url_for('apply'))
 
-    #if session['occupation'] is not None:
+    # if session['occupation'] is not None:
     visibility = 'visible'
-    #else:
-    #visibility = 'hidden'
+    # else:
+    # visibility = 'hidden'
 
     return render_template('UrzednikPokazDane.html', data=get_data_from_db(session.get('id')), visibility=visibility)
 
@@ -181,7 +181,7 @@ def edit_user_data():
                  data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
 
             conn.commit()
-            #return redirect(url_for('show_emp_personal_data'))
+            # return redirect(url_for('show_emp_personal_data'))
 
         elif request.form['submit'] == "Powrot":
             return redirect(url_for('show_emp_personal_data'))
@@ -191,8 +191,10 @@ def edit_user_data():
     else:
         visibility = 'visible'
 
-    return render_template('KierownikEdytujKlienta.html', data=get_data_from_db(get_id_from_pesel(session.get('pesel'))),
+    return render_template('KierownikEdytujKlienta.html',
+                           data=get_data_from_db(get_id_from_pesel(session.get('pesel'))),
                            visibility=visibility)
+
 
 @app.route('/apply', methods=['GET', 'POST'])
 def apply():
@@ -201,7 +203,8 @@ def apply():
 
     if request.method == 'POST':
         if 'wyslij' in request.form:
-            cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)', (request.form['selectlist'], session.get('id'),))
+            cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)',
+                           (request.form['selectlist'], session.get('id'),))
             conn.commit()
             return redirect(url_for('show_emp_personal_data'))
 
@@ -209,6 +212,24 @@ def apply():
             return redirect(url_for('show_emp_personal_data'))
 
     return render_template('KierownikZlozWniosek.html', types=types)
+
+
+@app.route('/documents', methods=['GET', 'POST'])
+def show_documents():
+
+    headings = ("Numer Aplikacji", "Typ", "Status", "Data złożenia wniosku", "Data weryfikacji", "Data rozpatrzenia")
+    cursor = get_cursor()
+    cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+                   '"DateOfVerification", "DateOfConsideration" FROM documents WHERE "AppUserID" = %s',
+                   (str(session['id'])))
+    data = cursor.fetchall()
+
+    if request.method == "POST":
+        return redirect(url_for('show_emp_personal_data'))
+
+
+    return render_template('KierownikPokazWnioski.html', headings=headings, data=data)
+
 
 def get_data_from_db(id):
     cursor = get_cursor()
