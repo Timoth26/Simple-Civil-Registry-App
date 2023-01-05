@@ -52,9 +52,6 @@ def login():
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
 
-            if session['occupation'] is None:
-                return redirect(url_for('show_user_personal_data'))
-
             return redirect(url_for('show_emp_personal_data'))
 
         else:
@@ -109,9 +106,14 @@ def show_emp_personal_data():
         elif 'dodajklienta' in request.form:
             pass
         elif 'zlozwniosek' in request.form:
-            pass
+            return redirect(url_for('apply'))
 
-    return render_template('UrzednikPokazDane.html', data=get_data_from_db(session.get('id')))
+    #if session['occupation'] is not None:
+    visibility = 'visible'
+    #else:
+    #visibility = 'hidden'
+
+    return render_template('UrzednikPokazDane.html', data=get_data_from_db(session.get('id')), visibility=visibility)
 
 
 @app.route('/getpesel', methods=['GET', 'POST'])
@@ -133,7 +135,7 @@ def get_id_from_pesel(pesel):
         return None
 
 
-@app.route('/edycjadanych', methods=['GET', 'POST'])
+@app.route('/dataedition', methods=['GET', 'POST'])
 def edit_user_data():
     cursor = get_cursor()
     data = get_data_from_db(get_id_from_pesel(session['pesel']))
@@ -179,19 +181,34 @@ def edit_user_data():
                  data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
 
             conn.commit()
-            return redirect(url_for('show_emp_personal_data'))
+            #return redirect(url_for('show_emp_personal_data'))
 
         elif request.form['submit'] == "Powrot":
-            return redirect(url_for('home'))
+            return redirect(url_for('show_emp_personal_data'))
 
     if session['occupation'] == 'Urzędnik' or session['occupation'] is None:
         visibility = 'hidden'
     else:
         visibility = 'visible'
 
-    return render_template('KierownikEdytujKlienta.html', data=get_data_from_db(session.get('id')),
+    return render_template('KierownikEdytujKlienta.html', data=get_data_from_db(get_id_from_pesel(session.get('pesel'))),
                            visibility=visibility)
 
+@app.route('/apply', methods=['GET', 'POST'])
+def apply():
+    cursor = get_cursor()
+    types = ['Akt ślubu', 'Akt zgonu', 'Akt urodzenia', 'Akt obywatelstwa']
+
+    if request.method == 'POST':
+        if 'wyslij' in request.form:
+            cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)', (request.form['selectlist'], session.get('id'),))
+            conn.commit()
+            return redirect(url_for('show_emp_personal_data'))
+
+        elif 'powrot' in request.form:
+            return redirect(url_for('show_emp_personal_data'))
+
+    return render_template('KierownikZlozWniosek.html', types=types)
 
 def get_data_from_db(id):
     cursor = get_cursor()

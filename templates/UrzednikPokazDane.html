@@ -55,7 +55,7 @@
         <b class="b47">{{ data.flatNo }}</b>
         <form class="form-group1" action="{{ url_for('show_emp_personal_data') }}" method="post">
 
-        <button class="edytujklientowbutton26" id="edytujKlientowButton" name="edytujdaneklienta">
+        <button class="edytujklientowbutton26" id="edytujKlientowButton" name="edytujdaneklienta" style="visibility:{{ visibility }}">
         <img
           class="edytujklientowbutton-child23"
           alt=""
@@ -89,6 +89,7 @@
         class="pokazwnioskiklientowbutton29"
         id="pokazWnioskiKlientowButton"
         name="przegladajwnioski"
+        style="visibility:{{ visibility }}"
       >
         <img
           class="edytujklientowbutton-child23"
@@ -100,6 +101,7 @@
         class="przegladajzgloszeniabutton26"
         id="przegladajZgloszeniaButton"
         name="przegladajzgloszeniabledow"
+        style="visibility:{{ visibility }}"
       >
         <img
           class="pokazzgloszeniabutton-child15"
@@ -109,7 +111,7 @@
         <div class="poka-zgoszenia-bdw26">
           Przeglądaj Zgłoszenia Błędów
         </div></button
-      ><button class="dodajklientabutton26" id="dodajKlientaButton" name="dodajklienta">
+      ><button class="dodajklientabutton26" id="dodajKlientaButton" name="dodajklienta" style="visibility:{{ visibility }}">
         <img
           class="edytujklientowbutton-child23"
           alt=""
