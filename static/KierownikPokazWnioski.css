@@ -82,37 +82,25 @@ body {
 .kierownik-pokazwnioski-item {
   position: absolute;
   top: 95px;
-  left: 518px;
+  left: 510px;
   background-color: var(--color-gray-600);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border: 4px solid var(--color-black);
   box-sizing: border-box;
-  width: 930px;
-  height: 850px;
+  width: 1000px;
+  height: 500px;
+  overflow: auto;
 }
 
-.table{
-  border-spacing: 0;
-  margin: 1rem;
-  background-color: #f5f5f5;
-}
+.kierownik-pokazwnioski-item thead th { position: sticky; top: 0; z-index: 1; }
 
-.table__row:nth-child(even){
-  background-color: #e5e5e5;
-}
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 4px 12px;
+        font-size: 22px;}
+th     { background:#eee; }
+tr {font-size: 22px;}
 
-.table__header {
-  text-align: left;
-}
-
-.table__cell{
-  padding: 8px;
-}
-
-{
-Overflow-x:scroll;//add horizontal bar option in html
-Overflow-y:scroll; //add vertical bar option in html
-}
 
 .edytujklientowbutton-child7 {
   position: absolute;
