@@ -2,7 +2,7 @@ import os
 
 from flask import *
 import psycopg2
-import psycopg2.extras
+from psycopg2.extras import Json
 import sys
 import logging
 from datetime import timedelta
@@ -98,7 +98,7 @@ def show_emp_personal_data():
         elif 'pokazzgloszeniabledow' in request.form:
             pass
         elif 'zglosblad' in request.form:
-            pass
+            return redirect(url_for('report_error'))
         elif 'przegladajwnioski' in request.form:
             pass
         elif 'przegladajzgloszeniabledow' in request.form:
@@ -137,7 +137,6 @@ def get_id_from_pesel(pesel):
 
 @app.route('/dataedition', methods=['GET', 'POST'])
 def edit_user_data():
-    cursor = get_cursor()
     data = get_data_from_db(get_id_from_pesel(session['pesel']))
 
     if request.method == "POST":
@@ -173,8 +172,12 @@ def edit_user_data():
             if data['citizenship'] != request.form['citizenship'] and request.form['citizenship'] != "":
                 data['citizenship'] = request.form['citizenship']
 
+            cursor = get_cursor()
             cursor.execute(
-                'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, "Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, "FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s WHERE "PESEL" = %s',
+                'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, '
+                '"Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, '
+                '"FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s '
+                'WHERE "PESEL" = %s',
                 (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
                  data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
                  data['phoneNo'],
@@ -230,7 +233,39 @@ def show_documents():
 
     return render_template('KierownikPokazWnioski.html', headings=headings, data=data)
 
+@app.route('/reporterror', methods=['GET', 'POST'])
+def report_error():
+    cursor = get_cursor()
+    data = get_data_from_db(session['id'])
 
+    if request.method == "POST":
+        if 'submit' in request.form:
+            new_data = request.form.to_dict()
+            for i, j in new_data.copy().items():
+                if j == '':
+                    new_data.pop(i)
+                if i == 'submit':
+                    new_data.pop(i)
+                elif i == 'powrot':
+                    new_data.pop(i)
+                elif i == 'info':
+                    info = new_data[i]
+                    new_data.pop(i)
+
+            for i in data.copy().keys():
+                if i not in new_data:
+                    data.pop(i)
+
+            cursor.execute('INSERT INTO data_corrections ("DataField","OldVal", "NewVal", "AppUserID", "Info") '
+                           'VALUES (%s, %s, %s, %s, %s);',
+                           ('; '.join(list(new_data.keys())), Json(data), Json(new_data), session['id'], str(info)))
+            conn.commit()
+            return redirect(url_for('show_emp_personal_data'))
+
+        if 'powrot' in request.form:
+            return redirect(url_for('show_emp_personal_data'))
+
+    return render_template("KierownikZglosBlad.html", data=get_data_from_db(session['id']))
 def get_data_from_db(id):
     cursor = get_cursor()
     cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel_from_id(id),))
