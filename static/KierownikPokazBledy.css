@@ -2,7 +2,7 @@ body {
   margin: 0;
   line-height: normal;
 }
-.obraz-1-icon10 {
+.obraz-1-icon11 {
   position: absolute;
   top: 77px;
   left: 66px;
@@ -10,128 +10,106 @@ body {
   height: 160px;
   object-fit: cover;
 }
-.wniosekpokaz-inner {
+.kierownik-pokazwnioski-child {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 103px;
+  left: 639px;
   background-color: var(--color-gray-200);
   width: 683px;
-  height: 372px;
+  height: 215px;
 }
-.correctionid2 {
+.applicationid2 {
   position: absolute;
-  top: 11px;
-  left: 11px;
+  top: 114px;
+  left: 650px;
   display: flex;
   align-items: center;
   width: 177px;
   height: 26px;
 }
-.data-aplikacji4,
-.data-rozpatrzenia4 {
+.data-aplikacji5,
+.data-rozpatrzenia5,
+.data-weryfikacji2 {
   position: absolute;
-  top: 316px;
-  left: 11px;
+  top: 278px;
+  left: 648px;
   display: inline-block;
 }
-.data-aplikacji4 {
-  top: 286px;
+.data-aplikacji5,
+.data-weryfikacji2 {
+  top: 220px;
 }
-.dateofapplication4,
-.dateofconsideration4 {
+.data-weryfikacji2 {
+  top: 249px;
+}
+.dateofapplication5,
+.dateofconsideration5,
+.dateofveryfication2 {
   position: absolute;
-  top: 315px;
-  left: 405px;
+  top: 277px;
+  left: 1042px;
   display: inline-block;
 }
-.dateofapplication4 {
-  top: 285px;
+.dateofapplication5,
+.dateofveryfication2 {
+  top: 219px;
 }
-.bdna-warto2,
-.nazwa-pola2,
-.pole10,
-.pole9 {
+.dateofveryfication2 {
+  top: 248px;
+}
+.status5,
+.statusakt5,
+.typ-dokumentu4,
+.type2 {
   position: absolute;
-  top: 43px;
-  left: 9px;
+  top: 146px;
+  left: 648px;
   display: inline-block;
 }
-.bdna-warto2,
-.pole10,
-.pole9 {
-  left: 404px;
+.status5,
+.statusakt5,
+.type2 {
+  left: 1043px;
 }
-.bdna-warto2,
-.pole10 {
-  top: 113px;
-  left: 9px;
+.status5,
+.statusakt5 {
+  top: 181px;
+  left: 648px;
 }
-.pole10 {
-  left: 404px;
+.statusakt5 {
+  left: 1043px;
 }
-.informacja-o-bdzie2,
-.pole11,
-.poprawna-warto2 {
+.kierownik-pokazwnioski-item {
   position: absolute;
-  top: 147px;
-  left: 9px;
-  display: inline-block;
-}
-.informacja-o-bdzie2,
-.pole11 {
-  left: 404px;
-}
-.informacja-o-bdzie2 {
-  top: 186px;
-  left: 11px;
-}
-.pole12 {
-  position: absolute;
-  top: 215px;
-  left: 11px;
-  font-size: var(--font-size-xs);
-  display: flex;
-  align-items: center;
-  width: 633px;
-  height: 57px;
-}
-.status4,
-.statusakt4 {
-  position: absolute;
-  top: 78px;
-  left: 9px;
-  display: inline-block;
-}
-.statusakt4 {
-  left: 404px;
-}
-.show-wniosek1,
-.wniosekpokaz2 {
-  position: absolute;
-  top: 21px;
-  left: 21px;
-  width: 683px;
-  height: 372px;
-}
-.show-wniosek1 {
-  top: 82px;
-  left: 618px;
-  border-radius: var(--br-md);
-  background-color: var(--color-white);
-  border: 4px solid var(--color-gray-300);
+  top: 95px;
+  left: 450px;
+  background-color: var(--color-gray-600);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 4px solid var(--color-black);
   box-sizing: border-box;
-  width: 726px;
-  height: 860px;
-  overflow: hidden;
+  width: 1100px;
+  height: 500px;
+  overflow: auto;
 }
-.edytujklientowbutton-child6 {
+
+.kierownik-pokazwnioski-item thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 4px 12px;
+        font-size: 22px;}
+th     { background:#eee; }
+tr {font-size: 22px;}
+
+
+.edytujklientowbutton-child7 {
   position: absolute;
   top: 0;
   left: 0;
   width: 387px;
   height: 55.12px;
 }
-.edytuj-dane-kllienta10 {
+.edytuj-dane-kllienta11 {
   position: absolute;
   height: 90.63%;
   top: 4.69%;
@@ -145,8 +123,8 @@ body {
   justify-content: center;
   width: 255.19px;
 }
-.edytujklientowbutton9,
-.pokazwnioskibutton9 {
+.edytujklientowbutton10,
+.pokazwnioskibutton10 {
   cursor: pointer;
   border: 0;
   padding: 0;
@@ -157,17 +135,17 @@ body {
   width: 387px;
   height: 55.12px;
 }
-.pokazwnioskibutton9 {
+.pokazwnioskibutton10 {
   top: 439.59px;
 }
-.pokazzgloszeniabutton-child {
+.pokazzgloszeniabutton-item {
   position: absolute;
   top: 0;
   left: 0;
   width: 387px;
   height: 66.31px;
 }
-.poka-zgoszenia-bdw9 {
+.poka-zgoszenia-bdw10 {
   position: absolute;
   height: 90.62%;
   top: 4.69%;
@@ -181,11 +159,11 @@ body {
   justify-content: center;
   width: 255.19px;
 }
-.dodajklientabutton9,
-.pokazwnioskiklientowbutton10,
-.pokazzgloszeniabutton,
-.przegladajzgloszeniabutton9,
-.zglosbladbutton9 {
+.dodajklientabutton10,
+.pokazwnioskiklientowbutton11,
+.pokazzgloszeniabutton1,
+.przegladajzgloszeniabutton10,
+.zglosbladbutton10 {
   cursor: pointer;
   border: 0;
   padding: 0;
@@ -196,38 +174,38 @@ body {
   width: 387px;
   height: 66.31px;
 }
-.dodajklientabutton9,
-.pokazwnioskiklientowbutton10,
-.przegladajzgloszeniabutton9,
-.zglosbladbutton9 {
+.dodajklientabutton10,
+.pokazwnioskiklientowbutton11,
+.przegladajzgloszeniabutton10,
+.zglosbladbutton10 {
   top: 517.96px;
   height: 55.12px;
 }
-.dodajklientabutton9,
-.pokazwnioskiklientowbutton10,
-.przegladajzgloszeniabutton9 {
+.dodajklientabutton10,
+.pokazwnioskiklientowbutton11,
+.przegladajzgloszeniabutton10 {
   top: 922.21px;
 }
-.dodajklientabutton9,
-.przegladajzgloszeniabutton9 {
+.dodajklientabutton10,
+.przegladajzgloszeniabutton10 {
   top: 842.11px;
   height: 66.31px;
 }
-.dodajklientabutton9 {
+.dodajklientabutton10 {
   top: 701px;
   height: 55.12px;
 }
-.pokazdanebutton9,
-.zlozwniosekbutton-child7,
-.zlozwniosekbutton9 {
+.pokazdanebutton10,
+.zlozwniosekbutton-child8,
+.zlozwniosekbutton10 {
   position: absolute;
   top: 0;
   left: 0;
   width: 387px;
   height: 53.4px;
 }
-.pokazdanebutton9,
-.zlozwniosekbutton9 {
+.pokazdanebutton10,
+.zlozwniosekbutton10 {
   cursor: pointer;
   border: 0;
   padding: 0;
@@ -235,10 +213,10 @@ body {
   top: 375px;
   left: 116px;
 }
-.pokazdanebutton9 {
+.pokazdanebutton10 {
   top: 299px;
 }
-.kierownik-pokazbledy {
+.kierownik-pokazwnioski {
   position: relative;
   background-color: var(--color-white);
   width: 100%;

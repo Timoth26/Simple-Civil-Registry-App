@@ -96,7 +96,7 @@ def show_emp_personal_data():
         elif 'pokazwnioski' in request.form:
             return redirect(url_for('show_documents'))
         elif 'pokazzgloszeniabledow' in request.form:
-            pass
+            return redirect(url_for('show_error_reports'))
         elif 'zglosblad' in request.form:
             return redirect(url_for('report_error'))
         elif 'przegladajwnioski' in request.form:
@@ -218,7 +218,6 @@ def apply():
 
 @app.route('/documents', methods=['GET', 'POST'])
 def show_documents():
-
     headings = ("Numer Aplikacji", "Typ", "Status", "Data złożenia wniosku", "Data weryfikacji", "Data rozpatrzenia")
     cursor = get_cursor()
     cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
@@ -229,8 +228,8 @@ def show_documents():
     if request.method == "POST":
         return redirect(url_for('show_emp_personal_data'))
 
-
     return render_template('KierownikPokazWnioski.html', headings=headings, data=data)
+
 
 @app.route('/reporterror', methods=['GET', 'POST'])
 def report_error():
@@ -265,6 +264,31 @@ def report_error():
             return redirect(url_for('show_emp_personal_data'))
 
     return render_template("KierownikZglosBlad.html", data=get_data_from_db(session['id']))
+
+
+@app.route('/showerrorreports', methods=['GET', 'POST'])
+def show_error_reports():
+    headings = ("Numer zgłoszenia", "Status", "Poprzednie dane", "Poprawione dane", "Data zgłoszenia", "Data weryfikacji", "Info")
+
+    cursor = get_cursor()
+    cursor.execute('SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
+                   (str(session['id'])))
+    data = cursor.fetchall()
+
+    for i in data:
+        temp = ''
+        if i[2] is not None:
+            for j in list(i[2].values()):
+                temp = temp + j +'; '
+            i[2] = temp
+        temp = ''
+        if i[3] is not None:
+            for j in list(i[3].values()):
+                temp = temp + j +'; '
+            i[3] = temp
+
+    return render_template('KierownikPokazBledy.html', headings=headings, data=data)
+
 def get_data_from_db(id):
     cursor = get_cursor()
     cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel_from_id(id),))
