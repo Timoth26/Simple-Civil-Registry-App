@@ -140,7 +140,7 @@ def edit_user_data():
     data = get_data_from_db(get_id_from_pesel(session['pesel']))
 
     if request.method == "POST":
-        if request.form['submit'] == "Zatwierdz":
+        if 'submit' in request.form:
             if data['name'] != request.form['name'] and request.form['name'] != "":
                 data['name'] = request.form['name']
             if data['surname'] != request.form['surname'] and request.form['surname'] != "":
@@ -184,9 +184,8 @@ def edit_user_data():
                  data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
 
             conn.commit()
-            # return redirect(url_for('show_emp_personal_data'))
 
-        elif request.form['submit'] == "Powrot":
+        elif 'powrot' in request.form:
             return redirect(url_for('show_emp_personal_data'))
 
     if session['occupation'] == 'Urzędnik' or session['occupation'] is None:
