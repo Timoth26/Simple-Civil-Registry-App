@@ -3,6 +3,8 @@ import os
 from flask import *
 import psycopg2
 from psycopg2.extras import Json
+import random
+from datetime import datetime
 import sys
 import logging
 from datetime import timedelta
@@ -104,7 +106,7 @@ def show_emp_personal_data():
         elif 'przegladajzgloszeniabledow' in request.form:
             pass
         elif 'dodajklienta' in request.form:
-            pass
+            return redirect(url_for('add_client'))
         elif 'zlozwniosek' in request.form:
             return redirect(url_for('apply'))
 
@@ -268,26 +270,133 @@ def report_error():
 
 @app.route('/showerrorreports', methods=['GET', 'POST'])
 def show_error_reports():
-    headings = ("Numer zgłoszenia", "Status", "Poprzednie dane", "Poprawione dane", "Data zgłoszenia", "Data weryfikacji", "Info")
+    headings = (
+    "Numer zgłoszenia", "Status", "Poprzednie dane", "Poprawione dane", "Data zgłoszenia", "Data weryfikacji", "Info")
 
     cursor = get_cursor()
-    cursor.execute('SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
-                   (str(session['id'])))
+    cursor.execute(
+        'SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
+        (str(session['id'])))
     data = cursor.fetchall()
 
     for i in data:
         temp = ''
         if i[2] is not None:
             for j in list(i[2].values()):
-                temp = temp + j +'; '
+                temp = temp + j + '; '
             i[2] = temp
         temp = ''
         if i[3] is not None:
             for j in list(i[3].values()):
-                temp = temp + j +'; '
+                temp = temp + j + '; '
             i[3] = temp
 
     return render_template('KierownikPokazBledy.html', headings=headings, data=data)
+
+
+@app.route('/addclient', methods=['GET', 'POST'])
+def add_client():
+
+    visibility = 'hidden'
+    error = ''
+
+    if request.method == 'POST':
+        if 'submit' in request.form:
+            data = request.form.to_dict()
+            for i, j in data.copy().items():
+                if i == 'submit':
+                    data.pop(i)
+                elif i == 'powrot':
+                    data.pop(i)
+
+            #data['birthday'] = datetime.strptime(data['birthday'], '%m-%d-%Y').date()
+            a = data['phoneprefix']
+            try:
+                cursor = get_cursor()
+                cursor.execute(
+                    'INSERT INTO personal_data ( "Name", "Surname", "Birthdate", "Birthplace", '
+                    '"Gender", "CityOfRegistration", "PostCode", "Street", "HouseNo", '
+                    '"FlatNo", "PhoneNo", "CallPrefix", "CivilState", "Citizenship", "PESEL") '
+                    'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                    (data['name'], data['surname'], str(data['birthdate']), data['birthcity'], data['gender'],
+                     data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
+                     data['phoneNo'],
+                     data['phoneprefix'], data['civilstatus'], data['citizenship'], generate_pesel(data['birthdate']),))
+                conn.commit()
+                # return redirect(url_for('show_emp_personal_data'))
+            except Exception as err:
+                visibility = 'visible'
+                error = err
+
+    return render_template('KierownikDodajKlienta.html', visibility=visibility, error=error)
+
+
+def generate_pesel(date):
+    date = list(date.split("-"))
+    year = int(date[0])
+    month = int(date[1])
+    day = int(date[2])
+
+    if year >= 2000:
+        month = month + 20
+
+    while True:
+
+        four_random = random.randint(1000, 9999)
+        four_random = str(four_random)
+
+        y = '%02d' % (year % 100)
+        m = '%02d' % month
+        dd = '%02d' % day
+
+        a = y[0]
+        a = int(a)
+
+        b = y[1]
+        b = int(b)
+
+        c = m[0]
+        c = int(c)
+
+        d = m[1]
+        d = int(d)
+
+        e = dd[0]
+        e = int(e)
+
+        f = dd[1]
+        f = int(f)
+
+        g = four_random[0]
+        g = int(g)
+
+        h = four_random[1]
+        h = int(h)
+
+        i = four_random[2]
+        i = int(i)
+
+        j = four_random[3]
+        j = int(j)
+
+        check = a + 3 * b + 7 * c + 9 * d + e + 3 * f + 7 * g + 9 * h + i + 3 * j
+
+        if check % 10 == 0:
+            last_digit = 0
+        else:
+            last_digit = 10 - (check % 10)
+
+        final_pesel = str(year)[-1] + str(year)[-2] + str(month) + str(day) + str(four_random) + str(last_digit)
+
+        cursor = get_cursor()
+        cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', final_pesel)
+        temp = cursor.fetchone()
+
+        if not temp:
+            break
+
+    return final_pesel
+
 
 def get_data_from_db(id):
     cursor = get_cursor()
