@@ -49,8 +49,8 @@ def login():
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
 
-            cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES %s, now(), %s',
-                           (account['UserID'], 'Logged'))
+            cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES (%s, now(), %s)',
+                           (str(account['UserID']), 'Logged'))
             conn.commit()
             return redirect(url_for('show_personal_data'))
 
@@ -63,7 +63,7 @@ def login():
 def logout_user():
     cursor = get_cursor()
     cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") '
-                   'VALUES %s, now(), %s', (session['id'], 'Logged Out'))
+                   'VALUES (%s, now(), %s)', (session['id'], 'Logged Out'))
     conn.commit()
 
     session['loggedin'] = False
