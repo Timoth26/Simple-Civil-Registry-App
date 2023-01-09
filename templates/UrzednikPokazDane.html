@@ -53,7 +53,7 @@
       ><b class="polskie8">{{ data.citizenship }}</b>
       <b class="b48">{{ data.No }}</b>
         <b class="b47">{{ data.flatNo }}</b>
-        <form class="form-group1" action="{{ url_for('show_emp_personal_data') }}" method="post">
+        <form class="form-group1" action="{{ url_for('show_personal_data') }}" method="post">
 
         <button class="edytujklientowbutton26" id="edytujKlientowButton" name="edytujdaneklienta" style="visibility:{{ visibility }}">
         <img
@@ -132,6 +132,14 @@
           src="/static/rectangle-6.svg"
         />
         <div class="edytuj-dane-kllienta29">Pokaż Dane</div>
+      </button>
+            <button class="wyloguj" id="wyloguj" name="wyloguj">
+        <img
+          class="zlozwniosekbutton-child24"
+          alt=""
+          src="/static/rectangle-6.svg"
+        />
+        <div class="edytuj-dane-kllienta29">Wyloguj</div>
       </button>
     </form>
     </div>

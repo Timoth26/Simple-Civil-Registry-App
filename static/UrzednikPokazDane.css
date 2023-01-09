@@ -498,6 +498,18 @@ body {
 .pokazdanebutton26 {
   top: 299px;
 }
+
+.wyloguj{
+  position: absolute;
+  width: 387px;
+  height: 53.4px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  left: 816px;
+  top: 20px;
+}
 .urzednik-pokazdane {
   position: relative;
   background-color: var(--color-white);

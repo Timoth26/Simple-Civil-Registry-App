@@ -1,13 +1,8 @@
 import os
-
 from flask import *
 import psycopg2
 from psycopg2.extras import Json
 import random
-from datetime import datetime
-import sys
-import logging
-from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -54,7 +49,10 @@ def login():
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
 
-            return redirect(url_for('show_emp_personal_data'))
+            cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES %s, now(), %s',
+                           (account['UserID'], 'Logged'))
+            conn.commit()
+            return redirect(url_for('show_personal_data'))
 
         else:
             error = 'Podano błędny login lub hasło'
@@ -63,36 +61,21 @@ def login():
 
 
 def logout_user():
+    cursor = get_cursor()
+    cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") '
+                   'VALUES %s, now(), %s', (session['id'], 'Logged Out'))
+    conn.commit()
+
     session['loggedin'] = False
     session['id'] = None
     session['occupation'] = None
 
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect('/login')
-
-
-@app.before_request
-def make_session_permanent():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=1)
-
-
-@app.route('/userpersonaldata')
-def show_user_personal_data():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel_from_id(session.get('id')),))
-    data = cursor.fetchone()
-    return render_template('userpersonaldata.html', data=data)
-
-
 @app.route('/emppersonaldata', methods=['GET', 'POST'])
-def show_emp_personal_data():
+def show_personal_data():
     if request.method == 'POST':
         if 'pokazdane' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
         elif 'edytujdaneklienta' in request.form:
             return redirect(url_for('get_pesel'))
         elif 'pokazwnioski' in request.form:
@@ -109,6 +92,10 @@ def show_emp_personal_data():
             return redirect(url_for('add_client'))
         elif 'zlozwniosek' in request.form:
             return redirect(url_for('apply'))
+        elif 'wyloguj' in request.form:
+            logout_user()
+            error = 'Zostałeś poprawnie wylogowany'
+            return redirect(url_for('login', error=error))
 
     if session['occupation'] is not None:
         visibility = 'visible'
@@ -188,7 +175,7 @@ def edit_user_data():
             conn.commit()
 
         elif 'powrot' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
     if session['occupation'] == 'Urzędnik' or session['occupation'] is None:
         visibility = 'hidden'
@@ -210,10 +197,10 @@ def apply():
             cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)',
                            (request.form['selectlist'], session.get('id'),))
             conn.commit()
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
         elif 'powrot' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
     return render_template('KierownikZlozWniosek.html', types=types)
 
@@ -228,7 +215,7 @@ def show_documents():
     data = cursor.fetchall()
 
     if request.method == "POST":
-        return redirect(url_for('show_emp_personal_data'))
+        return redirect(url_for('show_personal_data'))
 
     return render_template('KierownikPokazWnioski.html', headings=headings, data=data)
 
@@ -260,10 +247,10 @@ def report_error():
                            'VALUES (%s, %s, %s, %s, %s);',
                            ('; '.join(list(new_data.keys())), Json(data), Json(new_data), session['id'], str(info)))
             conn.commit()
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
         if 'powrot' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
     return render_template("KierownikZglosBlad.html", data=get_data_from_db(session['id']))
 
@@ -377,7 +364,7 @@ def view_forms():
                 data = cursor.fetchall()
 
         if 'powrot' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
     return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
@@ -417,10 +404,9 @@ def view_error_reports():
             return redirect(url_for('view_error_reports'))
 
         if 'powrot' in request.form:
-            return redirect(url_for('show_emp_personal_data'))
+            return redirect(url_for('show_personal_data'))
 
     return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
-
 
 
 def generate_pesel(date):
@@ -519,15 +505,6 @@ def get_data_from_db(id):
     return data
 
 
-@app.route('/userform')
-def user_form():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    application = request.form['application']
-
-    cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)', (application, session.get('id')))
-    return render_template('userapplication.html')
-
-
 def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute(
@@ -548,21 +525,6 @@ def get_pesel_from_id(user_id):
         return pesel['PESEL']
     else:
         return None
-
-
-@app.route('/usermenu')
-def user_menu():
-    return render_template('usermenu.html')
-
-
-@app.route('/officialmenu')
-def official_menu():
-    return render_template('officialmenu.html')
-
-
-@app.route('/mayormenu')
-def mayor_menu():
-    return render_template('mayormenu.html')
 
 
 if __name__ == '__main__':
