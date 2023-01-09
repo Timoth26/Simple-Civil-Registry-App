@@ -209,9 +209,10 @@ def apply():
 def show_documents():
     headings = ("Numer Aplikacji", "Typ", "Status", "Data złożenia wniosku", "Data weryfikacji", "Data rozpatrzenia")
     cursor = get_cursor()
-    cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+
+    cursor.execute('SELECT "ApplicationID", "Type", "Status", "DateOfApplication", '
                    '"DateOfVerification", "DateOfConsideration" FROM documents WHERE "AppUserID" = %s',
-                   (str(session['id'])))
+                   (str(session['id']), ))
     data = cursor.fetchall()
 
     if request.method == "POST":
@@ -265,7 +266,7 @@ def show_error_reports():
     cursor.execute(
         'SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
         'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
-        (str(session['id'])))
+        (str(session['id']),))
     data = cursor.fetchall()
 
     for i in data:
