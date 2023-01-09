@@ -102,7 +102,7 @@ def show_emp_personal_data():
         elif 'zglosblad' in request.form:
             return redirect(url_for('report_error'))
         elif 'przegladajwnioski' in request.form:
-            pass
+            return redirect(url_for('view_forms'))
         elif 'przegladajzgloszeniabledow' in request.form:
             pass
         elif 'dodajklienta' in request.form:
@@ -271,11 +271,13 @@ def report_error():
 @app.route('/showerrorreports', methods=['GET', 'POST'])
 def show_error_reports():
     headings = (
-    "Numer zgłoszenia", "Status", "Poprzednie dane", "Poprawione dane", "Data zgłoszenia", "Data weryfikacji", "Info")
+        "Numer zgłoszenia", "Status", "Poprzednie dane", "Poprawione dane", "Data zgłoszenia", "Data weryfikacji",
+        "Info")
 
     cursor = get_cursor()
     cursor.execute(
-        'SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
+        'SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+        'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
         (str(session['id'])))
     data = cursor.fetchall()
 
@@ -296,7 +298,6 @@ def show_error_reports():
 
 @app.route('/addclient', methods=['GET', 'POST'])
 def add_client():
-
     visibility = 'hidden'
     error = ''
 
@@ -309,8 +310,6 @@ def add_client():
                 elif i == 'powrot':
                     data.pop(i)
 
-            #data['birthday'] = datetime.strptime(data['birthday'], '%m-%d-%Y').date()
-            a = data['phoneprefix']
             try:
                 cursor = get_cursor()
                 cursor.execute(
@@ -329,6 +328,58 @@ def add_client():
                 error = err
 
     return render_template('KierownikDodajKlienta.html', visibility=visibility, error=error)
+
+
+@app.route('/viewforms', methods=['GET', 'POST'])
+def view_forms():
+    headings = ("Numer wniosku", "Typ", "Status", "Data złożenia", "Data weryfikacji", "Data akceptacji", "PESEL",
+                "Ustaw status")
+
+    if session['occupation'] == 'Burmistrz':
+        types = ('', 'Zatwierdzone', 'Zweryfikowane', 'Odrzucone', 'Oczekujące')
+    else:
+        types = ('', 'Zweryfikowane', 'Odrzucone', 'Oczekujące')
+
+    cursor = get_cursor()
+    cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+                   '"DateOfVerification", "DateOfConsideration", "PESEL" FROM official_documents_view')
+    data = cursor.fetchall()
+
+    if request.method == 'POST':
+        if 'submit' in request.form:
+            action = request.form.to_dict()
+            for i, j in action.copy().items():
+                if i == 'submit':
+                    action.pop(i)
+                elif i == 'powrot':
+                    action.pop(i)
+                elif j == '':
+                    action.pop(i)
+
+            for i, j in action.items():
+                if j == 'Zatwierdzone' or j == 'Odrzucone':
+                    cursor.execute(
+                        'UPDATE documents SET "Status" = %s, "DateOfConsideration" = now() WHERE "ApplicationID" = %s',
+                        (j, i))
+                elif j == 'Zweryfikowane':
+                    cursor.execute(
+                        'UPDATE documents SET "Status" = %s, "DateOfVerification" = now() WHERE "ApplicationID" = %s',
+                        (j, i))
+                elif j == 'Oczekujące':
+                    cursor.execute('UPDATE documents SET "Status" = %s, "DateOfVerification" = NULL, '
+                                   '"DateOfConsideration" = NULL WHERE "ApplicationID" = %s', (j, i))
+                conn.commit()
+
+                cursor = get_cursor()
+                cursor.execute(
+                    'SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+                    '"DateOfVerification", "DateOfConsideration", "PESEL" FROM official_documents_view')
+                data = cursor.fetchall()
+
+        if 'powrot' in request.form:
+            return redirect(url_for('show_emp_personal_data'))
+
+    return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
 
 def generate_pesel(date):
@@ -427,8 +478,8 @@ def get_data_from_db(id):
     return data
 
 
-@app.route('/userapplication')
-def user_application():
+@app.route('/userform')
+def user_form():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     application = request.form['application']
 

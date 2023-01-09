@@ -12,199 +12,56 @@
     />
   </head>
   <body>
+
+    <form class="form-group2" action="{{ url_for('view_forms') }}" method="post">
+
     <div class="burmistrz-przegladajwnioskikli">
       <img class="obraz-1-icon8" alt="" src="/static/obraz-1@2x.png" />
-      <div class="burmistrz-przegladajwnioskikli-child"></div>
-      <button class="zweryfikujbutton">
+      <div class="kierownik-pokazwnioski-item" style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr class="table__header">
+                {%  for header in headings %}
+                <th class="table__cell"> {{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+                {% for row in data %}
+            <tbody>
+            <tr class="table__row">
+                {% for cell in row %}
+{#                    TUTDAJ DODAC IFA I BEDZIE SUPER#}
+                <td class="table__cell">
+                    {{ cell }}
+                </td>
+                {% endfor %}
+                <td class="table_cell"><select name="{{ row[0] }}" id="selectlist" >
+                {% for type in types %}
+                <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+            </select> </td>
+            </tr>
+            </tbody>
+                {% endfor %}
+          </table>
+    </div>
+    <button class="pokazdanebutton7" name="powrot" id="powrot" formmethod="post">
         <img
-          class="zweryfikujbutton-child"
+          class="zlozwniosekbutton-child5"
           alt=""
-          src="/static/rectangle-754.svg"
+          src="/static/rectangle-6.svg"
         />
-        <div class="zweryfikuj">Zweryfikuj</div></button
-      ><button class="odrzucbutton1">
-        <img class="odrzucbutton-item" alt="" src="/static/rectangle-755.svg" />
-        <div class="podpisz">Odrzuć</div></button
-      ><button class="podpiszbutton">
-        <img class="odrzucbutton-item" alt="" src="/static/rectangle-755.svg" />
-        <div class="podpisz">Podpisz</div>
+        <div class="edytuj-dane-kllienta7" >Powrót</div>
       </button>
-      <div
-        class="burmistrz-przegladajwnioskikli-item"
-        data-animate-on-scroll
-      ></div>
-      <b class="applicationid1">ApplicationID</b>
-      <div class="data-rozpatrzenia3">Data Rozpatrzenia</div>
-      <div class="data-aplikacji3">Data Aplikacji</div>
-      <div class="data-weryfikacji1">Data Weryfikacji</div>
-      <b class="dateofconsideration3">DateOfConsideration</b
-      ><b class="dateofapplication3">DateOfApplication</b
-      ><b class="dateofveryfication1">DateOfVeryfication</b>
-      <div class="typ-dokumentu3">Typ Dokumentu</div>
-      <b class="type1">Type</b>
-      <div class="status3">Status</div>
-      <b class="statusakt3">Statusakt</b><b class="polepesel">PeselKlienta</b>
-      <div class="pesel6">PESEL</div>
-      <button class="edytujklientowbutton7" id="edytujKlientowButton">
-        <img
-          class="edytujklientowbutton-child4"
-          alt=""
-          src="/static/rectangle-7.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Edytuj Dane Kllienta</div></button
-      ><button class="pokazwnioskibutton7" id="pokazWnioskiButton">
-        <img
-          class="edytujklientowbutton-child4"
-          alt=""
-          src="/static/rectangle-71.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Pokaż Wnioski</div></button
-      ><button class="pokazzgloszenia7" id="pokazZgloszenia">
-        <img
-          class="pokazzgloszenia-child5"
-          alt=""
-          src="/static/rectangle-72.svg"
-        />
-        <div class="poka-zgoszenia-bdw7">Pokaż Zgłoszenia Błędów</div></button
-      ><button class="zglosbladbutton7" id="zglosBladButton">
-        <img
-          class="edytujklientowbutton-child4"
-          alt=""
-          src="/static/rectangle-73.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Zgłoś Błąd</div></button
-      ><button
-        class="pokazwnioskiklientowbutton7"
-        id="pokazWnioskiKlientowButton"
-      >
-        <img
-          class="edytujklientowbutton-child4"
-          alt=""
-          src="/static/rectangle-74.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Przeglądaj Wnioski</div></button
-      ><button
-        class="przegladajzgloszeniabutton7"
-        id="przegladajZgloszeniaButton"
-      >
-        <img
-          class="pokazzgloszenia-child5"
-          alt=""
-          src="/static/rectangle-75.svg"
-        />
-        <div class="poka-zgoszenia-bdw7">
-          Przeglądaj Zgłoszenia Błędów
-        </div></button
-      ><button class="dodajklientabutton7" id="dodajKlientaButton">
-        <img
-          class="edytujklientowbutton-child4"
-          alt=""
-          src="/static/rectangle-76.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Dodaj Klienta</div></button
-      ><button class="zlozwniosekbutton7" id="zlozWniosekButton">
+        <button class="submitbutton" name="submit" id="submit" formmethod="post">
         <img
           class="zlozwniosekbutton-child5"
           alt=""
           src="/static/rectangle-6.svg"
         />
-        <div class="edytuj-dane-kllienta7">Złóż Wniosek</div></button
-      ><button class="pokazdanebutton7" id="pokazDaneButton">
-        <img
-          class="zlozwniosekbutton-child5"
-          alt=""
-          src="/static/rectangle-6.svg"
-        />
-        <div class="edytuj-dane-kllienta7">Pokaż Dane</div>
+        <div class="edytuj-dane-kllienta7" >Zatwierdź zmiany</div>
       </button>
     </div>
-
-    <script>
-      var edytujKlientowButton = document.getElementById("edytujKlientowButton");
-      if (edytujKlientowButton) {
-        edytujKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./EdytujPopUPBurmistrz.html";
-        });
-      }
-      
-      var pokazWnioskiButton = document.getElementById("pokazWnioskiButton");
-      if (pokazWnioskiButton) {
-        pokazWnioskiButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzPokazWnioski.html";
-        });
-      }
-      
-      var pokazZgloszenia = document.getElementById("pokazZgloszenia");
-      if (pokazZgloszenia) {
-        pokazZgloszenia.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzPokazBledy.html";
-        });
-      }
-      
-      var zglosBladButton = document.getElementById("zglosBladButton");
-      if (zglosBladButton) {
-        zglosBladButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzZglosBlad.html";
-        });
-      }
-      
-      var pokazWnioskiKlientowButton = document.getElementById(
-        "pokazWnioskiKlientowButton"
-      );
-      if (pokazWnioskiKlientowButton) {
-        pokazWnioskiKlientowButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzPrzegladajWnioskiKlientow.html";
-        });
-      }
-      
-      var przegladajZgloszeniaButton = document.getElementById(
-        "przegladajZgloszeniaButton"
-      );
-      if (przegladajZgloszeniaButton) {
-        przegladajZgloszeniaButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzPrzegladajZgloszeniaKlientow.html";
-        });
-      }
-      
-      var dodajKlientaButton = document.getElementById("dodajKlientaButton");
-      if (dodajKlientaButton) {
-        dodajKlientaButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzDodajKlienta.html";
-        });
-      }
-      
-      var zlozWniosekButton = document.getElementById("zlozWniosekButton");
-      if (zlozWniosekButton) {
-        zlozWniosekButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzZlozWniosek.html";
-        });
-      }
-      
-      var pokazDaneButton = document.getElementById("pokazDaneButton");
-      if (pokazDaneButton) {
-        pokazDaneButton.addEventListener("click", function (e) {
-          window.location.href = "./BurmistrzPokazDane.html";
-        });
-      }
-      var scrollAnimElements = document.querySelectorAll("[data-animate-on-scroll]");
-      var observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting || entry.intersectionRatio > 0) {
-              const targetElement = entry.target;
-              targetElement.classList.add("animate");
-              observer.unobserve(targetElement);
-            }
-          }
-        },
-        {
-          threshold: 0.15,
-        }
-      );
-      
-      for (let i = 0; i < scrollAnimElements.length; i++) {
-        observer.observe(scrollAnimElements[i]);
-      }
-      </script>
+    </form>
   </body>
 </html>
