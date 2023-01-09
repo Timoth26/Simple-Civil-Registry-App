@@ -314,6 +314,9 @@ def add_client():
                 visibility = 'visible'
                 error = err
 
+        if 'powrot' in request.form:
+            return redirect(url_for('show_personal_data'))
+
     return render_template('KierownikDodajKlienta.html', visibility=visibility, error=error)
 
 
