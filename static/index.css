@@ -76,6 +76,7 @@ body {
   left: 436px;
   width: 556px;
   height: 56px;
+  font-size: x-large;
 }
 .nazwa-uytkownika {
   position: absolute;
@@ -96,6 +97,7 @@ body {
   left: 436px;
   width: 556px;
   height: 56px;
+  font-size: x-large;
 }
 .haso,
 .nieprawidowa-nazwa-uytkownik {
