@@ -92,7 +92,7 @@ def show_user_personal_data():
 def show_emp_personal_data():
     if request.method == 'POST':
         if 'pokazdane' in request.form:
-            pass
+            return redirect(url_for('show_emp_personal_data'))
         elif 'edytujdaneklienta' in request.form:
             return redirect(url_for('get_pesel'))
         elif 'pokazwnioski' in request.form:
@@ -104,16 +104,16 @@ def show_emp_personal_data():
         elif 'przegladajwnioski' in request.form:
             return redirect(url_for('view_forms'))
         elif 'przegladajzgloszeniabledow' in request.form:
-            pass
+            return redirect(url_for('view_error_reports'))
         elif 'dodajklienta' in request.form:
             return redirect(url_for('add_client'))
         elif 'zlozwniosek' in request.form:
             return redirect(url_for('apply'))
 
-    # if session['occupation'] is not None:
-    visibility = 'visible'
-    # else:
-    # visibility = 'hidden'
+    if session['occupation'] is not None:
+        visibility = 'visible'
+    else:
+        visibility = 'hidden'
 
     return render_template('UrzednikPokazDane.html', data=get_data_from_db(session.get('id')), visibility=visibility)
 
@@ -380,6 +380,47 @@ def view_forms():
             return redirect(url_for('show_emp_personal_data'))
 
     return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
+
+
+@app.route('/viewerrors', methods=['GET', 'POST'])
+def view_error_reports():
+    headings = ("Numer zgłoszenia", "Status", "Data złożenia", "Data akceptacji", "PESEL", "Poprzednie dane",
+                "Nowe dane", "Informacja", "Ustaw status")
+    types = ('', 'Oczekujące', 'Zatwierdzone', 'Odrzucone')
+
+    cursor = get_cursor()
+    cursor.execute('SELECT "CorrectionID", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+                   '"DateOfConsideration", "PESEL", "OldVal", "NewVal", "Info" FROM official_data_corrections_view')
+    data = cursor.fetchall()
+
+    if request.method == 'POST':
+        if 'submit' in request.form:
+            action = request.form.to_dict()
+            for i, j in action.copy().items():
+                if i == 'submit':
+                    action.pop(i)
+                elif i == 'powrot':
+                    action.pop(i)
+                elif j == '':
+                    action.pop(i)
+
+            for i, j in action.items():
+                if j == 'Zatwierdzone' or j == 'Odrzucone':
+                    cursor.execute(
+                        'UPDATE data_corrections SET "Status" = %s, "DateOfConsideration" = now() WHERE "CorrectionID" = %s',
+                        (j, i))
+                elif j == 'Oczekujące':
+                    cursor.execute('UPDATE data_corrections SET "Status" = %s, '
+                                   '"DateOfConsideration" = NULL WHERE "CorrectionID" = %s', (j, i))
+                conn.commit()
+
+            return redirect(url_for('view_error_reports'))
+
+        if 'powrot' in request.form:
+            return redirect(url_for('show_emp_personal_data'))
+
+    return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
+
 
 
 def generate_pesel(date):
