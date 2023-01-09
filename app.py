@@ -102,7 +102,7 @@ def show_personal_data():
     else:
         visibility = 'hidden'
 
-    return render_template('UrzednikPokazDane.html', data=get_data_from_db(session.get('id')), visibility=visibility)
+    return render_template('PokazDane.html', data=get_data_from_db(session.get('id')), visibility=visibility)
 
 
 @app.route('/getpesel', methods=['GET', 'POST'])
@@ -111,7 +111,7 @@ def get_pesel():
         session['pesel'] = request.form['pesel']
         return redirect(url_for('edit_user_data'))
 
-    return render_template('EdytujPopUPKierownik.html')
+    return render_template('EdytujPopUP.html')
 
 
 def get_id_from_pesel(pesel):
@@ -182,7 +182,7 @@ def edit_user_data():
     else:
         visibility = 'visible'
 
-    return render_template('KierownikEdytujKlienta.html',
+    return render_template('EdytujKlienta.html',
                            data=get_data_from_db(get_id_from_pesel(session.get('pesel'))),
                            visibility=visibility)
 
@@ -202,7 +202,7 @@ def apply():
         elif 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template('KierownikZlozWniosek.html', types=types)
+    return render_template('ZlozWniosek.html', types=types)
 
 
 @app.route('/documents', methods=['GET', 'POST'])
@@ -217,7 +217,7 @@ def show_documents():
     if request.method == "POST":
         return redirect(url_for('show_personal_data'))
 
-    return render_template('KierownikPokazWnioski.html', headings=headings, data=data)
+    return render_template('PokazWnioski.html', headings=headings, data=data)
 
 
 @app.route('/reporterror', methods=['GET', 'POST'])
@@ -252,7 +252,7 @@ def report_error():
         if 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template("KierownikZglosBlad.html", data=get_data_from_db(session['id']))
+    return render_template("ZglosBlad.html", data=get_data_from_db(session['id']))
 
 
 @app.route('/showerrorreports', methods=['GET', 'POST'])
@@ -280,7 +280,7 @@ def show_error_reports():
                 temp = temp + j + '; '
             i[3] = temp
 
-    return render_template('KierownikPokazBledy.html', headings=headings, data=data)
+    return render_template('PokazBledy.html', headings=headings, data=data)
 
 
 @app.route('/addclient', methods=['GET', 'POST'])
@@ -317,7 +317,7 @@ def add_client():
         if 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template('KierownikDodajKlienta.html', visibility=visibility, error=error)
+    return render_template('DodajKlienta.html', visibility=visibility, error=error)
 
 
 @app.route('/viewforms', methods=['GET', 'POST'])
@@ -369,7 +369,7 @@ def view_forms():
         if 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
+    return render_template('PrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
 
 @app.route('/viewerrors', methods=['GET', 'POST'])
@@ -409,7 +409,7 @@ def view_error_reports():
         if 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template('BurmistrzPrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
+    return render_template('PrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
 
 def generate_pesel(date):
