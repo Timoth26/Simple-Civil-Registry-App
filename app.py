@@ -126,7 +126,8 @@ def get_id_from_pesel(pesel):
 
 @app.route('/dataedition', methods=['GET', 'POST'])
 def edit_user_data():
-    data = get_data_from_db(get_id_from_pesel(session['pesel']))
+    a = session['pesel']
+    data = get_data_from_db_by_pesel(session['pesel'])
 
     if request.method == "POST":
         if 'submit' in request.form:
@@ -161,16 +162,20 @@ def edit_user_data():
             if data['citizenship'] != request.form['citizenship'] and request.form['citizenship'] != "":
                 data['citizenship'] = request.form['citizenship']
 
+            if data['birthdate'] == request.form['birthdate'] or data['gender'] == request.form['gender']:
+                    new_pesel = generate_pesel(data['birthdate'], data['gender'])
+                    session['pesel'] = new_pesel
+
             cursor = get_cursor()
             cursor.execute(
                 'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, '
                 '"Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, '
-                '"FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s '
+                '"FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s, "PESEL" = %s '
                 'WHERE "PESEL" = %s',
                 (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
                  data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
                  data['phoneNo'],
-                 data['phoneprefix'], data['civilstatus'], data['citizenship'], data['pesel'],))
+                 data['phoneprefix'], data['civilstatus'], data['citizenship'], str(new_pesel), data['pesel'],))
 
             conn.commit()
 
@@ -183,7 +188,7 @@ def edit_user_data():
         visibility = 'visible'
 
     return render_template('EdytujKlienta.html',
-                           data=get_data_from_db(get_id_from_pesel(session.get('pesel'))),
+                           data=get_data_from_db_by_pesel(session.get('pesel')),
                            visibility=visibility)
 
 
@@ -210,8 +215,9 @@ def show_documents():
     headings = ("Numer Aplikacji", "Typ", "Status", "Data złożenia wniosku", "Data weryfikacji", "Data rozpatrzenia")
     cursor = get_cursor()
 
-    cursor.execute('SELECT "ApplicationID", "Type", "Status", "DateOfApplication", '
-                   '"DateOfVerification", "DateOfConsideration" FROM documents WHERE "AppUserID" = %s',
+    cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
+                   'DATE_TRUNC(\'second\', "DateOfVerification"::timestamp), '
+                   'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp) FROM documents WHERE "AppUserID" = %s',
                    (str(session['id']), ))
     data = cursor.fetchall()
 
@@ -263,6 +269,7 @@ def show_error_reports():
         "Info")
 
     cursor = get_cursor()
+
     cursor.execute(
         'SELECT "CorrectionID", "Status", "OldVal", "NewVal", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
         'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
@@ -297,6 +304,7 @@ def add_client():
                     data.pop(i)
                 elif i == 'powrot':
                     data.pop(i)
+            new_pesel = generate_pesel(data['birthdate'], data['gender'])
 
             try:
                 cursor = get_cursor()
@@ -305,12 +313,13 @@ def add_client():
                     '"Gender", "CityOfRegistration", "PostCode", "Street", "HouseNo", '
                     '"FlatNo", "PhoneNo", "CallPrefix", "CivilState", "Citizenship", "PESEL") '
                     'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-                    (data['name'], data['surname'], str(data['birthdate']), data['birthcity'], data['gender'],
+                    (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
                      data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
                      data['phoneNo'],
-                     data['phoneprefix'], data['civilstatus'], data['citizenship'], generate_pesel(data['birthdate']),))
+                     data['phoneprefix'], data['civilstatus'], data['citizenship'],
+                     new_pesel,))
                 conn.commit()
-                # return redirect(url_for('show_emp_personal_data'))
+
             except Exception as err:
                 visibility = 'visible'
                 error = err
@@ -330,10 +339,10 @@ def view_forms():
         types = ('', 'Zatwierdzone', 'Zweryfikowane', 'Odrzucone', 'Oczekujące')
     else:
         types = ('', 'Zweryfikowane', 'Odrzucone', 'Oczekujące')
-
     cursor = get_cursor()
     cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
-                   '"DateOfVerification", "DateOfConsideration", "PESEL" FROM official_documents_view')
+                   'DATE_TRUNC(\'second\', "DateOfVerification"::timestamp), '
+                   'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "PESEL" FROM official_documents_view')
     data = cursor.fetchall()
 
     if request.method == 'POST':
@@ -364,7 +373,8 @@ def view_forms():
                 cursor = get_cursor()
                 cursor.execute(
                     'SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
-                    '"DateOfVerification", "DateOfConsideration", "PESEL" FROM official_documents_view')
+                    'DATE_TRUNC(\'second\', "DateOfVerification"::timestamp), '
+                    'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "PESEL" FROM official_documents_view')
                 data = cursor.fetchall()
 
         if 'powrot' in request.form:
@@ -381,7 +391,8 @@ def view_error_reports():
 
     cursor = get_cursor()
     cursor.execute('SELECT "CorrectionID", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
-                   '"DateOfConsideration", "PESEL", "OldVal", "NewVal", "Info" FROM official_data_corrections_view')
+                   'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), '
+                   '"PESEL", "OldVal", "NewVal", "Info" FROM official_data_corrections_view')
     data = cursor.fetchall()
 
     if request.method == 'POST':
@@ -413,7 +424,11 @@ def view_error_reports():
     return render_template('PrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
 
-def generate_pesel(date):
+def generate_pesel(date, gender):
+
+    gender = str(gender)
+    if not isinstance(date, str):
+        date = date.strftime('%Y-%m-%d')
     date = list(date.split("-"))
     year = int(date[0])
     month = int(date[1])
@@ -427,9 +442,9 @@ def generate_pesel(date):
         four_random = random.randint(1000, 9999)
         four_random = str(four_random)
 
-        y = '%02d' % (year % 100)
-        m = '%02d' % month
-        dd = '%02d' % day
+        y = '%02d' % (int(year) % 100)
+        m = '%02d' % int(month)
+        dd = '%02d' % int(day)
 
         a = y[0]
         a = int(a)
@@ -461,6 +476,17 @@ def generate_pesel(date):
         j = four_random[3]
         j = int(j)
 
+        if str(gender) == 'Kobieta':
+            if j % 2 == 1:
+                j = j + 1
+            if j >= 10:
+                j = 0
+        else:
+            if j % 2 == 0:
+                j = j + 1
+            if j >= 10:
+                j = 1
+
         check = a + 3 * b + 7 * c + 9 * d + e + 3 * f + 7 * g + 9 * h + i + 3 * j
 
         if check % 10 == 0:
@@ -468,10 +494,17 @@ def generate_pesel(date):
         else:
             last_digit = 10 - (check % 10)
 
-        final_pesel = str(year)[-1] + str(year)[-2] + str(month) + str(day) + str(four_random) + str(last_digit)
+        if len(str(month)) == 1:
+            month = '0' + str(month)
+
+
+        if len(str(day)) == 1:
+            day = '0' + str(day)
+
+        final_pesel = str(str(year)[-2]) + str(str(year)[-1]) + str(month) + str(day) + str(four_random) + str(last_digit)
 
         cursor = get_cursor()
-        cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', final_pesel)
+        cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', [final_pesel])
         temp = cursor.fetchone()
 
         if not temp:
@@ -508,6 +541,33 @@ def get_data_from_db(id):
 
     return data
 
+def get_data_from_db_by_pesel(pesel):
+    cursor = get_cursor()
+    cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', [pesel])
+    data = cursor.fetchone()
+    data = {
+        'pesel': data[0],
+        'name': data[1],
+        'surname': data[2],
+        'birthdate': data[3],
+        'birthcity': data[4],
+        'gender': data[5],
+        'registrationcity': data[6],
+        'postalcode': data[7],
+        'street': data[8],
+        'No': data[9],
+        'flatNo': data[10],
+        'phoneNo': data[11],
+        'phoneprefix': data[12],
+        'civilstatus': data[13],
+        'citizenship': data[14]
+    }
+
+    for i, j in data.items():
+        if j is None:
+            data[i] = '-'
+
+    return data
 
 def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
