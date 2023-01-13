@@ -49,9 +49,14 @@ def login():
             session['id'] = account['UserID']
             session['occupation'] = get_occupation(account['UserID'])
 
-            cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES (%s, now(), %s)',
-                           (str(account['UserID']), 'Logged'))
-            conn.commit()
+            try:
+                cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES (%s, now(), %s)',
+                               (str(account['UserID']), 'Logged'))
+                conn.commit()
+            except Exception as error:
+                session['Exception'] = str(error)
+                return redirect(url_for('server_error'))
+
             return redirect(url_for('show_personal_data'))
 
         else:
@@ -61,10 +66,15 @@ def login():
 
 
 def logout_user():
-    cursor = get_cursor()
-    cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") '
-                   'VALUES (%s, now(), %s)', (session['id'], 'Logged Out'))
-    conn.commit()
+
+    try:
+        cursor = get_cursor()
+        cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") '
+                       'VALUES (%s, now(), %s)', (session['id'], 'Logged Out'))
+        conn.commit()
+    except Exception as error:
+        session['Exception'] = str(error)
+        return redirect(url_for('server_error'))
 
     session['loggedin'] = False
     session['id'] = None
@@ -208,9 +218,13 @@ def apply():
 
     if request.method == 'POST':
         if 'wyslij' in request.form:
-            cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)',
-                           (request.form['selectlist'], session.get('id'),))
-            conn.commit()
+            try:
+                cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)',
+                               (request.form['selectlist'], session.get('id'),))
+                conn.commit()
+            except Exception as error:
+                session['Exception'] = str(error)
+                return redirect(url_for('server_error'))
             return redirect(url_for('show_personal_data'))
 
         elif 'powrot' in request.form:
@@ -266,11 +280,14 @@ def report_error():
             for i in data.copy().keys():
                 if i not in new_data:
                     data.pop(i)
-
-            cursor.execute('INSERT INTO data_corrections ("DataField","OldVal", "NewVal", "AppUserID", "Info") '
-                           'VALUES (%s, %s, %s, %s, %s);',
-                           ('; '.join(list(new_data.keys())), Json(data), Json(new_data), session['id'], str(info)))
-            conn.commit()
+            try:
+                cursor.execute('INSERT INTO data_corrections ("DataField","OldVal", "NewVal", "AppUserID", "Info") '
+                               'VALUES (%s, %s, %s, %s, %s);',
+                               ('; '.join(list(new_data.keys())), Json(data), Json(new_data), session['id'], str(info)))
+                conn.commit()
+            except Exception as error:
+                session['Exception'] = str(error)
+                return redirect(url_for('server_error'))
             return redirect(url_for('show_personal_data'))
 
         if 'powrot' in request.form:
@@ -436,12 +453,22 @@ def view_error_reports():
 
             for i, j in action.items():
                 if j == 'Zatwierdzone' or j == 'Odrzucone':
-                    cursor.execute(
-                        'UPDATE data_corrections SET "Status" = %s, "DateOfConsideration" = now() WHERE "CorrectionID" = %s',
-                        (j, i))
+                    try:
+                        cursor.execute(
+                            'UPDATE data_corrections SET "Status" = %s, "DateOfConsideration" = now() WHERE "CorrectionID" = %s',
+                            (j, i))
+                    except Exception as error:
+                        session['Exception'] = str(error)
+                        return redirect(url_for('server_error'))
+
                 elif j == 'Oczekujące':
-                    cursor.execute('UPDATE data_corrections SET "Status" = %s, '
-                                   '"DateOfConsideration" = NULL WHERE "CorrectionID" = %s', (j, i))
+                    try:
+                        cursor.execute('UPDATE data_corrections SET "Status" = %s, '
+                                       '"DateOfConsideration" = NULL WHERE "CorrectionID" = %s', (j, i))
+                    except Exception as error:
+                        session['Exception'] = str(error)
+                        return redirect(url_for('server_error'))
+
                 conn.commit()
 
             return redirect(url_for('view_error_reports'))
