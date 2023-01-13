@@ -126,7 +126,11 @@ def get_id_from_pesel(pesel):
 
 @app.route('/dataedition', methods=['GET', 'POST'])
 def edit_user_data():
-    data = get_data_from_db_by_pesel(session['pesel'])
+    try:
+        data = get_data_from_db_by_pesel(session['pesel'])
+    except Exception as error:
+        session['Exception'] = str(error)
+        return redirect(url_for('server_error'))
 
     if request.method == "POST":
         if 'submit' in request.form:
@@ -174,7 +178,8 @@ def edit_user_data():
                     '"PESEL" = %s '
                     'WHERE "PESEL" = %s',
                     (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
-                     data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
+                     data['registrationcity'], reformat_postal_code(data['postalcode']), data['street'], data['No'],
+                     data['flatNo'],
                      data['phoneNo'],
                      data['phoneprefix'], data['civilstatus'], data['citizenship'], session['pesel'], data['pesel'],))
 
@@ -225,6 +230,12 @@ def show_documents():
                    (str(session['id']),))
     data = cursor.fetchall()
 
+    for i in data:
+        try:
+            i[3] = i[3].strftime("%d.%m.%Y %H:%M:%S")
+        except:
+            pass
+
     if request.method == "POST":
         return redirect(url_for('show_personal_data'))
 
@@ -249,6 +260,8 @@ def report_error():
                 elif i == 'info':
                     info = new_data[i]
                     new_data.pop(i)
+                elif i == 'postalcode':
+                    new_data[i] = reformat_postal_code(j)
 
             for i in data.copy().keys():
                 if i not in new_data:
@@ -284,13 +297,23 @@ def show_error_reports():
         temp = ''
         if i[2] is not None:
             for j in list(i[2].values()):
-                temp = temp + j + '; '
+                temp = temp + j
+                if len(data) != 1:
+                    temp + '; '
             i[2] = temp
         temp = ''
         if i[3] is not None:
             for j in list(i[3].values()):
-                temp = temp + j + '; '
+                temp = temp + j
+                if len(data) != 1:
+                    temp + '; '
             i[3] = temp
+
+    for i in data:
+        try:
+            i[3] = i[3].strftime("%d.%m.%Y %H:%M:%S")
+        except:
+            pass
 
     return render_template('PokazBledy.html', headings=headings, data=data)
 
@@ -318,7 +341,8 @@ def add_client():
                     '"FlatNo", "PhoneNo", "CallPrefix", "CivilState", "Citizenship", "PESEL") '
                     'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
-                     data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
+                     data['registrationcity'], reformat_postal_code(data['postalcode']), data['street'], data['No'],
+                     data['flatNo'],
                      data['phoneNo'],
                      data['phoneprefix'], data['civilstatus'], data['citizenship'],
                      new_pesel,))
@@ -523,30 +547,7 @@ def generate_pesel(date, gender):
 
 
 def get_data_from_db(id):
-    cursor = get_cursor()
-    cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', (get_pesel_from_id(id),))
-    data = cursor.fetchone()
-    data = {
-        'pesel': data[0],
-        'name': data[1],
-        'surname': data[2],
-        'birthdate': data[3],
-        'birthcity': data[4],
-        'gender': data[5],
-        'registrationcity': data[6],
-        'postalcode': data[7],
-        'street': data[8],
-        'No': data[9],
-        'flatNo': data[10],
-        'phoneNo': data[11],
-        'phoneprefix': data[12],
-        'civilstatus': data[13],
-        'citizenship': data[14]
-    }
-
-    for i, j in data.items():
-        if j is None:
-            data[i] = '-'
+    data = get_data_from_db_by_pesel(get_pesel_from_id(id))
 
     return data
 
@@ -559,7 +560,7 @@ def get_data_from_db_by_pesel(pesel):
         'pesel': data[0],
         'name': data[1],
         'surname': data[2],
-        'birthdate': data[3],
+        'birthdate': data[3].strftime("%d.%m.%Y"),
         'birthcity': data[4],
         'gender': data[5],
         'registrationcity': data[6],
@@ -600,6 +601,10 @@ def get_pesel_from_id(user_id):
         return pesel['PESEL']
     else:
         return None
+
+
+def reformat_postal_code(code):
+    return code.replace('-', '')
 
 
 if __name__ == '__main__':
