@@ -126,7 +126,6 @@ def get_id_from_pesel(pesel):
 
 @app.route('/dataedition', methods=['GET', 'POST'])
 def edit_user_data():
-    a = session['pesel']
     data = get_data_from_db_by_pesel(session['pesel'])
 
     if request.method == "POST":
@@ -163,21 +162,26 @@ def edit_user_data():
                 data['citizenship'] = request.form['citizenship']
 
             if data['birthdate'] == request.form['birthdate'] or data['gender'] == request.form['gender']:
-                    new_pesel = generate_pesel(data['birthdate'], data['gender'])
-                    session['pesel'] = new_pesel
+                new_pesel = generate_pesel(data['birthdate'], data['gender'])
+                session['pesel'] = new_pesel
 
-            cursor = get_cursor()
-            cursor.execute(
-                'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, '
-                '"Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, '
-                '"FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s, "PESEL" = %s '
-                'WHERE "PESEL" = %s',
-                (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
-                 data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
-                 data['phoneNo'],
-                 data['phoneprefix'], data['civilstatus'], data['citizenship'], str(new_pesel), data['pesel'],))
+            try:
+                cursor = get_cursor()
+                cursor.execute(
+                    'UPDATE personal_data SET "Name" = %s, "Surname" = %s, "Birthdate" = %s, "Birthplace" = %s, '
+                    '"Gender" = %s, "CityOfRegistration" = %s, "PostCode" = %s, "Street" = %s, "HouseNo" = %s, '
+                    '"FlatNo" = %s, "PhoneNo" = %s, "CallPrefix" = %s, "CivilState" = %s, "Citizenship" = %s, '
+                    '"PESEL" = %s '
+                    'WHERE "PESEL" = %s',
+                    (data['name'], data['surname'], data['birthdate'], data['birthcity'], data['gender'],
+                     data['registrationcity'], data['postalcode'], data['street'], data['No'], data['flatNo'],
+                     data['phoneNo'],
+                     data['phoneprefix'], data['civilstatus'], data['citizenship'], session['pesel'], data['pesel'],))
 
-            conn.commit()
+                conn.commit()
+            except Exception as error:
+                session['Exception'] = str(error)
+                return redirect(url_for('server_error'))
 
         elif 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
@@ -218,7 +222,7 @@ def show_documents():
     cursor.execute('SELECT "ApplicationID", "Type", "Status", DATE_TRUNC(\'second\', "DateOfApplication"::timestamp), '
                    'DATE_TRUNC(\'second\', "DateOfVerification"::timestamp), '
                    'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp) FROM documents WHERE "AppUserID" = %s',
-                   (str(session['id']), ))
+                   (str(session['id']),))
     data = cursor.fetchall()
 
     if request.method == "POST":
@@ -424,8 +428,13 @@ def view_error_reports():
     return render_template('PrzegladajWnioskiKlientow.html', headings=headings, data=data, types=types)
 
 
-def generate_pesel(date, gender):
+@app.route('/server_error', methods=['GET', 'POST'])
+def server_error():
+    error = session.get('Exception', '')
+    return render_template('errorHandler.html', error=error)
 
+
+def generate_pesel(date, gender):
     gender = str(gender)
     if not isinstance(date, str):
         date = date.strftime('%Y-%m-%d')
@@ -497,11 +506,11 @@ def generate_pesel(date, gender):
         if len(str(month)) == 1:
             month = '0' + str(month)
 
-
         if len(str(day)) == 1:
             day = '0' + str(day)
 
-        final_pesel = str(str(year)[-2]) + str(str(year)[-1]) + str(month) + str(day) + str(four_random) + str(last_digit)
+        final_pesel = str(str(year)[-2]) + str(str(year)[-1]) + str(month) + str(day) + str(four_random) + str(
+            last_digit)
 
         cursor = get_cursor()
         cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', [final_pesel])
@@ -541,6 +550,7 @@ def get_data_from_db(id):
 
     return data
 
+
 def get_data_from_db_by_pesel(pesel):
     cursor = get_cursor()
     cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', [pesel])
@@ -568,6 +578,7 @@ def get_data_from_db_by_pesel(pesel):
             data[i] = '-'
 
     return data
+
 
 def get_occupation(user_id):
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
