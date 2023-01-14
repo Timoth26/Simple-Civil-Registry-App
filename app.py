@@ -3,6 +3,8 @@ from flask import *
 import psycopg2
 from psycopg2.extras import Json
 import random
+from datetime import datetime
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -348,6 +350,8 @@ def add_client():
                     data.pop(i)
                 elif i == 'powrot':
                     data.pop(i)
+                elif i == 'birthdate':
+                    data[i] = datetime.strptime(j, '%Y-%m-%d')
             new_pesel = generate_pesel(data['birthdate'], data['gender'])
 
             try:
