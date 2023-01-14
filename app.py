@@ -178,14 +178,19 @@ def edit_user_data():
                 data['citizenship'] = request.form['citizenship']
 
             if data['birthdate'] == request.form['birthdate'] or data['gender'] == request.form['gender']:
-                data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
-                data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
+                try:
+                    data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
+                    data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
+                except:
+                    pass
                 new_pesel = generate_pesel(data['birthdate'], data['gender'])
                 session['pesel'] = new_pesel
             else:
-                data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
-                data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
-
+                try:
+                    data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
+                    data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
+                except:
+                    pass
             try:
                 cursor = get_cursor()
                 cursor.execute(
@@ -319,22 +324,6 @@ def show_error_reports():
         'DATE_TRUNC(\'second\', "DateOfConsideration"::timestamp), "Info" FROM data_corrections WHERE "AppUserID" = %s',
         (str(session['id']),))
     data = cursor.fetchall()
-
-    for i in data:
-        temp = ''
-        if i[2] is not None:
-            for j in list(i[2].values()):
-                temp = temp + j
-                if len(data) != 1:
-                    temp + '; '
-            i[2] = temp
-        temp = ''
-        if i[3] is not None:
-            for j in list(i[3].values()):
-                temp = temp + j
-                if len(data) != 1:
-                    temp + '; '
-            i[3] = temp
 
     for i in data:
         try:
