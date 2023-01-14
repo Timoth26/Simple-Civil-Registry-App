@@ -112,17 +112,19 @@
         class="cityofregistration11"
         type="text"
         name="registrationcity"
+        pattern="([^\s][A-zÀ-ž -]+)"
         id="registrationcity"
       /><input class="flatno11" type="text" name="flatNo" id="flatNo"/><input
         class="houseno12"
         type="text"
         name="houseNo"
         id="houseNo"
-      /><input class="street11" type="text" name="street" id="street"/><input
+      /><input class="street11" type="text" name="street" id="street" pattern="([^\s][A-zÀ-ž -0-9]+)"/><input
         class="postcode11"
         type="text"
         name="postalcode"
         id="postalcode"
+        pattern="[0-9]{2}-[0-9]{3}"
         pattern="[0-9]{2}-[0-9]{3}"
       />
         <select class="gender11" name="gender" id="selectlist" >
@@ -137,14 +139,15 @@
         type="text"
         name="birthcity"
         id="gender"
-      /><input class="name11" type="text" name="name" id="gender"/>
+      /><input class="name11" type="text" name="name" pattern="([^\s][A-zÀ-ž -]+)" id="gender"/>
             <input class = "peselinput" type="text" name="pesel" id="pesel" pattern="[0-9]*">
         <input
         class="surname11"
         type="text"
         name="surname"
+        pattern="([^\s][A-zÀ-ž -]+)"
         id="surname"
-      /><input class="callprefix11" type="text" name="phoneprefix" id="phoneprefix" pattern="[0-9]*"/><input
+      /><input class="callprefix11" type="text" name="phoneprefix" id="phoneprefix" pattern="[0-9]{9}"/><input
         class="phoneno11"
         type="text"
         name="phoneNo"
@@ -164,7 +167,7 @@
         </select>
 
       <div class="stan-cywilny7">Stan Cywilny</div>
-      <input class="citizenship15" type="text" name="citizenship" id="citizenship"/>
+      <input class="citizenship15" type="text" name="citizenship" id="citizenship" pattern="([^\s][A-zÀ-ž ]+)"/>
       <input class="info" type="text" name="info" id="info" required/>
 
 
