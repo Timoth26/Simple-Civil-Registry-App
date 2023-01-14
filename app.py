@@ -358,6 +358,9 @@ def add_client():
                     data.pop(i)
                 elif i == 'birthdate':
                     data[i] = datetime.strptime(j, '%Y-%m-%d')
+                    if data[i] > datetime.now():
+                        return render_template('DodajKlienta.html', visibility='visible', error='Nieprawidłowa data!',
+                                               msg=msg)
             new_pesel = generate_pesel(data['birthdate'], data['gender'])
 
             try:
