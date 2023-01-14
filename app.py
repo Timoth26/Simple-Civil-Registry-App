@@ -181,6 +181,9 @@ def edit_user_data():
                 new_pesel = generate_pesel(data['birthdate'], data['gender'])
                 session['pesel'] = new_pesel
 
+            data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
+            data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
+
             try:
                 cursor = get_cursor()
                 cursor.execute(
