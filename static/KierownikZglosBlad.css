@@ -299,7 +299,7 @@ body {
   font-size: var(--font-size-3xs);
   display: flex;
   align-items: center;
-  width: 69px;
+  width: 100px;
   height: 7px;
 }
 .gender7 {
