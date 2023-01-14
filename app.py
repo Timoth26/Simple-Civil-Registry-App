@@ -1,10 +1,11 @@
 import os
+import string
+
 from flask import *
 import psycopg2
 from psycopg2.extras import Json
 import random
 from datetime import datetime
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -52,8 +53,9 @@ def login():
             session['occupation'] = get_occupation(account['UserID'])
 
             try:
-                cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES (%s, now(), %s)',
-                               (str(account['UserID']), 'Logged'))
+                cursor.execute(
+                    'INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") VALUES (%s, now(), %s)',
+                    (str(account['UserID']), 'Logged'))
                 conn.commit()
             except Exception as error:
                 session['Exception'] = str(error)
@@ -68,7 +70,6 @@ def login():
 
 
 def logout_user():
-
     try:
         cursor = get_cursor()
         cursor.execute('INSERT INTO login_history ("UserID", "LoginTime", "ActivityStatus") '
@@ -119,7 +120,6 @@ def show_personal_data():
 
 @app.route('/getpesel', methods=['GET', 'POST'])
 def get_pesel():
-
     error = ''
     if request.method == "POST":
         cursor = get_cursor()
@@ -349,7 +349,7 @@ def add_client():
     msg = 'Uwaga! Numer PESEL zostanie wygenerowany automatycznie.'
 
     if request.method == 'POST':
-        if 'submit' in request.form:
+        if 'submit' in request.form or 'submit_create' in request.form:
             data = request.form.to_dict()
             for i, j in data.copy().items():
                 if i == 'submit':
@@ -378,7 +378,23 @@ def add_client():
                      new_pesel,))
                 conn.commit()
                 cursor.close()
-                msg = 'Wygenerowano PESEL: ' + new_pesel
+                msg = 'Wygenerowano PESEL: ' + new_pesel + '\n'
+
+                if 'submit_create' in request.form:
+                    random_login = random_string()
+                    random_password = random_string()
+                    try:
+                        cursor = get_cursor()
+                        cursor.execute('INSERT INTO login_credentials ("Login", "Password", "PESEL") '
+                                       'VALUES (%s, crypt(%s, gen_salt(\'bf\', 6)), %s)',
+                                       (random_login, random_password, new_pesel))
+                        conn.commit()
+                        cursor.close()
+                        msg = msg + '\n' + "Login: " + random_login + '\n' + "Hasło: " + random_password
+
+                    except Exception as err:
+                        visibility = 'visible'
+                        error = err
 
             except Exception as err:
                 visibility = 'visible'
@@ -388,6 +404,11 @@ def add_client():
             return redirect(url_for('show_personal_data'))
 
     return render_template('DodajKlienta.html', visibility=visibility, error=error, msg=msg)
+
+
+def random_string():
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for i in range(random.randint(8, 15)))
 
 
 @app.route('/viewforms', methods=['GET', 'POST'])
