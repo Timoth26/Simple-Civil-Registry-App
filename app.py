@@ -122,8 +122,10 @@ def get_pesel():
 
     error = ''
     if request.method == "POST":
-
-        if get_id_from_pesel(request.form['pesel']):
+        cursor = get_cursor()
+        cursor.execute('SELECT * FROM personal_data WHERE "PESEL" = %s', [request.form['pesel']])
+        data = cursor.fetchone()
+        if data:
             session['pesel'] = request.form['pesel']
             return redirect(url_for('edit_user_data'))
         else:
