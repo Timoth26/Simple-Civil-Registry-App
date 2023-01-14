@@ -199,6 +199,7 @@ def edit_user_data():
                      data['phoneprefix'], data['civilstatus'], data['citizenship'], session['pesel'], data['pesel'],))
 
                 conn.commit()
+                cursor.close()
             except Exception as error:
                 session['Exception'] = str(error)
                 return redirect(url_for('server_error'))
@@ -227,6 +228,7 @@ def apply():
                 cursor.execute('INSERT INTO documents ("Type", "AppUserID") VALUES (%s, %s)',
                                (request.form['selectlist'], session.get('id'),))
                 conn.commit()
+                cursor.close()
             except Exception as error:
                 session['Exception'] = str(error)
                 return redirect(url_for('server_error'))
@@ -290,6 +292,7 @@ def report_error():
                                'VALUES (%s, %s, %s, %s, %s);',
                                ('; '.join(list(new_data.keys())), Json(data), Json(new_data), session['id'], str(info)))
                 conn.commit()
+                cursor.close()
             except Exception as error:
                 session['Exception'] = str(error)
                 return redirect(url_for('server_error'))
@@ -371,6 +374,7 @@ def add_client():
                      data['phoneprefix'], data['civilstatus'], data['citizenship'],
                      new_pesel,))
                 conn.commit()
+                cursor.close()
 
             except Exception as err:
                 visibility = 'visible'
@@ -421,6 +425,7 @@ def view_forms():
                     cursor.execute('UPDATE documents SET "Status" = %s, "DateOfVerification" = NULL, '
                                    '"DateOfConsideration" = NULL WHERE "ApplicationID" = %s', (j, i))
                 conn.commit()
+                cursor.close()
 
                 cursor = get_cursor()
                 cursor.execute(
@@ -477,6 +482,7 @@ def view_error_reports():
                         return redirect(url_for('server_error'))
 
                 conn.commit()
+                cursor.close()
 
             return redirect(url_for('view_error_reports'))
 
@@ -607,7 +613,7 @@ def get_data_from_db_by_pesel(pesel):
         'civilstatus': data[13],
         'citizenship': data[14]
     }
-
+    cursor.close()
     for i, j in data.items():
         if j is None:
             data[i] = '-'
