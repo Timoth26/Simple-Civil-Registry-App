@@ -119,11 +119,17 @@ def show_personal_data():
 
 @app.route('/getpesel', methods=['GET', 'POST'])
 def get_pesel():
-    if request.method == "POST":
-        session['pesel'] = request.form['pesel']
-        return redirect(url_for('edit_user_data'))
 
-    return render_template('EdytujPopUP.html')
+    error = ''
+    if request.method == "POST":
+
+        if get_id_from_pesel(request.form['pesel']):
+            session['pesel'] = request.form['pesel']
+            return redirect(url_for('edit_user_data'))
+        else:
+            error = 'Nie można znaleźć danych w bazie'
+
+    return render_template('EdytujPopUP.html', error=error)
 
 
 def get_id_from_pesel(pesel):
