@@ -178,11 +178,13 @@ def edit_user_data():
                 data['citizenship'] = request.form['citizenship']
 
             if data['birthdate'] == request.form['birthdate'] or data['gender'] == request.form['gender']:
+                data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
+                data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
                 new_pesel = generate_pesel(data['birthdate'], data['gender'])
                 session['pesel'] = new_pesel
-
-            data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
-            data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
+            else:
+                data['birthdate'] = datetime.strptime(data['birthdate'], '%d.%m.%Y')
+                data['birthdate'] = data['birthdate'].strftime('%Y-%m-%d')
 
             try:
                 cursor = get_cursor()
