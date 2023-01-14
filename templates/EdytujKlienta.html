@@ -101,7 +101,7 @@
         <form class="form-group2" action="{{ url_for('edit_user_data') }}" method="post">
 
 
-      <input class="birthdate11" type="date" style="visibility:{{ visibility }}" name="birthdate"  id="birthdate"/><input
+      <input class="birthdate11" type="date" style="visibility:{{ visibility }}" name="birthdate"  id="birthdate" max="9999-01-01"/><input
         class="cityofregistration11"
         type="text"
         name="registrationcity"
