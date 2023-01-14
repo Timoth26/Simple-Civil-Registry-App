@@ -49,7 +49,7 @@
       <input class="name12" type="text" name="name"  pattern="([^\s][A-zÀ-ž -]+)" required/>
       <div class="imie8">Imie</div>
       <div class="podaj-dane-klienta1">Podaj Dane Klienta</div>
-        <div class="pesel_info">Uwaga! Numer PESEL zostanie wygenerowany automatycznie.</div>
+        <div class="pesel_info">{{ msg }}</div>
         <div class="error_info" style="visibility:{{ visibility }}">Proszę sprawdzić poprawność wprowadzanych danych (format).
             Jeżeli nie uda się rozwiązać problemu prosimy o kontakt z Urzędem. {{ error }}</div>
       <input class="surname12" type="text" name="surname" pattern="([^\s][A-zÀ-ž -]+)" required/>

@@ -346,6 +346,7 @@ def show_error_reports():
 def add_client():
     visibility = 'hidden'
     error = ''
+    msg = 'Uwaga! Numer PESEL zostanie wygenerowany automatycznie.'
 
     if request.method == 'POST':
         if 'submit' in request.form:
@@ -374,6 +375,7 @@ def add_client():
                      new_pesel,))
                 conn.commit()
                 cursor.close()
+                msg = 'Wygenerowano PESEL: ' + new_pesel
 
             except Exception as err:
                 visibility = 'visible'
@@ -382,7 +384,7 @@ def add_client():
         if 'powrot' in request.form:
             return redirect(url_for('show_personal_data'))
 
-    return render_template('DodajKlienta.html', visibility=visibility, error=error)
+    return render_template('DodajKlienta.html', visibility=visibility, error=error, msg=msg)
 
 
 @app.route('/viewforms', methods=['GET', 'POST'])
