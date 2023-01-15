@@ -23,11 +23,7 @@
       <div class="birthdate8"></div>
       <div class="cityofregistration8"></div>
       <div class="miejsce-zameldowania6">Miejsce Zameldowania</div>
-      <div class="flatno8"></div>
-      <b class="b18">{{data.flatNo }}</b>
       <div class="numer-mieszkania6">Numer Mieszkania</div>
-      <div class="houseno9"></div>
-      <b class="b19">{{ data.No }}</b>
       <div class="numer-domu6">Numer Domu</div>
       <div class="street8"></div>
       <div class="ulica6">Ulica</div>
@@ -51,9 +47,9 @@
       <div class="birthdate8"></div>
       <div class="cityofregistration8"></div>
       <div class="flatno8"></div>
-      <b class="b20">-</b>
+      <b class="b20">{{data.flatNo }}</b>
       <div class="houseno9"></div>
-      <b class="b21">4</b>
+      <b class="b21">{{ data.No }}</b>
       <div class="street8"></div>
       <div class="postcode8"></div>
       <div class="gender8"></div>
@@ -141,7 +137,7 @@
         pattern="([^\s][A-zÀ-ž -]+)"
         id="gender"
       /><input class="name11" type="text" name="name" pattern="([^\s][A-zÀ-ž -]+)" id="gender"/>
-            <input class = "peselinput" type="text" name="pesel" id="pesel" pattern="[0-9]*">
+            <input class = "peselinput" type="text" name="pesel" id="pesel" pattern="[0-9]{11}">
         <input
         class="surname11"
         type="text"
