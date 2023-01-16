@@ -282,13 +282,12 @@ def show_documents():
 def report_error():
     cursor = get_cursor()
     data = get_data_from_db(session['id'])
+    info = ''
 
     if request.method == "POST":
         if 'submit' in request.form:
             new_data = request.form.to_dict()
             for i, j in new_data.copy().items():
-                if j == '':
-                    new_data.pop(i)
                 if i == 'submit':
                     new_data.pop(i)
                 elif i == 'powrot':
@@ -298,6 +297,8 @@ def report_error():
                     new_data.pop(i)
                 elif i == 'postalcode':
                     new_data[i] = reformat_postal_code(j)
+                if j == '':
+                    new_data.pop(i)
 
             for i in data.copy().keys():
                 if i not in new_data:
@@ -507,7 +508,7 @@ def view_error_reports():
                         return redirect(url_for('server_error'))
 
                 conn.commit()
-                cursor.close()
+            cursor.close()
 
             return redirect(url_for('view_error_reports'))
 
