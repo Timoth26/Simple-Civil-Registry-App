@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/EdytujPopUPKierownik.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+  <form class="form-group1" action="{{ url_for('get_pesel') }}" method="post">
+
+    <div class="edytuj-pop-up-kierownik">
+      <input class="houseno15" type="text" name="pesel"/>
+      <div class="podaj-pesel-klienta1">Podaj PESEL Klienta</div>
+      <div class="podaj-pesel-klienta1" style="left: 500px; color: red" >{{ error }}</div>
+
+
+      <button
+        class="pokazwnioskiklientowbutton19"
+        id="pokazWnioskiKlientowButton"
+        formmethod="post"
+      >
+        <img
+          class="pokazwnioskiklientowbutton-child17"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta19">Edytuj Dane Kllienta</div>
+      </button>
+    </div>
+          </form>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/BurmistrzPrzegladajWnioskiKlientow.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+
+    <form class="form-group2" method="post">
+
+    <div class="burmistrz-przegladajwnioskikli">
+      <img class="obraz-1-icon8" alt="" src="/static/obraz-1@2x.png" />
+      <div class="kierownik-pokazwnioski-item" style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr class="table__header">
+                {%  for header in headings %}
+                <th class="table__cell"> {{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+                {% for row in data %}
+            <tbody>
+            <tr class="table__row">
+                {% for cell in row %}
+{#                    TUTDAJ DODAC IFA I BEDZIE SUPER#}
+                <td class="table__cell">
+                    {{ cell }}
+                </td>
+                {% endfor %}
+                <td class="table_cell"><select name="{{ row[0] }}" id="selectlist" >
+                {% for type in types %}
+                <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+            </select> </td>
+            </tr>
+            </tbody>
+                {% endfor %}
+          </table>
+    </div>
+    <button class="pokazdanebutton7" name="powrot" id="powrot" formmethod="post">
+        <img
+          class="zlozwniosekbutton-child5"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta7" >Powrót</div>
+      </button>
+        <button class="submitbutton" name="submit" id="submit" formmethod="post">
+        <img
+          class="zlozwniosekbutton-child5"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta7" >Zatwierdź zmiany</div>
+      </button>
+    </div>
+    </form>
+  </body>
+</html>

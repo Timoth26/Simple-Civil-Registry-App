@@ -1,0 +1,353 @@
+@keyframes shadow-inset-center {
+  0% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  to {
+    box-shadow: inset 0 0 14px 0 rgb(0 0 0/50%);
+  }
+}
+body {
+  margin: 0;
+  line-height: normal;
+}
+.obraz-1-icon8 {
+  position: absolute;
+  top: 77px;
+  left: 66px;
+  width: 329px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.kierownik-pokazwnioski-item {
+  position: absolute;
+  top: 95px;
+  left: 420px;
+  background-color: var(--color-gray-600);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 4px solid var(--color-black);
+  box-sizing: border-box;
+  width: 1250px;
+  height: 500px;
+  overflow: auto;
+}
+
+.kierownik-pokazwnioski-item thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 3px 5px;
+        font-size: 20px;}
+th     { background:#eee; }
+tr {font-size: 22px;}
+
+.burmistrz-przegladajwnioskikli-child {
+  position: absolute;
+  top: 87px;
+  left: 535px;
+  background-color: var(--color-gray-600);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 4px solid var(--color-black);
+  box-sizing: border-box;
+  width: 1130px;
+  height: 850px;
+}
+.zweryfikujbutton-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 236px;
+  height: 50px;
+}
+.zweryfikuj {
+  position: absolute;
+  height: 78.85%;
+  top: 11.54%;
+  left: calc(50% - 110.71px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 219.43px;
+}
+.zweryfikujbutton {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 951px;
+  left: 635px;
+  width: 236px;
+  height: 50px;
+}
+.odrzucbutton-item,
+.odrzucbutton1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 231px;
+  height: 50px;
+}
+.odrzucbutton1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 951px;
+  left: 884px;
+}
+.podpisz {
+  position: absolute;
+  height: 88%;
+  top: 12%;
+  left: calc(50% - 115.5px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 228.88px;
+}
+.podpiszbutton {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 951px;
+  left: 1134px;
+  width: 231px;
+  height: 50px;
+}
+.burmistrz-przegladajwnioskikli-item {
+  position: absolute;
+  top: 113px;
+  left: 654px;
+  background-color: var(--color-gray-200);
+  width: 685px;
+  height: 254px;
+  opacity: 1;
+}
+.burmistrz-przegladajwnioskikli-item.animate {
+  animation: 1s ease 0s 1 normal forwards shadow-inset-center;
+}
+.applicationid1 {
+  position: absolute;
+  top: 124px;
+  left: 667px;
+  display: flex;
+  align-items: center;
+  width: 177px;
+  height: 26px;
+}
+.data-aplikacji3,
+.data-rozpatrzenia3,
+.data-weryfikacji1 {
+  position: absolute;
+  top: 320px;
+  left: 665px;
+  display: inline-block;
+}
+.data-aplikacji3,
+.data-weryfikacji1 {
+  top: 262px;
+}
+.data-weryfikacji1 {
+  top: 291px;
+}
+.dateofapplication3,
+.dateofconsideration3,
+.dateofveryfication1 {
+  position: absolute;
+  top: 319px;
+  left: 1059px;
+  display: inline-block;
+}
+.dateofapplication3,
+.dateofveryfication1 {
+  top: 261px;
+}
+.dateofveryfication1 {
+  top: 290px;
+}
+.status3,
+.statusakt3,
+.typ-dokumentu3,
+.type1 {
+  position: absolute;
+  top: 190px;
+  left: 665px;
+  display: inline-block;
+}
+.status3,
+.statusakt3,
+.type1 {
+  left: 1059px;
+}
+.status3,
+.statusakt3 {
+  top: 228px;
+  left: 667px;
+}
+.statusakt3 {
+  left: 1059px;
+}
+.pesel6,
+.polepesel {
+  position: absolute;
+  top: 153px;
+}
+.polepesel {
+  left: 1059px;
+  display: flex;
+  align-items: center;
+  width: 258px;
+  height: 29px;
+}
+.pesel6 {
+  left: 667px;
+  display: inline-block;
+}
+.edytujklientowbutton-child4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 55.12px;
+}
+.edytuj-dane-kllienta7 {
+  position: absolute;
+  height: 90.63%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.edytujklientowbutton7,
+.pokazwnioskibutton7 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 772.63px;
+  left: 120px;
+  width: 387px;
+  height: 55.12px;
+}
+.pokazwnioskibutton7 {
+  top: 446.59px;
+}
+.pokazzgloszenia-child5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  height: 66.31px;
+}
+.poka-zgoszenia-bdw7 {
+  position: absolute;
+  height: 90.62%;
+  top: 4.69%;
+  left: calc(50% - 127.07px);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 255.19px;
+}
+.dodajklientabutton7,
+.pokazwnioskiklientowbutton7,
+.pokazzgloszenia7,
+.przegladajzgloszeniabutton7,
+.zglosbladbutton7 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 593.86px;
+  left: 120px;
+  width: 387px;
+  height: 66.31px;
+}
+.dodajklientabutton7,
+.pokazwnioskiklientowbutton7,
+.przegladajzgloszeniabutton7,
+.zglosbladbutton7 {
+  top: 524.96px;
+  height: 55.12px;
+}
+.dodajklientabutton7,
+.pokazwnioskiklientowbutton7,
+.przegladajzgloszeniabutton7 {
+  top: 922.72px;
+}
+.dodajklientabutton7,
+.przegladajzgloszeniabutton7 {
+  top: 842.63px;
+  height: 66.31px;
+}
+.dodajklientabutton7 {
+  top: 701.52px;
+  height: 55.12px;
+}
+.pokazdanebutton7,
+.zlozwniosekbutton-child5,
+.zlozwniosekbutton7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 287px;
+  height: 53.4px;
+}
+.pokazdanebutton7,
+.zlozwniosekbutton7 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 382px;
+  left: 90px;
+}
+.pokazdanebutton7 {
+  top: 306px;
+}
+
+.submitbutton{
+  position: absolute;
+  width: 287px;
+  height: 53.4px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  left: 90px;
+  top: 406px;
+}
+.burmistrz-przegladajwnioskikli {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

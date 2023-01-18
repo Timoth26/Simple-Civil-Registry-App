@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/KierownikEdytujKlienta.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+
+    <div class="kierownik-edytuj-klienta">
+
+      <div class="kierownik-edytuj-klienta-child"></div>
+      <img class="obraz-1-icon14" alt="" src="/static/obraz-1@2x.png" />
+      <div class="dane-klienta-do-edycji1">Dane Klienta Do Edycji</div>
+      <div class="aktualne-dane-klienta1">Aktualne Dane Klienta</div>
+      <div class="data-urodzenia6">Data Urodzenia</div>
+      <div class="birthdate8"></div>
+      <div class="cityofregistration8"></div>
+      <div class="miejsce-zameldowania6">Miejsce Zameldowania</div>
+      <div class="numer-mieszkania6">Numer Mieszkania</div>
+      <div class="numer-domu6">Numer Domu</div>
+      <div class="street8"></div>
+      <div class="ulica6">Ulica</div>
+      <div class="postcode8"></div>
+      <div class="kod-pocztowy6">Kod Pocztowy</div>
+      <div class="gender8"></div>
+      <div class="pe6">Płeć</div>
+      <div class="birthplace8"></div>
+      <div class="miejsce-urodzenia6">Miejsce Urodzenia</div>
+      <div class="name8"></div>
+      <div class="imie6">Imie</div>
+      <div class="pesel11"></div>
+      <div class="pesel12">PESEL</div>
+      <div class="surname8"></div>
+      <div class="nazwisko6">Nazwisko</div>
+      <div class="callprefix8"></div>
+      <div class="phoneno8"></div>
+      <div class="civilstate8"></div>
+      <div class="citizenship12"></div>
+      <div class="obywatelstwo6">Obywatelstwo</div>
+      <div class="birthdate8"></div>
+      <div class="cityofregistration8"></div>
+      <div class="flatno8"></div>
+      <b class="b20">{{data.flatNo }}</b>
+      <div class="houseno9"></div>
+      <b class="b21">{{ data.No }}</b>
+      <div class="street8"></div>
+      <div class="postcode8"></div>
+      <div class="gender8"></div>
+      <div class="birthplace8"></div>
+      <div class="name8"></div>
+      <div class="pesel11"></div>
+      <div class="surname8"></div>
+      <div class="callprefix8"></div>
+      <div class="phoneno8"></div>
+      <div class="numer-telefonu6">Numer Telefonu</div>
+        <div class="numer-telefonu6" style="top: 747px; left: 645px; font-size: 18px;">+</div>
+        <div class="numer-telefonu6" style="top: 750px; left: 1010px; font-size: 18px;">+</div>
+
+      <div class="civilstate8"></div>
+      <div class="stan-cywilny6">Stan Cywilny</div>
+      <div class="citizenship12"></div>
+      <b class="b22">{{ data.pesel }}</b><b class="anna4">{{ data.name }}</b
+      ><b class="majkalska4">{{ data.surname }}</b><b class="b23">{{ data.birthdate }}</b
+      ><b class="rzeszw4">{{ data.birthcity}}</b><b class="kobieta4">{{ data.gender }}</b
+      ><b class="katowice4">{{ data.registrationcity }}</b><b class="b24">{{ data.postalcode }}</b
+      ><b class="jana-matejki4">{{ data.street}}</b><b class="b25">{{ data.phoneNo }}</b
+      ><b class="b26">{{ data.phoneprefix }}</b><b class="onatyzamna4">{{ data.civilstatus }}</b
+      ><b class="polskie4">{{ data.citizenship }}</b>
+      <div class="data-urodzenia7">Data Urodzenia</div>
+      <div class="birthdate10" ></div>
+        <div class="peseltext">PESEL</div>
+        <div class="infotext">Proszę o udzielenie wyjaśnień: </div>
+      <div class="cityofregistration10"></div>
+      <div class="miejsce-zameldowania7">Miejsce Zameldowania</div>
+      <div class="flatno10"></div>
+      <div class="numer-mieszkania7">Numer Mieszkania</div>
+      <div class="houseno11"></div>
+      <div class="numer-domu7">Numer Domu</div>
+      <div class="street10"></div>
+      <div class="ulica7">Ulica</div>
+      <div class="postcode10"></div>
+      <div class="kod-pocztowy7">Kod Pocztowy</div>
+      <div class="gender10"  ></div>
+      <div class="pe7" >Płeć</div>
+      <div class="birthplace10"></div>
+      <div class="miejsce-urodzenia7">Miejsce Urodzenia</div>
+      <div class="name10"></div>
+      <div class="imie7">Imie</div>
+      <div class="surname10"></div>
+      <div class="nazwisko7">Nazwisko</div>
+      <div class="callprefix10"></div>
+      <div class="phoneno10"></div>
+      <div class="civilstate10"></div>
+      <div class="citizenship14"></div>
+      <div class="obywatelstwo7">Obywatelstwo</div>
+
+        <form class="form-group2" action="{{ url_for('report_error') }}" method="post">
+
+
+      <input class="birthdate11" type="date"  name="birthdate" id="birthdate" max="9999-01-01" min="1800-01-01"/><input
+        class="cityofregistration11"
+        type="text"
+        name="registrationcity"
+        pattern="([^\s][A-zÀ-ž -]+)"
+        id="registrationcity"
+      /><input class="flatno11" type="text" name="flatNo" id="flatNo"/><input
+        class="houseno12"
+        type="text"
+        name="houseNo"
+        id="houseNo"
+      /><input class="street11" type="text" name="street" id="street" pattern="([^\s][A-zÀ-ž -0-9]+)"/><input
+        class="postcode11"
+        type="text"
+        name="postalcode"
+        id="postalcode"
+        pattern="[0-9]{2}-[0-9]{3}"
+        placeholder="xx-xxx"
+      />
+        <select class="gender11" name="gender" id="selectlist" >
+            <option value=""></option>
+            <option value="Kobieta">Kobieta</option>
+            <option value="Mężczyzna">Mężczyzna</option>
+            <option value="Niezdefiniowana">Niezdefiniowana</option>
+        </select>
+
+            <input
+        class="birthplace11"
+        type="text"
+        name="birthcity"
+        pattern="([^\s][A-zÀ-ž -]+)"
+        id="gender"
+      /><input class="name11" type="text" name="name" pattern="([^\s][A-zÀ-ž -]+)" id="gender"/>
+            <input class = "peselinput" type="text" name="pesel" id="pesel" pattern="[0-9]{11}">
+        <input
+        class="surname11"
+        type="text"
+        name="surname"
+        pattern="([^\s][A-zÀ-ž -]+)"
+        id="surname"
+      /><input class="callprefix11" type="text" name="phoneprefix" id="phoneprefix" pattern="[0-9]{9}"/><input
+        class="phoneno11"
+        type="text"
+        name="phoneNo"
+        id="phoneNo"
+        pattern="[0-9]*"
+      />
+      <div class="numer-telefonu7">Numer Telefonu</div>
+
+        <select class="civilstate11" name="civilstatus" id="selectlist" >
+            <option value=""></option>
+            <option value="Kawaler/Panna">Kawaler/Panna</option>
+            <option value="Rozwiedziony/Rozwiedziona">Rozwiedziony/Rozwiedziona</option>
+            <option value="Żonaty/Zamężna">Żonaty/Zamężna</option>
+            <option value="Separowany/Separowana">Separowany/Separowana</option>
+            <option value="Wdowiec/Wdowa">Wdowiec/Wdowa</option>
+
+        </select>
+
+      <div class="stan-cywilny7">Stan Cywilny</div>
+      <input class="citizenship15" type="text" name="citizenship" id="citizenship" pattern="([^\s][A-zÀ-ž ]+)"/>
+      <input class="info" type="text" name="info" id="info" required/>
+
+
+      <button class="wyslijblad4" id="submit" name="submit" value="Zatwierdz" >
+        <img class="wyslijblad-child2" alt="" src="/static/rectangle-5.svg" />
+        <div class="edytuj-dane-klienta1">Zatwierdz</div>
+      </button>
+        </form>
+
+    <form class="form-group2" action="{{ url_for('report_error') }}" method="post">
+
+    <button class="pokazwnioskibutton13" id="powrot" name="powrot" value="Powrot" >
+        <img
+          class="edytujklientowbutton-child10"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta14">Powrot</div></button>
+
+        </form>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/KierownikDodajKlienta.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="kierownik-dodaj-klienta">
+
+    <form class="form-group2" action="{{ url_for('add_client') }}" method="post">
+
+
+      <div class="kierownik-dodaj-klienta-child"></div>
+      <img class="obraz-1-icon15" alt="" src="/static/obraz-1@2x.png" />
+      <div class="data-urodzenia8">Data Urodzenia</div>
+      <input class="birthdate12" type="date" name="birthdate" max="9999-01-01" min="1800-01-01" required/><input
+        class="cityofregistration12"
+        type="text"
+        name="registrationcity"
+        pattern="([^\s][A-zÀ-ž -]+)"
+        required
+      />
+      <div class="miejsce-zameldowania8">Miejsce Zameldowania</div>
+      <input class="flatno12" type="text" name="flatNo"/>
+      <div class="numer-mieszkania8">Numer Mieszkania</div>
+      <input class="houseno13" type="text" name="No" required/>
+      <div class="numer-domu8">Numer Domu</div>
+      <input class="street12" type="text" name="street" pattern="([^\s][A-zÀ-ž -0-9]+)" required/>
+      <div class="ulica8">Ulica</div>
+      <input class="postcode12" type="text" name="postalcode" pattern="[0-9]{2}-[0-9]{3}"placeholder="xx-xxx" required/>
+      <div class="kod-pocztowy8">Kod Pocztowy</div>
+
+        <select class="gender12" name="gender" id="selectlist" required>
+            <option value="Niezdefiniowana">Niezdefiniowana</option>
+            <option value="Kobieta">Kobieta</option>
+            <option value="Mężczyzna">Mężczyzna</option>
+        </select>
+
+      <div class="pe8">Płeć</div>
+      <input class="birthplace12" type="text" name="birthcity" pattern="([^\s][A-zÀ-ž -]+)" required/>
+      <div class="miejsce-urodzenia8">Miejsce Urodzenia</div>
+      <input class="name12" type="text" name="name"  pattern="([^\s][A-zÀ-ž -]+)" required/>
+      <div class="imie8">Imie</div>
+      <div class="podaj-dane-klienta1">Podaj Dane Klienta</div>
+        <div class="pesel_info">{{ msg }}</div>
+        <div class="error_info" style="visibility:{{ visibility }}">Proszę sprawdzić poprawność wprowadzanych danych (format).
+            Jeżeli nie uda się rozwiązać problemu prosimy o kontakt z Urzędem. {{ error }}</div>
+      <input class="surname12" type="text" name="surname" pattern="([^\s][A-zÀ-ž -]+)" required/>
+      <div class="nazwisko8">Nazwisko</div>
+      <input class="callprefix12" type="text" name="phoneNo" pattern="[0-9]{9}" required/><input
+        class="phoneno12"
+        type="text"
+        name="phoneprefix"
+        pattern="[0-9]*"
+        required
+      />
+      <div class="numer-telefonu8">Numer Telefonu</div>
+        <div class="numer-telefonu8" style="top: 720px; left: 700px; font-size: 18px;">+</div>
+
+        <select class="civilstate12" name="civilstatus" id="selectlist" required>
+            <option value=""></option>
+            <option value="Kawaler/Panna">Kawaler/Panna</option>
+            <option value="Rozwiedziony/Rozwiedziona">Rozwiedziony/Rozwiedziona</option>
+            <option value="Żonaty/Zamężna">Żonaty/Zamężna</option>
+            <option value="Separowany/Separowana">Separowany/Separowana</option>
+            <option value="Wdowiec/Wdowa">Wdowiec/Wdowa</option>
+
+        </select>
+
+      <div class="stan-cywilny8">Stan Cywilny</div>
+      <input class="citizenship16" type="text" name="citizenship" pattern="([^\s][A-zÀ-ž ]+)" required/>
+      <div class="obywatelstwo8">Obywatelstwo</div>
+      <button class="wyslijblad5" id="submit" name="submit">
+        <img class="wyslijblad-child3" alt="" src="/static/rectangle-5.svg" />
+        <div class="dodaj-klienta15">Dodaj Klienta</div>
+      </button>
+
+        <button class="wyslijblad5" id="submit_create" name="submit_create" style="left: 600px">
+        <img class="wyslijblad-child3" alt="" src="/static/rectangle-5.svg" style="left: 10px"/>
+        <div class="dodaj-klienta15" style="font-size: 12px;">Dodaj Klienta i stwórz mu konto</div>
+      </button>
+
+    </form>
+        <form class="form-group2" action="{{ url_for('add_client') }}" method="post">
+
+        <button class="pokazdanebutton14" id="powrot" name="powrot">
+        <img
+          class="zlozwniosekbutton-child12"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta15">Powrót</div>
+      </button>
+          </form>
+    </div>
+  </body>
+</html>

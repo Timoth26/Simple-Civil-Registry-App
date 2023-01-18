@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/KierownikPokazBledy.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="kierownik-pokazwnioski">
+      <img class="obraz-1-icon11" alt="" src="/static/obraz-1@2x.png" />
+      <div class="kierownik-pokazwnioski-item" style="overflow-x:auto;" >
+          <table>
+          <thead>
+            <tr class="table__header">
+                {%  for header in headings %}
+                <th class="table__cell"> {{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+                {% for row in data %}
+            <tbody>
+            <tr class="table__row">
+                {% for cell in row %}
+                <td class="table__cell"> {{ cell }}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+                {% endfor %}
+          </table>
+      </div>
+
+        <form class="form-group1" action="{{ url_for('show_documents') }}" method="post">
+
+      <button class="edytujklientowbutton10" id="powrot" name="powrot">
+        <img
+          class="edytujklientowbutton-child7"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta11">Powrót</div></button
+      >
+        </form>
+    </div>
+  </body>
+</html>

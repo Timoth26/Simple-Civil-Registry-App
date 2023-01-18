@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="static/global.css" />
+    <link rel="stylesheet" href="static/KierownikZlozWniosek.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="kierownik-zlozwniosek">
+      <div class="kierownik-zlozwniosek-child"></div>
+      <img class="obraz-1-icon12" alt="" src="/static/obraz-1@2x.png" />
+
+    <form class="form-group1" action="{{ url_for('apply') }}" method="post">
+
+        <select class="typ-dokumentu5" name="selectlist" id="selectlist" >
+          {% for type in types %}
+            <option value="{{type}}">{{type}}</option>
+          {% endfor %}
+        </select>
+      <div class="typ-dokumentu6">Podaj typ dokumentu</div>
+
+      <button class="vector-group" name="wyslij" id="wyslij">
+        <img class="group-inner" alt="" src="/static/rectangle-5.svg" />
+        <div class="wylij-wniosek1">Wyślij Wniosek</div></button
+      ><button class="edytujklientowbutton11" id="powrot" name="powrot">
+        <img
+          class="edytujklientowbutton-child8"
+          alt=""
+          src="/static/rectangle-5.svg"
+        />
+        <div class="edytuj-dane-kllienta12">Powrót</div></button
+      >
+    </form>
+    </div>
+
+  </body>
+</html>
