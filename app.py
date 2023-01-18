@@ -298,7 +298,7 @@ def report_error():
                     new_data.pop(i)
                 elif i == 'postalcode':
                     new_data[i] = reformat_postal_code(j)
-                if j == '':
+                elif j == '':
                     new_data.pop(i)
 
             for i in data.copy().keys():
