@@ -6,15 +6,16 @@ import psycopg2
 from psycopg2.extras import Json
 import random
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
-DB_HOST = "usc-bd.postgres.database.azure.com"
-DB_NAME = "usc"
-DB_USER = "app"
-DB_PASS = "password"
-DB_PORT = "5432"
+DB_HOST = os.environ['DBHOST']
+DB_NAME = os.environ['DBNAME']
+DB_USER = os.environ['DBUSER']
+DB_PASS = os.environ['DBPASS']
+DB_PORT = os.environ['DBPORT']
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
 
